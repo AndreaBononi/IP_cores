@@ -1,3 +1,3 @@
-# 287628_tesi
+# 287628 tesi
 
 Files per tesi di laurea
