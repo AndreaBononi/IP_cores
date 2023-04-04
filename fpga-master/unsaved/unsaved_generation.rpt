@@ -1,0 +1,27 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/andrea/Documents/Tesi/fpga-master/unsaved.qsys --block-symbol-file --output-directory=/home/andrea/Documents/Tesi/fpga-master/unsaved --family="Cyclone 10 LP" --part=10CL025YE144C8G
+Progress: Loading fpga-master/unsaved.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 22.1]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/andrea/Documents/Tesi/fpga-master/unsaved.qsys --synthesis=VHDL --output-directory=/home/andrea/Documents/Tesi/fpga-master/unsaved/synthesis --family="Cyclone 10 LP" --part=10CL025YE144C8G
+Progress: Loading fpga-master/unsaved.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 22.1]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: unsaved: Generating unsaved "unsaved" for QUARTUS_SYNTH
+Info: unsaved: Done "unsaved" with 1 modules, 1 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

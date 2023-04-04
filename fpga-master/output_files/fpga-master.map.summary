@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Apr 20 12:52:08 2021
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Revision Name : fpga-master
+Top-level Entity Name : master
+Family : Cyclone 10 LP
+Total logic elements : 42
+    Total combinational functions : 42
+    Dedicated logic registers : 41
+Total registers : 41
+Total pins : 62
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1

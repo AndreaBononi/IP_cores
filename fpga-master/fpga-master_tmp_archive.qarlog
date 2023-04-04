@@ -1,0 +1,27 @@
+Quartus Prime Archive log --	/home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master_tmp_archive.qarlog
+
+Archive:	/home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master_tmp_archive.qar
+Date:		Fri Oct 30 22:59:29 2020
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/assignment_defaults.qdf
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.out.sdc
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.qpf
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.qsf
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.cmp
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.ppf
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.qip
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.vhd
+/home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll_inst.vhd
+	======= Total: 10 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Fri Oct 30 22:59:30 2020
+Source archive file:	/home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master_tmp_archive.qar
+Archive was extracted into	/home/max/vlsi/didattica/virtlab/hardware/fpga-user/
+		 - successfully.
