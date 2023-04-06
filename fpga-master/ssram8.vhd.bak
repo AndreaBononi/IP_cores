@@ -1,0 +1,59 @@
+-- ssram8.vhd ------------------------------------------------------------------------------------
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+-- SSRAM
+-- N bit words
+-- 8 bit addressing
+
+-----------------------------------------------------------------------------------------------
+
+entity ssram8 is
+	generic
+	(
+		N : integer := 32
+	);
+	port
+	(
+		ssram32_clk			: in 	std_logic;
+		ssram32_clear_n	: in 	std_logic;
+		ssram32_read		: in 	std_logic;
+		ssram32_write		: in 	std_logic;
+		ssram32_address	: in 	std_logic_vector(31 downto 0);
+		ssram32_in			: in 	std_logic_vector(N-1 downto 0);
+		ssram32_out			: out std_logic_vector(N-1 downto 0)
+	);
+end ssram8;
+
+-----------------------------------------------------------------------------------------------
+
+architecture rtl of ssram8 is
+
+   TYPE MEMORY IS ARRAY(0 TO 255) OF STD_LOGIC_VECTOR(N_DATA-1 DOWNTO 0);
+   SIGNAL MYMEM: MEMORY;
+	SIGNAL myaddr: INTEGER;
+	SIGNAL myout: STD_LOGIC_VECTOR (N_DATA-1 DOWNTO 0);
+
+   BEGIN
+
+		myaddr <= TO_INTEGER(UNSIGNED(ssram32_address(7 DOWNTO 0)));
+
+		MyMemory: PROCESS (ssram32_clk, ssram32_clear_n, ssram32_write, ssram32_read, ssram32_in, myaddr)
+			BEGIN
+            IF (rising_edge(ssram32_clk)) THEN
+               IF (ssram32_clear_n = '0') THEN
+                  MYMEM <= (OTHERS => (OTHERS => '0'));
+               ELSIF (ssram32_write = '1') THEN
+                  MYMEM(myaddr) <= ssram32_in;
+               END IF;
+               IF (ssram32_read = '1') THEN
+                  myout <= MYMEM(myaddr);
+               END IF;
+            END IF;
+		END PROCESS MyMemory;
+
+		ssram32_out <= myout;
+
+end rtl;
