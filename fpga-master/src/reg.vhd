@@ -17,7 +17,7 @@ entity reg is
 	(
 		clk		: in 	std_logic;
 		enable	: in 	std_logic;
-		clearn	: in 	std_logic;
+		clear_n	: in 	std_logic;
 		reg_in	: in 	std_logic_vector(N-1 downto 0);
 		reg_out	: out std_logic_vector(N-1 downto 0)
 	);
@@ -25,7 +25,7 @@ end reg;
 
 -----------------------------------------------------------------------------
 
-architecture beh of reg is
+architecture behavior of reg is
 	begin
 		process (clk, clearn, enable)
 		begin
@@ -37,6 +37,6 @@ architecture beh of reg is
             end if;
 			end if;
 		end process;
-end beh;
+end behavior;
 
 -----------------------------------------------------------------------------
