@@ -1,6 +1,6 @@
 Analysis & Synthesis report for fpga-master
-Tue Apr 20 12:52:08 2021
-Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Sat Apr  8 19:17:11 2023
+Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
 
 
 ---------------------
@@ -28,7 +28,7 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2020  Intel Corporation. All rights reserved.
+Copyright (C) 2023  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -45,24 +45,24 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                     ;
-+------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Apr 20 12:52:08 2021       ;
-; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
-; Revision Name                      ; fpga-master                                 ;
-; Top-level Entity Name              ; master                                      ;
-; Family                             ; Cyclone 10 LP                               ;
-; Total logic elements               ; 42                                          ;
-;     Total combinational functions  ; 42                                          ;
-;     Dedicated logic registers      ; 41                                          ;
-; Total registers                    ; 41                                          ;
-; Total pins                         ; 62                                          ;
-; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 1                                           ;
-+------------------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                        ;
++------------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sat Apr  8 19:17:11 2023          ;
+; Quartus Prime Version              ; 22.1std.1 Build 917 02/14/2023 SC Lite Edition ;
+; Revision Name                      ; fpga-master                                    ;
+; Top-level Entity Name              ; master                                         ;
+; Family                             ; Cyclone 10 LP                                  ;
+; Total logic elements               ; 42                                             ;
+;     Total combinational functions  ; 42                                             ;
+;     Dedicated logic registers      ; 41                                             ;
+; Total registers                    ; 41                                             ;
+; Total pins                         ; 62                                             ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 0                                              ;
+; Embedded Multiplier 9-bit elements ; 0                                              ;
+; Total PLLs                         ; 1                                              ;
++------------------------------------+------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -157,32 +157,32 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 4           ;
+; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.1%      ;
+;     Processor 2            ;   0.1%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                   ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                               ; Library ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------+---------+
-; fpga-master.vhd                  ; yes             ; User VHDL File               ; /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd      ;         ;
-; myAltPll.vhd                     ; yes             ; User Wizard-Generated File   ; /home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.vhd         ;         ;
-; altpll.tdf                       ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altpll.tdf        ;         ;
-; aglobal201.inc                   ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc    ;         ;
-; stratix_pll.inc                  ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/20.1/quartus/libraries/megafunctions/stratix_pll.inc   ;         ;
-; stratixii_pll.inc                ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/20.1/quartus/libraries/megafunctions/stratixii_pll.inc ;         ;
-; cycloneii_pll.inc                ; yes             ; Megafunction                 ; /opt/intelFPGA_lite/20.1/quartus/libraries/megafunctions/cycloneii_pll.inc ;         ;
-; db/myAltPll_altpll.v             ; yes             ; Auto-Generated Megafunction  ; /home/max/vlsi/didattica/virtlab/hardware/fpga-master/db/myAltPll_altpll.v ;         ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                              ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                          ; Library ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------+---------+
+; fpga-master.vhd                  ; yes             ; User VHDL File               ; /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd                        ;         ;
+; myAltPll.vhd                     ; yes             ; User Wizard-Generated File   ; /home/andrea/Documents/Tesi_287628/fpga-master/myAltPll.vhd                           ;         ;
+; altpll.tdf                       ; yes             ; Megafunction                 ; /home/andrea/intelFPGA_lite/22.1std/quartus/libraries/megafunctions/altpll.tdf        ;         ;
+; aglobal221.inc                   ; yes             ; Megafunction                 ; /home/andrea/intelFPGA_lite/22.1std/quartus/libraries/megafunctions/aglobal221.inc    ;         ;
+; stratix_pll.inc                  ; yes             ; Megafunction                 ; /home/andrea/intelFPGA_lite/22.1std/quartus/libraries/megafunctions/stratix_pll.inc   ;         ;
+; stratixii_pll.inc                ; yes             ; Megafunction                 ; /home/andrea/intelFPGA_lite/22.1std/quartus/libraries/megafunctions/stratixii_pll.inc ;         ;
+; cycloneii_pll.inc                ; yes             ; Megafunction                 ; /home/andrea/intelFPGA_lite/22.1std/quartus/libraries/megafunctions/cycloneii_pll.inc ;         ;
+; db/myAltPll_altpll.v             ; yes             ; Auto-Generated Megafunction  ; /home/andrea/Documents/Tesi_287628/fpga-master/db/myAltPll_altpll.v                   ;         ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------------+
@@ -708,26 +708,50 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Tue Apr 20 12:52:02 2021
+    Info: Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+    Info: Processing started: Sat Apr  8 19:16:59 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off fpga-master -c fpga-master
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file tb/AvalonMM_hyperRamS27KLO641_interface_controlUnit.vhd
+    Info (12022): Found design unit 1: AvalonMM_hyperRamS27KL0641_interface_controlUnit-fsm File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/AvalonMM_hyperRamS27KLO641_interface_controlUnit.vhd Line: 34
+    Info (12023): Found entity 1: AvalonMM_hyperRamS27KL0641_interface_controlUnit File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/AvalonMM_hyperRamS27KLO641_interface_controlUnit.vhd Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file tb/AvalonMM_hyperRamS27KLO641_interface_testbench.vhd
+    Info (12022): Found design unit 1: AvalonMM_hyperRamS27KL0641_interface_testbench-behavior File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/AvalonMM_hyperRamS27KLO641_interface_testbench.vhd Line: 14
+    Info (12023): Found entity 1: AvalonMM_hyperRamS27KL0641_interface_testbench File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/AvalonMM_hyperRamS27KLO641_interface_testbench.vhd Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file tb/input_output_generator.vhd
+    Info (12022): Found design unit 1: input_output_generator-behavior File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/input_output_generator.vhd Line: 45
+    Info (12023): Found entity 1: input_output_generator File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/input_output_generator.vhd Line: 25
+Info (12021): Found 2 design units, including 1 entities, in source file tb/clk_rst_generator.vhd
+    Info (12022): Found design unit 1: clk_rst_generator-behavior File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/clk_rst_generator.vhd Line: 29
+    Info (12023): Found entity 1: clk_rst_generator File: /home/andrea/Documents/Tesi_287628/fpga-master/tb/clk_rst_generator.vhd Line: 14
+Info (12021): Found 2 design units, including 1 entities, in source file src/ssram8.vhd
+    Info (12022): Found design unit 1: ssram8-behavior File: /home/andrea/Documents/Tesi_287628/fpga-master/src/ssram8.vhd Line: 34
+    Info (12023): Found entity 1: ssram8 File: /home/andrea/Documents/Tesi_287628/fpga-master/src/ssram8.vhd Line: 13
+Info (12021): Found 2 design units, including 1 entities, in source file src/reg.vhd
+    Info (12022): Found design unit 1: reg-behavior File: /home/andrea/Documents/Tesi_287628/fpga-master/src/reg.vhd Line: 28
+    Info (12023): Found entity 1: reg File: /home/andrea/Documents/Tesi_287628/fpga-master/src/reg.vhd Line: 11
+Info (12021): Found 2 design units, including 1 entities, in source file src/mux_2to1.vhd
+    Info (12022): Found design unit 1: mux_2to1-behavior File: /home/andrea/Documents/Tesi_287628/fpga-master/src/mux_2to1.vhd Line: 29
+    Info (12023): Found entity 1: mux_2to1 File: /home/andrea/Documents/Tesi_287628/fpga-master/src/mux_2to1.vhd Line: 13
+Info (12021): Found 2 design units, including 1 entities, in source file AvalonMM_hyperRamS27KL0641_interface.vhd
+    Info (12022): Found design unit 1: AvalonMM_hyperRamS27KL0641_interface-rtl File: /home/andrea/Documents/Tesi_287628/fpga-master/AvalonMM_hyperRamS27KL0641_interface.vhd Line: 35
+    Info (12023): Found entity 1: AvalonMM_hyperRamS27KL0641_interface File: /home/andrea/Documents/Tesi_287628/fpga-master/AvalonMM_hyperRamS27KL0641_interface.vhd Line: 11
 Info (12021): Found 2 design units, including 1 entities, in source file fpga-master.vhd
-    Info (12022): Found design unit 1: master-behavioural File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 40
-    Info (12023): Found entity 1: master File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 9
+    Info (12022): Found design unit 1: master-behavioural File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 40
+    Info (12023): Found entity 1: master File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file myAltPll.vhd
-    Info (12022): Found design unit 1: myaltpll-SYN File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.vhd Line: 54
-    Info (12023): Found entity 1: myAltPll File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.vhd Line: 43
+    Info (12022): Found design unit 1: myaltpll-SYN File: /home/andrea/Documents/Tesi_287628/fpga-master/myAltPll.vhd Line: 54
+    Info (12023): Found entity 1: myAltPll File: /home/andrea/Documents/Tesi_287628/fpga-master/myAltPll.vhd Line: 43
 Info (12127): Elaborating entity "master" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at fpga-master.vhd(30): used implicit default value for signal "mcuUartRx" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 30
-Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(43): object "pllLock" assigned a value but never read File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(45): object "lsasBusIn" assigned a value but never read File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 45
-Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(49): object "hBusDIn" assigned a value but never read File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 49
-Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(53): object "mcuSpiDIn" assigned a value but never read File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 53
-Info (12128): Elaborating entity "myAltPll" for hierarchy "myAltPll:myAltPll_inst" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 77
-Info (12128): Elaborating entity "altpll" for hierarchy "myAltPll:myAltPll_inst|altpll:altpll_component" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.vhd Line: 141
-Info (12130): Elaborated megafunction instantiation "myAltPll:myAltPll_inst|altpll:altpll_component" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.vhd Line: 141
-Info (12133): Instantiated megafunction "myAltPll:myAltPll_inst|altpll:altpll_component" with the following parameter: File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/myAltPll.vhd Line: 141
+Warning (10541): VHDL Signal Declaration warning at fpga-master.vhd(30): used implicit default value for signal "mcuUartRx" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 30
+Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(43): object "pllLock" assigned a value but never read File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 43
+Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(45): object "lsasBusIn" assigned a value but never read File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 45
+Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(49): object "hBusDIn" assigned a value but never read File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 49
+Warning (10036): Verilog HDL or VHDL warning at fpga-master.vhd(53): object "mcuSpiDIn" assigned a value but never read File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 53
+Info (12128): Elaborating entity "myAltPll" for hierarchy "myAltPll:myAltPll_inst" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 77
+Info (12128): Elaborating entity "altpll" for hierarchy "myAltPll:myAltPll_inst|altpll:altpll_component" File: /home/andrea/Documents/Tesi_287628/fpga-master/myAltPll.vhd Line: 141
+Info (12130): Elaborated megafunction instantiation "myAltPll:myAltPll_inst|altpll:altpll_component" File: /home/andrea/Documents/Tesi_287628/fpga-master/myAltPll.vhd Line: 141
+Info (12133): Instantiated megafunction "myAltPll:myAltPll_inst|altpll:altpll_component" with the following parameter: File: /home/andrea/Documents/Tesi_287628/fpga-master/myAltPll.vhd Line: 141
     Info (12134): Parameter "bandwidth_type" = "AUTO"
     Info (12134): Parameter "clk0_divide_by" = "1"
     Info (12134): Parameter "clk0_duty_cycle" = "50"
@@ -784,58 +808,58 @@ Info (12133): Instantiated megafunction "myAltPll:myAltPll_inst|altpll:altpll_co
     Info (12134): Parameter "self_reset_on_loss_lock" = "OFF"
     Info (12134): Parameter "width_clock" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/myAltPll_altpll.v
-    Info (12023): Found entity 1: myAltPll_altpll File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/db/myAltPll_altpll.v Line: 31
-Info (12128): Elaborating entity "myAltPll_altpll" for hierarchy "myAltPll:myAltPll_inst|altpll:altpll_component|myAltPll_altpll:auto_generated" File: /opt/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
+    Info (12023): Found entity 1: myAltPll_altpll File: /home/andrea/Documents/Tesi_287628/fpga-master/db/myAltPll_altpll.v Line: 31
+Info (12128): Elaborating entity "myAltPll_altpll" for hierarchy "myAltPll:myAltPll_inst|altpll:altpll_component|myAltPll_altpll:auto_generated" File: /home/andrea/intelFPGA_lite/22.1std/quartus/libraries/megafunctions/altpll.tdf Line: 898
 Warning (13039): The following bidirectional pins have no drivers
-    Warning (13040): bidirectional pin "mcuI2cSda" has no driver File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 32
+    Warning (13040): bidirectional pin "mcuI2cSda" has no driver File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 32
 Warning (13008): TRI or OPNDRN buffers permanently disabled
-    Warning (13010): Node "lsasBus[0]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[1]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[2]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[3]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[4]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[5]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[6]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[7]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[8]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[9]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[10]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[11]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[12]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[13]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[14]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[15]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[16]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[17]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[18]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[19]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[20]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[21]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[22]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[23]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[24]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[25]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[26]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[27]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[28]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[29]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[30]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
-    Warning (13010): Node "lsasBus[31]~synth" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[0]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[1]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[2]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[3]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[4]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[5]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[6]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[7]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[8]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[9]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[10]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[11]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[12]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[13]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[14]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[15]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[16]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[17]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[18]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[19]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[20]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[21]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[22]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[23]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[24]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[25]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[26]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[27]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[28]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[29]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[30]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
+    Warning (13010): Node "lsasBus[31]~synth" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 34
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "mcuUartRx" is stuck at GND File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 30
-    Warning (13410): Pin "leds[0]" is stuck at VCC File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 36
-    Warning (13410): Pin "leds[1]" is stuck at GND File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 36
-    Warning (13410): Pin "leds[2]" is stuck at GND File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 36
-    Warning (13410): Pin "leds[3]" is stuck at GND File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 36
+    Warning (13410): Pin "mcuUartRx" is stuck at GND File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 30
+    Warning (13410): Pin "leds[0]" is stuck at VCC File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 36
+    Warning (13410): Pin "leds[1]" is stuck at GND File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 36
+    Warning (13410): Pin "leds[2]" is stuck at GND File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 36
+    Warning (13410): Pin "leds[3]" is stuck at GND File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 36
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 5 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "slowClk" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 14
-    Warning (15610): No output dependent on input pin "mcuSpiCk" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 25
-    Warning (15610): No output dependent on input pin "mcuSpiCs" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 26
-    Warning (15610): No output dependent on input pin "mcuUartTx" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 29
-    Warning (15610): No output dependent on input pin "mcuI2cScl" File: /home/max/vlsi/didattica/virtlab/hardware/fpga-master/fpga-master.vhd Line: 31
+    Warning (15610): No output dependent on input pin "slowClk" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 14
+    Warning (15610): No output dependent on input pin "mcuSpiCk" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 25
+    Warning (15610): No output dependent on input pin "mcuSpiCs" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 26
+    Warning (15610): No output dependent on input pin "mcuUartTx" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 29
+    Warning (15610): No output dependent on input pin "mcuI2cScl" File: /home/andrea/Documents/Tesi_287628/fpga-master/fpga-master.vhd Line: 31
 Info (21057): Implemented 105 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 7 input pins
     Info (21059): Implemented 9 output pins
@@ -843,9 +867,9 @@ Info (21057): Implemented 105 device resources after synthesis - the final resou
     Info (21061): Implemented 42 logic cells
     Info (21065): Implemented 1 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 52 warnings
-    Info: Peak virtual memory: 701 megabytes
-    Info: Processing ended: Tue Apr 20 12:52:08 2021
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:16
+    Info: Peak virtual memory: 434 megabytes
+    Info: Processing ended: Sat Apr  8 19:17:11 2023
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:27
 
 

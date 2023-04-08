@@ -156,14 +156,7 @@ set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to reset
 set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to mainClk
 set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to slowClk
 set_instance_assignment -name CKN_CK_PAIR ON -from hBusCk -to hBusnCk
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name VHDL_FILE tb/input_output_generator.vhd
-set_global_assignment -name VHDL_FILE tb/clk_rst_generator.vhd
-set_global_assignment -name VHDL_FILE src/ssram8.vhd
-set_global_assignment -name VHDL_FILE src/reg.vhd
-set_global_assignment -name VHDL_FILE src/mux_2to1.vhd
-set_global_assignment -name VHDL_FILE AvalonMM_hyperRamS27KL0641_interface.vhd
 set_global_assignment -name SDC_FILE "fpga-master.out.sdc"
 set_global_assignment -name VHDL_FILE "fpga-master.vhd"
 set_global_assignment -name QIP_FILE myAltPll.qip
-set_global_assignment -name VHDL_FILE tb/AvalonMM_hyperRamS27KLO641_interface_testbench.vhd
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
