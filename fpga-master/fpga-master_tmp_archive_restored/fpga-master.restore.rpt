@@ -1,0 +1,85 @@
+Restore Archived Project report for fpga-master
+Thu Apr 13 15:26:47 2023
+Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Restore Archived Project Summary
+  3. Restore Archived Project Messages
+  4. Files Restored
+  5. Files Not Restored
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------+
+; Restore Archived Project Summary                                        ;
++---------------------------------+---------------------------------------+
+; Restore Archived Project Status ; Successful - Thu Apr 13 15:26:47 2023 ;
+; Revision Name                   ; fpga-master                           ;
+; Top-level Entity Name           ; master                                ;
+; Family                          ; Cyclone 10 LP                         ;
++---------------------------------+---------------------------------------+
+
+
++-----------------------------------+
+; Restore Archived Project Messages ;
++-----------------------------------+
+Info: Successfully restored '/home/andrea/Documents/Tesi_287628/fpga-master/fpga-master_tmp_archive.qar' into the '/home/andrea/Documents/Tesi_287628/fpga-master/fpga-master_tmp_archive_restored/' directory
+Info: Generated report 'fpga-master.restore.rpt'
+Info (23030): Evaluation of Tcl script /home/andrea/intelFPGA_lite/22.1std/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 590 megabytes
+    Info: Processing ended: Thu Apr 13 15:26:47 2023
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:00
+
+
++-------------------------+
+; Files Restored          ;
++-------------------------+
+; File Name               ;
++-------------------------+
+; qar_info.json           ;
+; assignment_defaults.qdf ;
+; fpga-master.out.sdc     ;
+; fpga-master.qpf         ;
+; fpga-master.qsf         ;
+; fpga-master.vhd         ;
+; myAltPll.cmp            ;
+; myAltPll.ppf            ;
+; myAltPll.qip            ;
+; myAltPll.vhd            ;
+; myAltPll_inst.vhd       ;
++-------------------------+
+
+
++--------------------+
+; Files Not Restored ;
++--------------------+
+; File Name          ;
++--------------------+
+
+

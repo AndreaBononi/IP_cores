@@ -8,13 +8,18 @@ import subprocess
 import memory
 
 # constants ----------------------------------------------------------------------------------------------------------------------------
+vsim_path = '~./intelFPGA/20.1/modelsim_ase/bin/vsim'
 virtual_address_binary_size = 32    # the memory virtually has 32 addressing bits, but only the 8 less significant bits are considered
 real_address_binary_size = 8
 word_binary_size = 16
 read_opcode = '0'
 write_opcode = '1'
 
-# high-level model instance ------------------------------------------------------------------------------------------------------------
+# information printing -----------------------------------------------------------------------------------------------------------------
+cmd = 'echo "VSIM path: ' + vsim_path + '"'
+subprocess.run( cmd, shell = True )
+
+# virtual memory creation --------------------------------------------------------------------------------------------------------------
 mem = memory.memory( address_binary_size = real_address_binary_size, word_binary_size = word_binary_size )
 mem.reset()
 
@@ -59,17 +64,21 @@ except AttributeError:
 else:
     stimuli.close()
     expected.close()
-    print( "Stimuli file correctly generated" )
-    print( "Expected values file correctly generated" )
+    print( "Simulation files correctly generated" )
 
 # simulation --------------------------------------------------------------------------------------------------------------------------
 print ("Starting simulation...")
-# process = subprocess.call(["vsim", "-c", "-do", "AvalonMM_hyperRamS27KL0641_interface_simulation.do"])
+# process = subprocess.call([vsim_path, "-c", "-do", "AvalonMM_hyperRamS27KL0641_interface_simulation.do"])
 # RIMUOVERE I DUE COMANDI DA SHELL E DECOMMENTARE L'ESECUZIONE DELLA SIMULAZIONE
 subprocess.run( "touch read_values.txt", shell = True )
 subprocess.run( "cat expected_read_values.txt > read_values.txt", shell = True )
 print ("Simulation completed")
 
 # output verification -----------------------------------------------------------------------------------------------------------------
-subprocess.run( "diff expected_read_values.txt read_values.txt -y --suppress-common-lines | wc -l", shell = True)
-# 'if (( $(diff expected_read_values.txt read_values.txt -y --suppress-common-lines | wc -l) == 0 )); then echo "DUT passed"; else echo "DUE rejected"; fi'
+verification_process = subprocess.run( "diff expected_read_values.txt read_values.txt -y --suppress-common-lines | wc -l", shell = True, capture_output = True )
+diff = verification_process.stdout.decode( "utf-8" ).replace( "\n", "" )
+if ( diff == '0' ):
+    print( "Verification passed: DUT is working correctly" )
+else:
+    print( "Verification failed: DUT is not working as expected" )
+	print( diff, " errors detected" )

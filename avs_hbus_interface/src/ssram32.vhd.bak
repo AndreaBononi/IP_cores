@@ -6,7 +6,7 @@ use ieee.numeric_std.all;
 
 -- SSRAM
 -- N bit words
--- 32 bit addressing
+-- 32 bit addressing (VIRTUALMENTE, in realta solo gli 8 bit meno significativi vengono considerati e gli altri sono scartati)
 
 --------------------------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ entity ssram32 is
 		ssram32_clear_n	: in 	std_logic;
 		ssram32_read		: in 	std_logic;
 		ssram32_write		: in 	std_logic;
-		ssram32_address	: in 	std_logic_vector(32 downto 0);
+		ssram32_address	: in 	std_logic_vector(31 downto 0);
 		ssram32_in			: in 	std_logic_vector(N-1 downto 0);
 		ssram32_out			: out std_logic_vector(N-1 downto 0);
 		ssram32_valid		: out std_logic

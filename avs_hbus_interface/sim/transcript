@@ -1,0 +1,137 @@
+do AvalonMM_hyperRamS27KL0641_interface_simulation.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:32 on Apr 13,2023
+# vcom -reportprogress 300 ../src/mux_2to1.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity mux_2to1
+# -- Compiling architecture behavior of mux_2to1
+# End time: 11:01:32 on Apr 13,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:32 on Apr 13,2023
+# vcom -reportprogress 300 ../src/reg.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity reg
+# -- Compiling architecture behavior of reg
+# End time: 11:01:32 on Apr 13,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:32 on Apr 13,2023
+# vcom -reportprogress 300 ../src/ssram32.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity ssram32
+# -- Compiling architecture behavior of ssram32
+# End time: 11:01:32 on Apr 13,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:32 on Apr 13,2023
+# vcom -reportprogress 300 ../src/AvalonMM_hyperRamS27KL0641_interface_controlUnit.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity AvalonMM_hyperRamS27KL0641_interface_controlUnit
+# -- Compiling architecture fsm of AvalonMM_hyperRamS27KL0641_interface_controlUnit
+# End time: 11:01:32 on Apr 13,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:32 on Apr 13,2023
+# vcom -reportprogress 300 ../src/AvalonMM_hyperRamS27KL0641_interface.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity AvalonMM_hyperRamS27KL0641_interface
+# -- Compiling architecture rtl of AvalonMM_hyperRamS27KL0641_interface
+# End time: 11:01:33 on Apr 13,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:33 on Apr 13,2023
+# vcom -reportprogress 300 ../tb/clk_rst_generator.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity clk_rst_generator
+# -- Compiling architecture behavior of clk_rst_generator
+# End time: 11:01:33 on Apr 13,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:33 on Apr 13,2023
+# vcom -reportprogress 300 ../tb/input_output_generator.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package std_logic_textio
+# -- Compiling entity input_output_generator
+# -- Compiling architecture behavior of input_output_generator
+# End time: 11:01:33 on Apr 13,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:01:33 on Apr 13,2023
+# vcom -reportprogress 300 ../tb/AvalonMM_hyperRamS27KL0641_interface_testbench.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity AvalonMM_hyperRamS27KL0641_interface_testbench
+# -- Compiling architecture behavior of AvalonMM_hyperRamS27KL0641_interface_testbench
+# End time: 11:01:33 on Apr 13,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -c -t 1ns work.AvalonMM_hyperRamS27KL0641_interface_testbench -voptargs="+acc" 
+# Start time: 11:01:33 on Apr 13,2023
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.avalonmm_hyperrams27kl0641_interface_testbench(behavior)
+# Loading work.clk_rst_generator(behavior)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.input_output_generator(behavior)
+# Loading work.avalonmm_hyperrams27kl0641_interface(rtl)
+# Loading work.avalonmm_hyperrams27kl0641_interface_controlunit(fsm)
+# Loading work.reg(behavior)
+# Loading work.mux_2to1(behavior)
+# Loading work.ssram32(behavior)
+add wave -position insertpoint  \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/clk
+add wave -position insertpoint  \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/rstN
+add wave -position insertpoint  \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/avs_s0_waitrequest \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/avs_s0_readdata \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/avs_s0_address \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/avs_s0_read \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/avs_s0_write \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/avs_s0_writedata
+run 22us
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /avalonmm_hyperrams27kl0641_interface_testbench/DUT/memory
+add wave -position insertpoint  \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/DUT/memory/ssram32_address \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/DUT/memory/ssram32_in \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/DUT/memory/ssram32_out \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/DUT/memory/ssram32_valid \
+sim:/avalonmm_hyperrams27kl0641_interface_testbench/DUT/memory/mem
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run 22us
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ns  Iteration: 0  Instance: /avalonmm_hyperrams27kl0641_interface_testbench/DUT/memory
+# End time: 17:32:32 on Apr 13,2023, Elapsed time: 6:30:59
+# Errors: 0, Warnings: 1

@@ -57,8 +57,7 @@ architecture behavior of ssram32 is
                elsif (ssram32_write = '1') then
                   mem(dummy_address) <= ssram32_in after valid_time;
 						valid <= '1' after valid_time;
-               end if;
-               if (ssram32_read = '1') then
+               elsif (ssram32_read = '1') then
                   dummy_out <= mem(dummy_address) after valid_time;
 						valid <= '1' after valid_time;
                end if;

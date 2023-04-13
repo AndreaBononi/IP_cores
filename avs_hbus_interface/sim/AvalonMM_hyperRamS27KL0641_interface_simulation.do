@@ -8,11 +8,10 @@ vcom ../src/AvalonMM_hyperRamS27KL0641_interface.vhd
 
 vcom ../tb/clk_rst_generator.vhd
 vcom ../tb/input_output_generator.vhd
-vcom ../src/AvalonMM_hyperRamS27KL0641_interface_testbench.vhd
+vcom ../tb/AvalonMM_hyperRamS27KL0641_interface_testbench.vhd
 
-vsim -c -t 100ps work.AvalonMM_hyperRamS27KL0641_interface_testbench -voptargs=+acc
+vsim -c -t 1ns work.AvalonMM_hyperRamS27KL0641_interface_testbench -voptargs=+acc
 
-# change time
-# run 10ms
+# run 22us
 
 # quit -f
