@@ -4,7 +4,23 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
--- Component able to interface an Avalon Memory-Mapped bus with a hyperRAM model S27KL0641
+-- component able to interface an Avalon Memory-Mapped bus with a hyperRAM model S27KL0641
+-- it works as an agent in an Avalon Memory-Mapped system
+
+-- avs_s0_address: memory address
+-- avs_s0_read: select read operation 
+-- avs_s0_write: select write operation
+-- avs_s0_readdata: read result
+-- avs_s0_writedata: data to be written in the memory
+
+-- if both avs_s0_read and avs_s0_write are active, the operation is interpreted as a read
+
+-- avs_s0_readdata is only available a certain (variable) number of clock cycles after the read command
+-- avs_s0_readdatavalid is asserted when avs_s0_readdata is valid
+
+-- avs_s0_waitrequest is asserted by the agent when it is not able to process any other operation for some reason
+-- by asserting avs_s0_waitrequest, the agent stalls the host commands (i.e. the value of the input signals must not be changed)
+-- the agent is not able to acquire more than 4 pending operation (it asserts avs_s0_waitrequest after 4 non-completed operations)
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -202,7 +218,7 @@ architecture rtl of AvalonMM_hyperRamS27KL0641_interface is
 		generic map
 		(
 			16,
-			35 ns
+			15 ns
 		)
 		port map
 		(
