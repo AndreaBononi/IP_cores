@@ -26,7 +26,7 @@ entity AvalonMM_hyperRamS27KL0641_interface_controlUnit is
 		address_enable			: out std_logic;
 		address_clear_n		: out std_logic;
 		avs_s0_waitrequest	: out std_logic;
-		avs_s0_readdatavalid	: out std_logic		-- ANCORA DA DEFINIRE NELL'ARCHITETTURA
+		avs_s0_readdatavalid	: out std_logic
 	);
 end entity AvalonMM_hyperRamS27KL0641_interface_controlUnit;
 

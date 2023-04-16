@@ -1,0 +1,32 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+-- FLIP FLOP SET RESET
+
+ENTITY sr_flipflop IS
+	PORT (CLK, SET, CLEARN: IN STD_LOGIC;
+			Q: OUT STD_LOGIC);
+END sr_flipflop;
+
+-- CLK: clock
+-- SET: segnale per portare l'uscita a 1 logico
+-- CLEARN: segnale per portare l'uscita a 0 logico
+-- Q: uscita
+
+-- CLEARN prevale su SET
+
+
+ARCHITECTURE Behaviour OF sr_flipflop IS
+	
+	BEGIN
+		PROCESS (CLK, CLEARN, SET)
+		BEGIN
+			IF(rising_edge(CLK)) THEN 
+				IF(CLEARN = '0') THEN Q <= '0';
+				ELSIF(SET = '1') THEN Q <= '1';
+            END IF;
+			END IF;
+		END PROCESS;
+	
+END Behaviour;

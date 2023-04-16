@@ -1,4 +1,4 @@
--- AvalonMM_hyperRamS27KL0641_interface_controlUnit.vhd ---------------------------------------------------------------------------
+-- AvalonMM_to_SSRAM_controlUnit.vhd ---------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.std_logic_1164.all;
@@ -6,7 +6,7 @@ use IEEE.numeric_std.all;
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
-entity AvalonMM_hyperRamS27KL0641_interface_controlUnit is
+entity AvalonMM_to_SSRAM_controlUnit is
 	port
 	(
 		-- clock and reset -----------------------------------------------------------------------------------------------------------
@@ -18,20 +18,21 @@ entity AvalonMM_hyperRamS27KL0641_interface_controlUnit is
 		avs_s0_read				: in std_logic;
 		-- control signals -----------------------------------------------------------------------------------------------------------
 		ssram32_write			: out std_logic;
-		ssram32_read				: out std_logic;
-		ssram32_clear_n			: out std_logic;
+		ssram32_read			: out std_logic;
+		ssram32_clear_n		: out std_logic;
 		data_sel					: out std_logic;
 		data_enable				: out std_logic;
 		data_clear_n			: out std_logic;
 		address_enable			: out std_logic;
 		address_clear_n		: out std_logic;
-		avs_s0_waitrequest	: out std_logic
+		avs_s0_waitrequest	: out std_logic;
+		avs_s0_readdatavalid	: out std_logic
 	);
-end entity AvalonMM_hyperRamS27KL0641_interface_controlUnit;
+end entity AvalonMM_to_SSRAM_controlUnit;
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
-architecture fsm of AvalonMM_hyperRamS27KL0641_interface_controlUnit is
+architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 
 	-- states definition -----------------------------------------------------------------------------------------------------------
 	type state is

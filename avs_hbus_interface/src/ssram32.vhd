@@ -6,7 +6,14 @@ use ieee.numeric_std.all;
 
 -- SSRAM
 -- N bit words
--- 32 bit addressing (VIRTUALMENTE, in realta solo gli 8 bit meno significativi vengono considerati e gli altri sono scartati)
+
+-- 32 bit addressing
+-- only the 8 less significant bits of the address are considered, therefore the effective addressing is on 8 bits
+-- the 24 more significant bits are discarded
+
+-- after sampling a read operation, the output becomes valid after valid_time is passed (ssram32_validout is set)
+
+-- when ssram32_busy the memory is not able to perform any operation (read and write commands are ignored)
 
 --------------------------------------------------------------------------------------------------
 
@@ -22,10 +29,12 @@ entity ssram32 is
 		ssram32_clear_n	: in 	std_logic;
 		ssram32_read		: in 	std_logic;
 		ssram32_write		: in 	std_logic;
+		ssram32_enable		: in 	std_logic;
 		ssram32_address	: in 	std_logic_vector(31 downto 0);
 		ssram32_in			: in 	std_logic_vector(N-1 downto 0);
 		ssram32_out			: out std_logic_vector(N-1 downto 0);
-		ssram32_valid		: out std_logic
+		ssram32_validout	: out std_logic;
+		ssram32_busy		: out std_logic
 	);
 end ssram32;
 
@@ -40,10 +49,11 @@ architecture behavior of ssram32 is
 	signal 	dummy_address	: integer;
 	signal 	dummy_out		: std_logic_vector (N-1 downto 0);
 	signal	valid				: std_logic;
+	signal	busy				: std_logic;
 
    begin
 
-		dummy_address <= to_integer(unsigned(ssram32_address));
+		dummy_address <= to_integer(unsigned(ssram32_address(7 downto 0)));
 
 		memory_cycle: process (ssram32_clk, ssram32_clear_n, ssram32_write, ssram32_read, ssram32_in, dummy_address)
 			begin
@@ -54,10 +64,15 @@ architecture behavior of ssram32 is
                if (ssram32_clear_n = '0') then
                   mem <= (others => (others => '0'));
 						valid <= '0';
-               elsif (ssram32_write = '1') then
+						busy <= '0';
+               elsif (ssram32_write = '1' and ssram32_enable = '1') then
+						busy <= '1'
+						busy <= '0' after valid_time;
                   mem(dummy_address) <= ssram32_in after valid_time;
 						valid <= '1' after valid_time;
-               elsif (ssram32_read = '1') then
+               elsif (ssram32_read = '1' and ssram32_enable = '1') then
+						busy <= '1'
+						busy <= '0' after valid_time;
                   dummy_out <= mem(dummy_address) after valid_time;
 						valid <= '1' after valid_time;
                end if;
@@ -65,7 +80,8 @@ architecture behavior of ssram32 is
 		end process memory_cycle;
 
 		ssram32_out <= dummy_out;
-		ssram32_valid <= valid;
+		ssram32_validout <= valid;
+		ssram32_busy <= busy;
 
 end behavior;
 
