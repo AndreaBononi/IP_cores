@@ -1,3 +1,5 @@
 /firmware/
 /fpga-user/
 /docs/
+/avs_hbus_interface/src/*.bak
+/avs_hbus_interface/tb/*.bak
