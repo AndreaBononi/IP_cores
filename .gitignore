@@ -1,9 +1,3 @@
 /firmware/
 /fpga-user/
 /docs/
-/avs_hbus_interface/db/
-/avs_hbus_interface/incremental_db/
-/avs_hbus_interface/output_files/
-/avs_hbus_interface/.qsys_edit/
-/avs_hbus_interface/AvalonMM_hyperRamS27KL0641_interface.qsf
-/avs_hbus_interface/AvalonMM_hyperRamS27KL0641_interface.qpf
