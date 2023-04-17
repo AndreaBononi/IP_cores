@@ -1,4 +1,4 @@
--- AvalonMM_hyperRamS27KL0641_interface_testbench.vhd ----------------------------------------------------------------
+-- AvalonMM_to_SSRAM_testbench.vhd -----------------------------------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -6,12 +6,12 @@ use ieee.numeric_std.all;
 
 ----------------------------------------------------------------------------------------------------------------------
 
-entity AvalonMM_hyperRamS27KL0641_interface_testbench is
-end AvalonMM_hyperRamS27KL0641_interface_testbench;
+entity AvalonMM_to_SSRAM_testbench is
+end AvalonMM_to_SSRAM_testbench;
 
 ----------------------------------------------------------------------------------------------------------------------
 
-architecture behavior of AvalonMM_hyperRamS27KL0641_interface_testbench is
+architecture behavior of AvalonMM_to_SSRAM_testbench is
 
 	-- local constants ------------------------------------------------------------------------------------------------
 	constant		clock_period			: time := 10 ns;
@@ -22,6 +22,7 @@ architecture behavior of AvalonMM_hyperRamS27KL0641_interface_testbench is
 	signal 		clk						: std_logic;
 	signal		rstN						: std_logic;
 	signal 		avs_s0_waitrequest 	: std_logic;
+	signal 		avs_s0_readdatavalid	: std_logic;
 	signal		avs_s0_readdata	 	: std_logic_vector(15 downto 0);
 	signal		avs_s0_address			: std_logic_vector(31 downto 0); 
 	signal		avs_s0_read       	: std_logic;                                 
@@ -38,21 +39,22 @@ architecture behavior of AvalonMM_hyperRamS27KL0641_interface_testbench is
 		port 
 		(
 			-- IP - avalon
-			avs_s0_address     : in    std_logic_vector(31 downto 0) := (others => '0'); 
-			avs_s0_read        : in    std_logic                     := '0';                                 
-			avs_s0_write       : in    std_logic                     := '0';             
-			avs_s0_writedata   : in    std_logic_vector(15 downto 0) := (others => '0');
-			avs_s0_readdata    : out   std_logic_vector(15 downto 0)	;	
-			avs_s0_waitrequest : out   std_logic							;
+			avs_s0_address     		: in    std_logic_vector(31 downto 0) 	:= (others => '0');
+			avs_s0_read        		: in    std_logic                     	:= '0';
+			avs_s0_write       		: in    std_logic                     	:= '0';
+			avs_s0_writedata   		: in    std_logic_vector(15 downto 0) 	:= (others => '0');
+			avs_s0_readdata    		: out   std_logic_vector(15 downto 0) 	;
+			avs_s0_waitrequest 		: out   std_logic								;
+			avs_s0_readdatavalid 	: out   std_logic								;
 			-- clock and reset
-			clock_clk          : in    std_logic                     := '0';             
-			reset_reset        : in    std_logic                     := '0';
+			clock_clk          		: in    std_logic                     	:= '0';
+			reset_reset        		: in    std_logic                     	:= '0';
 			-- IP - hyperbus
-			hbus_d             : inout std_logic_vector(7 downto 0)  := (others => '0'); 
-			hbus_rwds          : inout std_logic                     := '0';             
-			hbus_cs            : out   std_logic							;                                        
-			hbus_rst           : out   std_logic                    	;             
-			hbus_ck            : out   std_logic                                         
+			hbus_d             		: inout std_logic_vector(7 downto 0)  	:= (others => '0');
+			hbus_rwds          		: inout std_logic                     	:= '0';
+			hbus_cs            		: out   std_logic								;
+			hbus_rst           		: out   std_logic								;
+			hbus_ck            		: out   std_logic                                        
 		);
 	end component;
 		
@@ -74,18 +76,19 @@ architecture behavior of AvalonMM_hyperRamS27KL0641_interface_testbench is
 	component input_output_generator is
 		generic	
 		(
-			custom_delay			: time := 0 ns
+			custom_delay				: time := 0 ns
 		);	
 		port 
 		(
-			clk						: in		std_logic;
-			rstN						: in  	std_logic;
-			avs_s0_waitrequest 	: in		std_logic;
-			avs_s0_readdata	 	: in 		std_logic_vector(15 downto 0);
-			avs_s0_address			: out		std_logic_vector(31 downto 0); 
-			avs_s0_read       	: out 	std_logic;                                 
-			avs_s0_write      	: out 	std_logic;             
-			avs_s0_writedata  	: out 	std_logic_vector(15 downto 0)
+			clk							: in		std_logic;
+			rstN							: in  	std_logic;
+			avs_s0_waitrequest 		: in		std_logic;
+			avs_s0_readdatavalid		: in		std_logic;
+			avs_s0_readdata	 		: in 		std_logic_vector(15 downto 0);
+			avs_s0_address				: out		std_logic_vector(31 downto 0); 
+			avs_s0_read       		: out 	std_logic;                                 
+			avs_s0_write      		: out 	std_logic;             
+			avs_s0_writedata  		: out 	std_logic_vector(15 downto 0)
 		);
 	end component;
 	
@@ -114,6 +117,7 @@ architecture behavior of AvalonMM_hyperRamS27KL0641_interface_testbench is
 			clk,
 			rstN,
 			avs_s0_waitrequest,
+			avs_s0_readdatavalid,
 			avs_s0_readdata,
 			avs_s0_address, 
 			avs_s0_read,                                 

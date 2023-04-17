@@ -1,11 +1,10 @@
--- AvalonMM_hyperRamS27KL0641_interface.vhd -----------------------------------------------------------------------------------------
+-- AvalonMM_to_hyperRamS27KL0641.vhd ------------------------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 -- component able to interface an Avalon Memory-Mapped bus with a hyperRAM model S27KL0641
--- it works as an agent in an Avalon Memory-Mapped system
 
 -- avs_s0_address: memory address
 -- avs_s0_read: select read operation 
@@ -18,13 +17,13 @@ use IEEE.numeric_std.all;
 -- avs_s0_readdata is only available a certain (variable) number of clock cycles after the read command
 -- avs_s0_readdatavalid is asserted when avs_s0_readdata is valid
 
--- avs_s0_waitrequest is asserted by the agent when it is not able to process any other operation for some reason
--- by asserting avs_s0_waitrequest, the agent stalls the host commands (i.e. the value of the input signals must not be changed)
--- the agent is not able to acquire more than 4 pending operation (it asserts avs_s0_waitrequest after 4 non-completed operations)
+-- avs_s0_waitrequest is asserted when the component is not able to process any other operation
+-- when avs_s0_waitrequest is asserted the value of the input signals provided by the AvalonMM bus must not be changed
+-- the component asserts avs_s0_waitrequest after acquiring 5 non-completed operations
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-entity AvalonMM_hyperRamS27KL0641_interface is
+entity AvalonMM_to_hyperRamS27KL0641 is
 	port
 	(
 		-- IP - avalon
@@ -45,11 +44,11 @@ entity AvalonMM_hyperRamS27KL0641_interface is
 		hbus_rst           		: out   std_logic								;
 		hbus_ck            		: out   std_logic
 	);
-end entity AvalonMM_hyperRamS27KL0641_interface;
+end entity AvalonMM_to_hyperRamS27KL0641;
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-architecture rtl of AvalonMM_hyperRamS27KL0641_interface is
+architecture rtl of AvalonMM_to_hyperRamS27KL0641 is
 
 	-- control unit ------------------------------------------------------------------------------------------------------------------
 	component AvalonMM_hyperRamS27KL0641_interface_controlUnit is
@@ -239,6 +238,6 @@ architecture rtl of AvalonMM_hyperRamS27KL0641_interface is
 		hbus_ck <= clock_clk;
 		hbus_rst <= reset_reset;
 
-end architecture rtl; -- of AvalonMM_hyperRamS27KL0641_interface
+end architecture rtl; -- of AvalonMM_to_hyperRamS27KL0641
 
 -------------------------------------------------------------------------------------------------------------------------------------

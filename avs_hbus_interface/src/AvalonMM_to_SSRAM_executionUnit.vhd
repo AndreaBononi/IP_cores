@@ -59,7 +59,7 @@ entity AvalonMM_to_SSRAM_executionUnit is
 		sr3_clear_n					: in		std_logic;
 		mem_enable					: in		std_logic
 	);
-end entity AvalonMM_to_SSRAM_executionUnit;
+end AvalonMM_to_SSRAM_executionUnit;
 
 ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -118,6 +118,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 	signal append2_out	: std_logic_vector(49 downto 0);
 	signal append1_out	: std_logic_vector(49 downto 0);
 	signal append0_out	: std_logic_vector(49 downto 0);
+	signal muxcom_out		: std_logic_vector(49 downto 0);
 
 	begin
 
@@ -128,21 +129,51 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		cmd_out <= append3_in;
 		
 		-- command register ----------------------------------------------------------------------------------------------------------
-		command: reg
-		generic map
-		(
-			50
-		)
-		port map
-		(
-			clk,
-			command_enable,
-			'1',
-			cmd_in,
-			cmd_out
-		);
+		command: reg generic map (50) port map (clk, command_enable, '1', cmd_in, cmd_out);
 		
-		-- 
+		-- append3 register -----------------------------------------------------------------------------------------------------------
+		append3: reg generic map (50) port map (clk, append3_enable, '1', append3_in, append3_out);
+		
+		-- append2 register -----------------------------------------------------------------------------------------------------------
+		append2: reg generic map (50) port map (clk, append2_enable, '1', append2_in, append2_out);
+		
+		-- append1 register -----------------------------------------------------------------------------------------------------------
+		append1: reg generic map (50) port map (clk, append1_enable, '1', append1_in, append1_out);
+		
+		-- append0 register -----------------------------------------------------------------------------------------------------------
+		append0: reg generic map (50) port map (clk, append0_enable, '1', append0_in, append0_out);
+		
+		-- mux2 -----------------------------------------------------------------------------------------------------------------------
+		mux2: mux_2to1 generic map (50) port map (cmd_out, append3_out, mux2_sel, append2_in);
+		
+		-- mux1 -----------------------------------------------------------------------------------------------------------------------
+		mux1: mux_2to1 generic map (50) port map (cmd_out, append2_out, mux1_sel, append1_in);
+		
+		-- mux0 -----------------------------------------------------------------------------------------------------------------------
+		mux0: mux_2to1 generic map (50) port map (cmd_out, append1_out, mux0_sel, append0_in);
+		
+		-- muxcom ---------------------------------------------------------------------------------------------------------------------
+		muxcom: mux_2to1 generic map (50) port map (append0_out, cmd_out, muxcom_sel, muxcom_out);
+		
+		ssram_address <= muxcom_out(31 downto 0);
+		ssram_in <= muxcom_out(47 downto 32);
+		ssram_OE <= muxcom_out(48);
+		ssram_WE <= muxcom_out(49);
+		
+		-- sr3 (set-reset flip-flop related to append3 status) ------------------------------------------------------------------------
+		sr3: sr_flipflop port map (clk, sr3_set, sr3_clear_n, sr3_out);
+		
+		-- sr2 (set-reset flip-flop related to append2 status) ------------------------------------------------------------------------
+		sr2: sr_flipflop port map (clk, sr2_set, sr2_clear_n, sr2_out);
+		
+		-- sr1 (set-reset flip-flop related to append1 status) ------------------------------------------------------------------------
+		sr1: sr_flipflop port map (clk, sr1_set, sr1_clear_n, sr1_out);
+		
+		-- sr0 (set-reset flip-flop related to append0 status) ------------------------------------------------------------------------
+		sr0: sr_flipflop port map (clk, sr0_set, sr0_clear_n, sr0_out);
+		
+		-- readdata register ----------------------------------------------------------------------------------------------------------
+		readdata: reg generic map (16) port map (clk, readdata_enable, '1', ssram_out, avs_s0_readdata);
 		
 		avs_s0_readdatavalid <= readdatavalid;
 		avs_s0_waitrequest <= waitrequest;
