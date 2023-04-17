@@ -66,12 +66,12 @@ architecture behavior of ssram32 is
 						valid <= '0';
 						busy <= '0';
                elsif (ssram32_write = '1' and ssram32_enable = '1') then
-						busy <= '1'
+						busy <= '1';
 						busy <= '0' after valid_time;
                   mem(dummy_address) <= ssram32_in after valid_time;
 						valid <= '1' after valid_time;
                elsif (ssram32_read = '1' and ssram32_enable = '1') then
-						busy <= '1'
+						busy <= '1';
 						busy <= '0' after valid_time;
                   dummy_out <= mem(dummy_address) after valid_time;
 						valid <= '1' after valid_time;

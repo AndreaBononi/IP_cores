@@ -34,7 +34,7 @@ entity AvalonMM_to_SSRAM is
 		avs_s0_writedata   		: in    	std_logic_vector(15 downto 0);
 		avs_s0_readdata    		: out   	std_logic_vector(15 downto 0);
 		avs_s0_readdatavalid		: out   	std_logic;
-		avs_s0_waitrequest  		: in    	std_logic;
+		avs_s0_waitrequest  		: out   	std_logic;
 		-- SSRAM signals
 		ssram_out             	: in		std_logic_vector(15 downto 0);
 		ssram_in             	: out		std_logic_vector(15 downto 0);
@@ -65,7 +65,7 @@ architecture rtl of AvalonMM_to_SSRAM is
 		avs_s0_writedata   		: in    	std_logic_vector(15 downto 0);
 		avs_s0_readdata    		: out   	std_logic_vector(15 downto 0);
 		avs_s0_readdatavalid		: out   	std_logic;
-		avs_s0_waitrequest  		: in    	std_logic;
+		avs_s0_waitrequest  		: out   	std_logic;
 		-- SSRAM signals
 		ssram_out             	: in		std_logic_vector(15 downto 0);
 		ssram_in             	: out		std_logic_vector(15 downto 0);

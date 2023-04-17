@@ -35,6 +35,6 @@ architecture behavior of sr_flipflop is
 			end if;
 		end process sr;
 	
-end behaviour;
+end behavior;
 
 -------------------------------------------------------------------------------------------------------

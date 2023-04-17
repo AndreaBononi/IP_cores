@@ -8,6 +8,7 @@ use ieee.numeric_std.all;
 -- custom clock period
 -- custom reset time
 -- active LOW reset
+-- the clock is stopped when stop_sim goes low and when start_sim is not high
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -20,7 +21,9 @@ entity clk_rst_generator is
 	port 	
 	(
 		clk 				: out std_logic;
-		rstN	 			: out std_logic
+		rstN	 			: out std_logic;
+		start_sim		: in 	std_logic;
+		stop_sim			: in	std_logic
 	);
 end clk_rst_generator;
 
@@ -35,10 +38,10 @@ architecture behavior of clk_rst_generator is
 		-- clock generation process ---------------------------------------------------------------------------
 		clockGen: process
 		begin
-			local_clk <= NOT local_clk;
+			local_clk <= not local_clk;
 			wait for clockPeriod/2;
 		end process clockGen;
-		clk <= local_clk;
+		clk <= local_clk and stop_sim and start_sim;
 		
 		-- reset generation process ---------------------------------------------------------------------------
 		resetGen: process
