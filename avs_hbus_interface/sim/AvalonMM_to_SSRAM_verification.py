@@ -8,6 +8,9 @@ import subprocess
 import memory
 
 # constants ----------------------------------------------------------------------------------------------------------------------------
+stimuli_file = "AvalonMM_to_SSRAM_stimuli.txt"
+output_file = "AvalonMM_to_SSRAM_ReadValues.txt"
+expected_file = "AvalonMM_to_SSRAM_expectedReadValues.txt"
 vsim_path = '~./intelFPGA/20.1/modelsim_ase/bin/vsim'
 virtual_address_binary_size = 32    # the memory virtually has 32 addressing bits, but only the 8 less significant bits are considered
 real_address_binary_size = 8
@@ -27,8 +30,8 @@ mem.reset()
 # at first, all memory locations are written with a random writedata
 # later, the value of each memory location is read
 try:
-    stimuli = open( "stimuli.txt", "w" )
-    expected = open( "expected_read_values.txt", "w" )
+    stimuli = open( stimuli_file, "w" )
+    expected = open( expected_file, "w" )
     # generate writing operations
     for decimal_address in range( 0, 2 ** real_address_binary_size ):
         address = format( decimal_address, str( real_address_binary_size ) + 'b' ).replace(" ", "0")
@@ -68,14 +71,12 @@ else:
 
 # simulation --------------------------------------------------------------------------------------------------------------------------
 print ("Starting simulation...")
-# process = subprocess.call([vsim_path, "-c", "-do", "AvalonMM_hyperRamS27KL0641_interface_simulation.do"])
-# RIMUOVERE I DUE COMANDI DA SHELL E DECOMMENTARE L'ESECUZIONE DELLA SIMULAZIONE
-subprocess.run( "touch read_values.txt", shell = True )
-subprocess.run( "cat expected_read_values.txt > read_values.txt", shell = True )
+process = subprocess.call([vsim_path, "-c", "-do", "AvalonMM_to_SSRAM_simulation.do"])
 print ("Simulation completed")
 
 # output verification -----------------------------------------------------------------------------------------------------------------
-verification_process = subprocess.run( "diff expected_read_values.txt read_values.txt -y --suppress-common-lines | wc -l", shell = True, capture_output = True )
+cmd = "diff " + expected_file + " " + output_file + " -y --suppress-common-lines | wc -l"
+verification_process = subprocess.run( cmd, shell = True, capture_output = True )
 diff = verification_process.stdout.decode( "utf-8" ).replace( "\n", "" )
 if ( diff == '0' ):
     print( "Verification passed: DUT is working correctly" )

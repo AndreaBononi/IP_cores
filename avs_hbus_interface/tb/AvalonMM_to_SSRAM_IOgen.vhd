@@ -1,4 +1,4 @@
--- input_output_generator.vhd ----------------------------------------------------------------------------------
+-- AvalonMM_to_SSRAM_IOgen.vhd ----------------------------------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -8,7 +8,7 @@ use ieee.std_logic_textio.all;
 library std;
 use std.textio.all;
 
--- input generation and output storing for AvalonMM_hyperRAMs27KLO641_interface
+-- input generation and output storing for AvalonMM_to_SSRAM
 -- clock and active low reset must be provided
 -- custom input delay (equal for all the input signals)
 
@@ -22,7 +22,7 @@ use std.textio.all;
 
 ------------------------------------------------------------------------------------------------------------------
 
-entity input_output_generator is
+entity AvalonMM_to_SSRAM_IOgen is
 	generic
 	(
 		custom_delay			: time := 0 ns
@@ -32,7 +32,7 @@ entity input_output_generator is
 		clk						: in		std_logic;
 		rstN						: in  	std_logic;
 		avs_s0_waitrequest 	: in		std_logic;
-		avs_s0_readdatavalid	: in		std_logic;			-- ANCORA DA UTILIZZARE NELL'ARCHITETTURA
+		avs_s0_readdatavalid	: in		std_logic;
 		avs_s0_readdata	 	: in 		std_logic_vector(15 downto 0);
 		avs_s0_address			: out		std_logic_vector(31 downto 0);
 		avs_s0_read       	: out 	std_logic;
@@ -40,11 +40,11 @@ entity input_output_generator is
 		avs_s0_writedata  	: out 	std_logic_vector(15 downto 0);
 		stop_sim					: out		std_logic := '0'
 	);
-end input_output_generator;
+end AvalonMM_to_SSRAM_IOgen;
 
 ------------------------------------------------------------------------------------------------------------------
 
-architecture behavior of input_output_generator is
+architecture behavior of AvalonMM_to_SSRAM_IOgen is
 
 	file 			input_file	: text;
 	file 			output_file	: text;
@@ -61,8 +61,8 @@ architecture behavior of input_output_generator is
 		variable read_flag			: std_logic := '0';
 		begin
 			-- files opening ----------------------------------------------------------------------------------------
-			file_open(input_file_stat, input_file, "stimuli.txt", read_mode);
-			file_open(output_file_stat, output_file, "read_values.txt", write_mode);
+			file_open(input_file_stat, input_file, "AvalonMM_to_SSRAM_stimuli.txt", read_mode);
+			file_open(output_file_stat, output_file, "AvalonMM_to_SSRAM_readValues.txt", write_mode);
 			-- reset condition --------------------------------------------------------------------------------------
 			if (rstN = '0') then
 				avs_s0_read	<= '0';
