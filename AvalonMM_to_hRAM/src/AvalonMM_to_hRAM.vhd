@@ -83,14 +83,14 @@ architecture rtl of AvalonMM_to_hyperRamS27KL0641 is
 	--
 	
 	-- internal signals --------------------------------------------------------------------------------------------------------------
-	ssram_out            : std_logic_vector(15 downto 0);
-	ssram_in             : std_logic_vector(15 downto 0);
-	ssram_address        : std_logic_vector(31 downto 0);
-	ssram_OE					: std_logic;
-	ssram_WE					: std_logic;
-	ssram_CS					: std_logic;
-	ssram_validout			: std_logic;
-	ssram_busy				: std_logic;
+	signal ssram_out            : std_logic_vector(15 downto 0);
+	signal ssram_in             : std_logic_vector(15 downto 0);
+	signal ssram_address        : std_logic_vector(31 downto 0);
+	signal ssram_OE					: std_logic;
+	signal ssram_WE					: std_logic;
+	signal ssram_CS					: std_logic;
+	signal ssram_validout			: std_logic;
+	signal ssram_busy				: std_logic;
 	
 	begin
 	

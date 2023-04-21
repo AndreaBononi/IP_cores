@@ -1,5 +1,12 @@
 /firmware/
 /fpga-user/
+/fpga-master/
 /docs/
-/avs_hbus_interface/src/*.bak
-/avs_hbus_interface/tb/*.bak
+/AvalonMM_to_hRAM/src/*.bak
+/AvalonMM_to_hRAM/tb/*.bak
+/AvalonMM_to_hRAM/db/
+/AvalonMM_to_hRAM/incremental_db
+/AvalonMM_to_hRAM/output_files
+/AvalonMM_to_hRAM/sim/vsim.wlf
+/AvalonMM_to_hRAM/sim/transcript
+/AvalonMM_to_hRAM/sim/work

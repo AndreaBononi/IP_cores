@@ -19,13 +19,13 @@
 #
 # Quartus Prime
 # Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
-# Date created = 12:46:51  aprile 17, 2023
+# Date created = 19:44:43  aprile 21, 2023
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "22.1"
-DATE = "12:46:51  aprile 17, 2023"
+DATE = "19:44:43  aprile 21, 2023"
 
 # Revisions
 
-PROJECT_REVISION = "AvalonMM_to_hyperRamS27KL0641"
+PROJECT_REVISION = "AvalonMM_to_hRAM"
