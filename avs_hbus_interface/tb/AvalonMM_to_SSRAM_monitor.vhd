@@ -37,17 +37,17 @@ architecture behavior of AvalonMM_to_SSRAM_monitor is
 	file output_file: text;
 
 	begin
-	
+
 		output_file_generation		: process (clk, avs_s0_readdatavalid, start_sim, stop_sim)
 		variable outputline			: line;
 		variable output_file_stat	: file_open_status;
 		begin
 			-- file opening -----------------------------------------------------------------------------------------
-			if (stop_sim = '0') then
-				file_open(output_file_stat, output_file, "AvalonMM_to_SSRAM_readValues.txt", write_mode);
-			end if;
+			-- if (stop_sim = '0') then
+			file_open(output_file_stat, output_file, "../sim/AvalonMM_to_SSRAM_readValues.txt", write_mode);
+			-- end if;
 			-- output storage ---------------------------------------------------------------------------------------
-			while (stop_sim = '0') loop
+			if (stop_sim = '0') then
 				if (start_sim = '1') then
 					if (rising_edge(clk)) then
 						if (avs_s0_readdatavalid = '1') then
@@ -55,8 +55,8 @@ architecture behavior of AvalonMM_to_SSRAM_monitor is
 							writeline(output_file, outputline);
 						end if;
 					end if;
-				end if;			
-			end loop;
+				end if;
+			end if;
 		end process output_file_generation;
 
 end behavior;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for AvalonMM_to_hyperRamS27KL0641
-Mon Apr 17 17:47:37 2023
+Fri Apr 21 17:17:30 2023
 Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
 
 
@@ -10,7 +10,32 @@ Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|present_state
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:command
+ 13. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append3
+ 14. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append2
+ 15. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append1
+ 16. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append0
+ 17. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux2
+ 18. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux1
+ 19. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux0
+ 20. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:muxcom
+ 21. Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:readdata
+ 22. Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:readdata"
+ 23. Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append0"
+ 24. Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append1"
+ 25. Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append2"
+ 26. Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append3"
+ 27. Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:command"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
 
 
 
@@ -37,20 +62,20 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Mon Apr 17 17:47:37 2023              ;
+; Analysis & Synthesis Status        ; Successful - Fri Apr 21 17:17:30 2023          ;
 ; Quartus Prime Version              ; 22.1std.1 Build 917 02/14/2023 SC Lite Edition ;
 ; Revision Name                      ; AvalonMM_to_hyperRamS27KL0641                  ;
 ; Top-level Entity Name              ; AvalonMM_to_SSRAM                              ;
 ; Family                             ; Cyclone 10 LP                                  ;
-; Total logic elements               ; N/A until Partition Merge                      ;
-;     Total combinational functions  ; N/A until Partition Merge                      ;
-;     Dedicated logic registers      ; N/A until Partition Merge                      ;
-; Total registers                    ; N/A until Partition Merge                      ;
-; Total pins                         ; N/A until Partition Merge                      ;
-; Total virtual pins                 ; N/A until Partition Merge                      ;
-; Total memory bits                  ; N/A until Partition Merge                      ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                      ;
-; Total PLLs                         ; N/A until Partition Merge                      ;
+; Total logic elements               ; 399                                            ;
+;     Total combinational functions  ; 282                                            ;
+;     Dedicated logic registers      ; 302                                            ;
+; Total registers                    ; 302                                            ;
+; Total pins                         ; 139                                            ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 0                                              ;
+; Embedded Multiplier 9-bit elements ; 0                                              ;
+; Total PLLs                         ; 0                                              ;
 +------------------------------------+------------------------------------------------+
 
 
@@ -149,11 +174,352 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
 +----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                ;
++-----------------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path        ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                  ; Library ;
++-----------------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------+---------+
+; src/AvalonMM_to_SSRAM.vhd               ; yes             ; User VHDL File  ; /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM.vhd               ;         ;
+; src/AvalonMM_to_SSRAM_controlUnit.vhd   ; yes             ; User VHDL File  ; /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_controlUnit.vhd   ;         ;
+; src/AvalonMM_to_SSRAM_executionUnit.vhd ; yes             ; User VHDL File  ; /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd ;         ;
+; src/mux_2to1.vhd                        ; yes             ; User VHDL File  ; /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/mux_2to1.vhd                        ;         ;
+; src/reg.vhd                             ; yes             ; User VHDL File  ; /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/reg.vhd                             ;         ;
+; src/sr_flipflop.vhd                     ; yes             ; User VHDL File  ; /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/sr_flipflop.vhd                     ;         ;
++-----------------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 399       ;
+;                                             ;           ;
+; Total combinational functions               ; 282       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 166       ;
+;     -- 3 input functions                    ; 101       ;
+;     -- <=2 input functions                  ; 15        ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 282       ;
+;     -- arithmetic mode                      ; 0         ;
+;                                             ;           ;
+; Total registers                             ; 302       ;
+;     -- Dedicated logic registers            ; 302       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 139       ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 302       ;
+; Total fan-out                               ; 2106      ;
+; Average fan-out                             ; 2.44      ;
++---------------------------------------------+-----------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                         ;
++-----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------+---------------------------------+--------------+
+; Compilation Hierarchy Node              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                   ; Entity Name                     ; Library Name ;
++-----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------+---------------------------------+--------------+
+; |AvalonMM_to_SSRAM                      ; 282 (0)             ; 302 (0)                   ; 0           ; 0            ; 0       ; 0         ; 139  ; 0            ; |AvalonMM_to_SSRAM                                                    ; AvalonMM_to_SSRAM               ; work         ;
+;    |AvalonMM_to_SSRAM_controlUnit:CU|   ; 66 (66)             ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU                   ; AvalonMM_to_SSRAM_controlUnit   ; work         ;
+;    |AvalonMM_to_SSRAM_executionUnit:EU| ; 216 (0)             ; 270 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU                 ; AvalonMM_to_SSRAM_executionUnit ; work         ;
+;       |mux_2to1:mux0|                   ; 58 (58)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux0   ; mux_2to1                        ; work         ;
+;       |mux_2to1:mux1|                   ; 50 (50)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux1   ; mux_2to1                        ; work         ;
+;       |mux_2to1:mux2|                   ; 50 (50)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux2   ; mux_2to1                        ; work         ;
+;       |mux_2to1:muxcom|                 ; 50 (50)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:muxcom ; mux_2to1                        ; work         ;
+;       |reg:append0|                     ; 0 (0)               ; 50 (50)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|reg:append0     ; reg                             ; work         ;
+;       |reg:append1|                     ; 0 (0)               ; 50 (50)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|reg:append1     ; reg                             ; work         ;
+;       |reg:append2|                     ; 0 (0)               ; 50 (50)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|reg:append2     ; reg                             ; work         ;
+;       |reg:append3|                     ; 0 (0)               ; 50 (50)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|reg:append3     ; reg                             ; work         ;
+;       |reg:command|                     ; 0 (0)               ; 50 (50)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|reg:command     ; reg                             ; work         ;
+;       |reg:readdata|                    ; 0 (0)               ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|reg:readdata    ; reg                             ; work         ;
+;       |sr_flipflop:sr0|                 ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|sr_flipflop:sr0 ; sr_flipflop                     ; work         ;
+;       |sr_flipflop:sr1|                 ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|sr_flipflop:sr1 ; sr_flipflop                     ; work         ;
+;       |sr_flipflop:sr2|                 ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|sr_flipflop:sr2 ; sr_flipflop                     ; work         ;
+;       |sr_flipflop:sr3|                 ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_executionUnit:EU|sr_flipflop:sr3 ; sr_flipflop                     ; work         ;
++-----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------+---------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|present_state                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++--------------------------------+-----------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------+----------------------------+----------------------------+-----------------------+--------------------------+--------------------------+--------------------------+--------------------------+----------------------+----------------------+----------------------+----------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------+--------------------+--------------------+--------------------+--------------------------+------------------------------+------------------------+-------------------------------+-------------------------+--------------------+---------------------+
+; Name                           ; present_state.cmdonly_valid ; present_state.shift3_cmd_valid ; present_state.shift2_cmd_valid ; present_state.shift1_cmd_valid ; present_state.shift0_cmd_valid ; present_state.shift3_valid ; present_state.shift2_valid ; present_state.shift1_valid ; present_state.shift0_valid ; present_state.cmdonly ; present_state.shift3_cmd ; present_state.shift2_cmd ; present_state.shift1_cmd ; present_state.shift0_cmd ; present_state.shift3 ; present_state.shift2 ; present_state.shift1 ; present_state.shift0 ; present_state.app3_valid ; present_state.app2_valid ; present_state.app1_valid ; present_state.app0_valid ; present_state.app3 ; present_state.app2 ; present_state.app1 ; present_state.app0 ; present_state.idle_valid ; present_state.shiftall_valid ; present_state.shiftall ; present_state.idle_full_valid ; present_state.idle_full ; present_state.idle ; present_state.reset ;
++--------------------------------+-----------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------+----------------------------+----------------------------+-----------------------+--------------------------+--------------------------+--------------------------+--------------------------+----------------------+----------------------+----------------------+----------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------+--------------------+--------------------+--------------------+--------------------------+------------------------------+------------------------+-------------------------------+-------------------------+--------------------+---------------------+
+; present_state.reset            ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 0                   ;
+; present_state.idle             ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 1                  ; 1                   ;
+; present_state.idle_full        ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 1                       ; 0                  ; 1                   ;
+; present_state.idle_full_valid  ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 1                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shiftall         ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 1                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shiftall_valid   ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 1                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.idle_valid       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 1                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app0             ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 1                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app1             ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 1                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app2             ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 1                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app3             ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 1                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app0_valid       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 1                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app1_valid       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 1                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app2_valid       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 1                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.app3_valid       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 1                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift0           ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 1                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift1           ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 1                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift2           ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 1                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift3           ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 1                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift0_cmd       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 1                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift1_cmd       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 1                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift2_cmd       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 1                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift3_cmd       ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 1                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.cmdonly          ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 1                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift0_valid     ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 1                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift1_valid     ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 1                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift2_valid     ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 1                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift3_valid     ; 0                           ; 0                              ; 0                              ; 0                              ; 0                              ; 1                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift0_cmd_valid ; 0                           ; 0                              ; 0                              ; 0                              ; 1                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift1_cmd_valid ; 0                           ; 0                              ; 0                              ; 1                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift2_cmd_valid ; 0                           ; 0                              ; 1                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.shift3_cmd_valid ; 0                           ; 1                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
+; present_state.cmdonly_valid    ; 1                           ; 0                              ; 0                              ; 0                              ; 0                              ; 0                          ; 0                          ; 0                          ; 0                          ; 0                     ; 0                        ; 0                        ; 0                        ; 0                        ; 0                    ; 0                    ; 0                    ; 0                    ; 0                        ; 0                        ; 0                        ; 0                        ; 0                  ; 0                  ; 0                  ; 0                  ; 0                        ; 0                            ; 0                      ; 0                             ; 0                       ; 0                  ; 1                   ;
++--------------------------------+-----------------------------+--------------------------------+--------------------------------+--------------------------------+--------------------------------+----------------------------+----------------------------+----------------------------+----------------------------+-----------------------+--------------------------+--------------------------+--------------------------+--------------------------+----------------------+----------------------+----------------------+----------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------+--------------------+--------------------+--------------------+--------------------------+------------------------------+------------------------+-------------------------------+-------------------------+--------------------+---------------------+
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++-----------------------------------------------------------+--------------------+
+; Register name                                             ; Reason for Removal ;
++-----------------------------------------------------------+--------------------+
+; AvalonMM_to_SSRAM_controlUnit:CU|present_state.shift0_cmd ; Lost fanout        ;
+; Total Number of Removed Registers = 1                     ;                    ;
++-----------------------------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 302   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 32    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 266   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state                  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state.shiftall_valid   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state                  ;
+; 5:1                ; 9 bits    ; 27 LEs        ; 9 LEs                ; 18 LEs                 ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state.shift3_cmd_valid ;
+; 5:1                ; 9 bits    ; 27 LEs        ; 9 LEs                ; 18 LEs                 ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state.shift2_cmd       ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state.app3_valid       ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state.app3             ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; No         ; |AvalonMM_to_SSRAM|AvalonMM_to_SSRAM_controlUnit:CU|next_state                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:command ;
++----------------+-------+--------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                               ;
++----------------+-------+--------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                     ;
++----------------+-------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append3 ;
++----------------+-------+--------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                               ;
++----------------+-------+--------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                     ;
++----------------+-------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append2 ;
++----------------+-------+--------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                               ;
++----------------+-------+--------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                     ;
++----------------+-------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append1 ;
++----------------+-------+--------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                               ;
++----------------+-------+--------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                     ;
++----------------+-------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:append0 ;
++----------------+-------+--------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                               ;
++----------------+-------+--------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                     ;
++----------------+-------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux2 ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                       ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux1 ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                       ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux0 ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                       ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:muxcom ;
++----------------+-------+------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                   ;
++----------------+-------+------------------------------------------------------------------------+
+; n              ; 50    ; Signed Integer                                                         ;
++----------------+-------+------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AvalonMM_to_SSRAM_executionUnit:EU|reg:readdata ;
++----------------+-------+---------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                ;
++----------------+-------+---------------------------------------------------------------------+
+; n              ; 16    ; Signed Integer                                                      ;
++----------------+-------+---------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:readdata" ;
++---------+-------+----------+------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                        ;
++---------+-------+----------+------------------------------------------------+
+; clear_n ; Input ; Info     ; Stuck at VCC                                   ;
++---------+-------+----------+------------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append0" ;
++---------+-------+----------+-----------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                       ;
++---------+-------+----------+-----------------------------------------------+
+; clear_n ; Input ; Info     ; Stuck at VCC                                  ;
++---------+-------+----------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append1" ;
++---------+-------+----------+-----------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                       ;
++---------+-------+----------+-----------------------------------------------+
+; clear_n ; Input ; Info     ; Stuck at VCC                                  ;
++---------+-------+----------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append2" ;
++---------+-------+----------+-----------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                       ;
++---------+-------+----------+-----------------------------------------------+
+; clear_n ; Input ; Info     ; Stuck at VCC                                  ;
++---------+-------+----------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:append3" ;
++---------+-------+----------+-----------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                       ;
++---------+-------+----------+-----------------------------------------------+
+; clear_n ; Input ; Info     ; Stuck at VCC                                  ;
++---------+-------+----------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "AvalonMM_to_SSRAM_executionUnit:EU|reg:command" ;
++---------+-------+----------+-----------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                       ;
++---------+-------+----------+-----------------------------------------------+
+; clear_n ; Input ; Info     ; Stuck at VCC                                  ;
++---------+-------+----------+-----------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 139                         ;
+; cycloneiii_ff         ; 302                         ;
+;     CLR               ; 32                          ;
+;     ENA               ; 266                         ;
+;     plain             ; 4                           ;
+; cycloneiii_lcell_comb ; 284                         ;
+;     normal            ; 284                         ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 15                          ;
+;         3 data inputs ; 101                         ;
+;         4 data inputs ; 166                         ;
+;                       ;                             ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 1.72                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -162,7 +528,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
-    Info: Processing started: Mon Apr 17 17:47:27 2023
+    Info: Processing started: Fri Apr 21 17:17:18 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AvalonMM_to_hyperRamS27KL0641 -c AvalonMM_to_hyperRamS27KL0641
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -201,31 +567,23 @@ Info (12021): Found 2 design units, including 1 entities, in source file tb/Aval
     Info (12023): Found entity 1: AvalonMM_to_SSRAM_monitor File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/tb/AvalonMM_to_SSRAM_monitor.vhd Line: 21
 Info (12127): Elaborating entity "AvalonMM_to_SSRAM" for the top level hierarchy
 Info (12128): Elaborating entity "AvalonMM_to_SSRAM_executionUnit" for hierarchy "AvalonMM_to_SSRAM_executionUnit:EU" File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM.vhd Line: 186
-Warning (10541): VHDL Signal Declaration warning at AvalonMM_to_SSRAM_executionUnit.vhd(113): used implicit default value for signal "append3_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 113
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[49]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10029): Constant driver at AvalonMM_to_SSRAM_executionUnit.vhd(129) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 129
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[48]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[47]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[46]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[45]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[44]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[43]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[42]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[41]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[40]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[39]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[38]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[37]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[36]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[35]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[34]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[33]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (10028): Can't resolve multiple constant drivers for net "cmd_out[32]" at AvalonMM_to_SSRAM_executionUnit.vhd(132) File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 132
-Error (12152): Can't elaborate user hierarchy "AvalonMM_to_SSRAM_executionUnit:EU" File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM.vhd Line: 186
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 20 errors, 2 warnings
-    Error: Peak virtual memory: 414 megabytes
-    Error: Processing ended: Mon Apr 17 17:47:37 2023
-    Error: Elapsed time: 00:00:10
-    Error: Total CPU time (on all processors): 00:00:25
+Info (12128): Elaborating entity "reg" for hierarchy "AvalonMM_to_SSRAM_executionUnit:EU|reg:command" File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 130
+Info (12128): Elaborating entity "mux_2to1" for hierarchy "AvalonMM_to_SSRAM_executionUnit:EU|mux_2to1:mux2" File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 145
+Info (12128): Elaborating entity "sr_flipflop" for hierarchy "AvalonMM_to_SSRAM_executionUnit:EU|sr_flipflop:sr3" File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 162
+Info (12128): Elaborating entity "reg" for hierarchy "AvalonMM_to_SSRAM_executionUnit:EU|reg:readdata" File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM_executionUnit.vhd Line: 174
+Info (12128): Elaborating entity "AvalonMM_to_SSRAM_controlUnit" for hierarchy "AvalonMM_to_SSRAM_controlUnit:CU" File: /home/andrea/Documents/Tesi_287628/avs_hbus_interface/src/AvalonMM_to_SSRAM.vhd Line: 235
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 538 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 70 input pins
+    Info (21059): Implemented 69 output pins
+    Info (21061): Implemented 399 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 424 megabytes
+    Info: Processing ended: Fri Apr 21 17:17:30 2023
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:25
 
 

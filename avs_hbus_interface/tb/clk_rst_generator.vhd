@@ -41,7 +41,7 @@ architecture behavior of clk_rst_generator is
 			local_clk <= not local_clk;
 			wait for clockPeriod/2;
 		end process clockGen;
-		clk <= local_clk and stop_sim and start_sim;
+		clk <= local_clk and not stop_sim and start_sim;
 		
 		-- reset generation process ---------------------------------------------------------------------------
 		resetGen: process

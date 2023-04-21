@@ -48,21 +48,21 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 	file input_file: text;
 
 	begin
-		input_application				: process (clk, rst_n)
+		input_driving					: process (clk, rst_n, avs_s0_waitrequest, avs_s0_readdatavalid)
 		variable inputline			: line;
 		variable input_file_stat	: file_open_status;
 		variable opcode				: std_logic;
 		variable input_address		: std_logic_vector(31 downto 0);
 		variable input_writedata	: std_logic_vector(15 downto 0);
-		variable end_file				: std_logic := '0';
 		variable pending_read		: integer := 0;
+		variable stop					: std_logic := '0';
 		begin
 			-- files opening ----------------------------------------------------------------------------------------
-			if (end_file = '0') then
-				file_open(input_file_stat, input_file, "AvalonMM_to_SSRAM_stimuli.txt", read_mode);
-			end if;
+			-- if (end_file = '0') then
+			file_open(input_file_stat, input_file, "../sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
+			-- end if;
 			-- input application ------------------------------------------------------------------------------------
-			while (not endfile(input_file)) loop
+			if (not endfile(input_file)) then
 				if (rst_n = '0') then
 					avs_s0_read	<= '0';
 					avs_s0_write <= '0';
@@ -92,20 +92,21 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 						pending_read := pending_read - 1;
 					end if;
 				end if;
-			end loop;	
-			avs_s0_read <= '0';
-			avs_s0_write <= '0';
-			end_file := '1';
-			-- we read the whole file, but it is possible that some reading operations are not terminated yet
-			while (pending_read > 0) loop
-				if (rising_edge(clk)) then
-					if (avs_s0_readdatavalid = '1') then
-						pending_read := pending_read - 1;
+			else
+				avs_s0_read <= '0';
+				avs_s0_write <= '0';
+				if (pending_read > 0) then
+					if (rising_edge(clk)) then
+						if (avs_s0_readdatavalid = '1') then
+							pending_read := pending_read - 1;
+						end if;
 					end if;
+				else
+					stop := '1';
 				end if;
-			end loop;			
-			stop_sim <= '1';
-		end process input_application;
+			end if;
+			stop_sim <= stop;
+		end process input_driving;
 
 end behavior;
 

@@ -110,7 +110,6 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 	-- internal signals ------------------------------------------------------------------------------------------------------------
 	signal cmd_in			: std_logic_vector(49 downto 0);
 	signal cmd_out			: std_logic_vector(49 downto 0);
-	signal append3_in		: std_logic_vector(49 downto 0);
 	signal append2_in		: std_logic_vector(49 downto 0);
 	signal append1_in		: std_logic_vector(49 downto 0);
 	signal append0_in		: std_logic_vector(49 downto 0);
@@ -126,13 +125,12 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		cmd_in(47 downto 32) <= avs_s0_writedata;
 		cmd_in(48) <= avs_s0_read;
 		cmd_in(49) <= avs_s0_write;
-		cmd_out <= append3_in;
 		
 		-- command register ----------------------------------------------------------------------------------------------------------
 		command: reg generic map (50) port map (clk, command_enable, '1', cmd_in, cmd_out);
 		
 		-- append3 register -----------------------------------------------------------------------------------------------------------
-		append3: reg generic map (50) port map (clk, append3_enable, '1', append3_in, append3_out);
+		append3: reg generic map (50) port map (clk, append3_enable, '1', cmd_out, append3_out);
 		
 		-- append2 register -----------------------------------------------------------------------------------------------------------
 		append2: reg generic map (50) port map (clk, append2_enable, '1', append2_in, append2_out);

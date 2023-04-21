@@ -9,7 +9,7 @@ import memory
 
 # constants ----------------------------------------------------------------------------------------------------------------------------
 stimuli_file = "AvalonMM_to_SSRAM_stimuli.txt"
-output_file = "AvalonMM_to_SSRAM_ReadValues.txt"
+output_file = "AvalonMM_to_SSRAM_readValues.txt"
 expected_file = "AvalonMM_to_SSRAM_expectedReadValues.txt"
 vsim_path = '~./intelFPGA/20.1/modelsim_ase/bin/vsim'
 virtual_address_binary_size = 32    # the memory virtually has 32 addressing bits, but only the 8 less significant bits are considered
@@ -71,15 +71,16 @@ else:
 
 # simulation --------------------------------------------------------------------------------------------------------------------------
 print ("Starting simulation...")
-process = subprocess.call([vsim_path, "-c", "-do", "AvalonMM_to_SSRAM_simulation.do"])
+# process = subprocess.call([vsim_path, "-c", "-do", "AvalonMM_to_SSRAM_simulation.do"])
+subprocess.run( "touch " + output_file, shell=True )
 print ("Simulation completed")
 
 # output verification -----------------------------------------------------------------------------------------------------------------
 cmd = "diff " + expected_file + " " + output_file + " -y --suppress-common-lines | wc -l"
 verification_process = subprocess.run( cmd, shell = True, capture_output = True )
-diff = verification_process.stdout.decode( "utf-8" ).replace( "\n", "" )
-if ( diff == '0' ):
+diff = verification_process.stdout.decode( "utf-8" ).replace("\n", "")
+if ( diff == '0 ' ):
     print( "Verification passed: DUT is working correctly" )
 else:
     print( "Verification failed: DUT is not working as expected" )
-	print( diff, " errors detected" )
+    print( diff, "errors detected" )
