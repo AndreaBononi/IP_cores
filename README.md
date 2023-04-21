@@ -1,3 +1,3 @@
-# Tesi di laurea 287628
+# AvalonMM to hRAM
 
-Files per tesi di laurea
+Conversion between Intel Avalon memory-mapped interface and hyperRAM interface
