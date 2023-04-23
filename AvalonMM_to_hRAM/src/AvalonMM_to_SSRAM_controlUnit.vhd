@@ -12,7 +12,7 @@ entity AvalonMM_to_SSRAM_controlUnit is
 		-- clock and reset
 		clk						: in 	std_logic;
 		rst_n						: in	std_logic;
-		-- status signals 
+		-- status signals
 		op_req					: in	std_logic;
 		sr3_out					: in	std_logic;
 		sr2_out					: in	std_logic;
@@ -105,7 +105,7 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 						next_state <= idle;
 					---------------------------------------------------------------------------------------------------------------------
 					when 	idle | shiftall | shiftall_valid | idle_valid | app0 | app1 | app2 | app3 | app0_valid | app1_valid |
-							app2_valid | app3_valid | shift0 | shift1 | shift2 | shift3 | shift0_cmd | shift1_cmd | shift2_cmd | 
+							app2_valid | app3_valid | shift0 | shift1 | shift2 | shift3 | shift0_cmd | shift1_cmd | shift2_cmd |
 							shift3_cmd | cmdonly | shift0_valid | shift1_valid | shift2_valid | shift3_valid | shift0_cmd_valid |
 							shift1_cmd_valid | shift2_cmd_valid | shift3_cmd_valid | cmdonly_valid =>
 						if (mem_busy = '1') then
@@ -244,7 +244,7 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 										if (sr2_out = '0') then
 											if (sr1_out = '0') then
 												if (sr0_out = '0') then
-													next_state <= cmdonly;
+													next_state <= idle;
 												else
 													next_state <= shift0;
 												end if;
@@ -259,9 +259,9 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 									end if;
 								end if;
 							end if;
-						end if;	
-					---------------------------------------------------------------------------------------------------------------------	
-					when idle_full | idle_full_valid => 
+						end if;
+					---------------------------------------------------------------------------------------------------------------------
+					when idle_full | idle_full_valid =>
 						if (mem_busy = '1') then
 							if (mem_validout = '1') then
 								next_state <= idle_full_valid;
@@ -276,7 +276,7 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 							end if;
 						end if;
 					---------------------------------------------------------------------------------------------------------------------
-					when others => 
+					when others =>
 						next_state <= reset;
 					---------------------------------------------------------------------------------------------------------------------
 				end case;

@@ -13,3 +13,5 @@
 /datasheets/NIOS_QSYS_tutorial.pdf
 /datasheets/QUARTUS_MODELSIM_tutorial.pdf
 /fpga-master/
+/AvalonMM_to_hRAM/sim/__pycache__
+/useful_files/

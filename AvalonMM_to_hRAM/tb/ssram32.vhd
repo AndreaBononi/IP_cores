@@ -43,7 +43,7 @@ end ssram32;
 architecture behavior of ssram32 is
 
    type matrix is array(0 to 255) of std_logic_vector(N-1 downto 0);
-	
+
 	-- internal signals
    signal 	mem				: matrix;
 	signal 	dummy_address	: integer;
@@ -56,27 +56,24 @@ architecture behavior of ssram32 is
 		dummy_address <= to_integer(unsigned(ssram32_address(7 downto 0)));
 
 		memory_cycle: process (ssram32_clk, ssram32_clear_n, ssram32_write, ssram32_read, ssram32_in, dummy_address)
-			begin
-            if (rising_edge(ssram32_clk)) then
-					if (valid = '1') then
-						valid <= '0';
-					end if;
-               if (ssram32_clear_n = '0') then
-                  mem <= (others => (others => '0'));
-						valid <= '0';
-						busy <= '0';
-               elsif (ssram32_write = '1' and ssram32_enable = '1') then
-						busy <= '1';
-						busy <= '0' after valid_time;
-                  mem(dummy_address) <= ssram32_in after valid_time;
-						valid <= '1' after valid_time;
-               elsif (ssram32_read = '1' and ssram32_enable = '1') then
-						busy <= '1';
-						busy <= '0' after valid_time;
-                  dummy_out <= mem(dummy_address) after valid_time;
-						valid <= '1' after valid_time;
-               end if;
+		begin
+         if (rising_edge(ssram32_clk)) then
+				if (valid = '1') then
+					valid <= '0';
+				end if;
+            if (ssram32_clear_n = '0') then
+               mem <= (others => (others => '0'));
+					valid <= '0';
+					busy <= '0';
+            elsif (ssram32_write = '1' and ssram32_enable = '1') then
+					busy <= '1' after 0 ns, '0' after valid_time;
+               mem(dummy_address) <= ssram32_in after valid_time;
+            elsif (ssram32_read = '1' and ssram32_enable = '1') then
+					busy <= '1' after 0 ns, '0' after valid_time;
+               dummy_out <= mem(dummy_address) after valid_time;
+					valid <= '1' after valid_time;
             end if;
+         end if;
 		end process memory_cycle;
 
 		ssram32_out <= dummy_out;

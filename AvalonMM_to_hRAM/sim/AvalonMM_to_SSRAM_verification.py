@@ -11,7 +11,8 @@ import memory
 stimuli_file = "AvalonMM_to_SSRAM_stimuli.txt"
 output_file = "AvalonMM_to_SSRAM_readValues.txt"
 expected_file = "AvalonMM_to_SSRAM_expectedReadValues.txt"
-vsim_path = '~./intelFPGA/20.1/modelsim_ase/bin/vsim'
+simulation_file = "AvalonMM_to_SSRAM_simulation.do"
+vsim_path = '~/intelFPGA/20.1/modelsim_ase/bin/vsim'
 virtual_address_binary_size = 32    # the memory virtually has 32 addressing bits, but only the 8 less significant bits are considered
 real_address_binary_size = 8
 word_binary_size = 16
@@ -71,8 +72,7 @@ else:
 
 # simulation --------------------------------------------------------------------------------------------------------------------------
 print ("Starting simulation...")
-# process = subprocess.call([vsim_path, "-c", "-do", "AvalonMM_to_SSRAM_simulation.do"])
-subprocess.run( "touch " + output_file, shell=True )
+subprocess.run( vsim_path + " -c -do " + simulation_file, shell=True )
 print ("Simulation completed")
 
 # output verification -----------------------------------------------------------------------------------------------------------------
