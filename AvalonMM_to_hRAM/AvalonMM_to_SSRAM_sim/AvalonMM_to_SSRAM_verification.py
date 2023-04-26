@@ -8,6 +8,7 @@ import subprocess
 import memory
 
 # constants ----------------------------------------------------------------------------------------------------------------------------
+simulation_project = "AvalonMM_to_SSRAM"
 stimuli_file = "AvalonMM_to_SSRAM_stimuli.txt"
 output_file = "AvalonMM_to_SSRAM_readValues.txt"
 expected_file = "AvalonMM_to_SSRAM_expectedReadValues.txt"
@@ -20,8 +21,9 @@ read_opcode = '0'
 write_opcode = '1'
 
 # information printing -----------------------------------------------------------------------------------------------------------------
-cmd = 'echo "VSIM path: ' + vsim_path + '"'
-subprocess.run( cmd, shell = True )
+print( "VSIM path:", vsim_path )
+print( "Project:",  simulation_project)
+print( "..." )
 
 # virtual memory creation --------------------------------------------------------------------------------------------------------------
 mem = memory.memory( address_binary_size = real_address_binary_size, word_binary_size = word_binary_size )

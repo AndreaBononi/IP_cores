@@ -59,7 +59,7 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 		begin
 			-- files opening ----------------------------------------------------------------------------------------
 			-- if (end_file = '0') then
-			file_open(input_file_stat, input_file, "../sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
+			file_open(input_file_stat, input_file, "../AvalonMM_to_SSRAM_sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
 			-- end if;
 			-- input application ------------------------------------------------------------------------------------
 			if (not endfile(input_file)) then

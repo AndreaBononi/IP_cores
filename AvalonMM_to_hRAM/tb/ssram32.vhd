@@ -27,9 +27,9 @@ entity ssram32 is
 	(
 		ssram32_clk			: in 	std_logic;
 		ssram32_clear_n	: in 	std_logic;
-		ssram32_read		: in 	std_logic;
-		ssram32_write		: in 	std_logic;
-		ssram32_enable		: in 	std_logic;
+		ssram32_OE			: in 	std_logic;
+		ssram32_WE			: in 	std_logic;
+		ssram32_CS			: in 	std_logic;
 		ssram32_address	: in 	std_logic_vector(31 downto 0);
 		ssram32_in			: in 	std_logic_vector(N-1 downto 0);
 		ssram32_out			: out std_logic_vector(N-1 downto 0);
@@ -49,13 +49,14 @@ architecture behavior of ssram32 is
 	signal 	dummy_address	: integer;
 	signal 	dummy_out		: std_logic_vector (N-1 downto 0);
 	signal	valid				: std_logic;
-	signal	busy				: std_logic;
+	signal	busy				: std_logic := '0';
 
    begin
 
 		dummy_address <= to_integer(unsigned(ssram32_address(7 downto 0)));
 
-		memory_cycle: process (ssram32_clk, ssram32_clear_n, ssram32_write, ssram32_read, ssram32_in, dummy_address)
+		memory_cycle: process (ssram32_clk, ssram32_clear_n, ssram32_WE, ssram32_OE, ssram32_CS, dummy_address, busy)
+		variable operation_execution: std_logic := '0';
 		begin
          if (rising_edge(ssram32_clk)) then
 				if (valid = '1') then
@@ -64,14 +65,13 @@ architecture behavior of ssram32 is
             if (ssram32_clear_n = '0') then
                mem <= (others => (others => '0'));
 					valid <= '0';
-					busy <= '0';
-            elsif (ssram32_write = '1' and ssram32_enable = '1') then
-					busy <= '1' after 0 ns, '0' after valid_time;
+            elsif (ssram32_WE = '1' and ssram32_CS = '1' and busy = '0') then
+					busy <= '1' after 0 ns, '0' after valid_time;					
                mem(dummy_address) <= ssram32_in after valid_time;
-            elsif (ssram32_read = '1' and ssram32_enable = '1') then
+            elsif (ssram32_OE = '1' and ssram32_CS = '1'  and busy = '0') then
 					busy <= '1' after 0 ns, '0' after valid_time;
                dummy_out <= mem(dummy_address) after valid_time;
-					valid <= '1' after valid_time;
+					valid <= '0' after 0 ns, '1' after valid_time;
             end if;
          end if;
 		end process memory_cycle;

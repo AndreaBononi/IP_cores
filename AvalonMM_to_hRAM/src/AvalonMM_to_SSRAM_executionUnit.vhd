@@ -65,10 +65,10 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 			reg_out	: out std_logic_vector(N-1 downto 0)
 		);
 	end component;
-	
+
 	-- flip flop type D ------------------------------------------------------------------------------------------------------------
 	component d_flipflop is
-		port 
+		port
 		(
 			clk			: in std_logic;
 			enable		: in std_logic;
@@ -103,6 +103,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 	signal cmd_out			: std_logic_vector(49 downto 0);
 	signal fifo4_out		: std_logic_vector(49 downto 0);
 	signal fifo4_pop		: std_logic;
+	signal fifo4_empty	: std_logic;
 	signal por_out			: std_logic;
 	signal op				: std_logic;
 
@@ -117,34 +118,35 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		command: reg generic map (50) port map (clk, command_enable, '1', cmd_in, cmd_out);
 
 		-- fifo4 ---------------------------------------------------------------------------------------------------------------------
-		local_fifo: fifo4 generic map (50) 
-		port map 
+		local_fifo: fifo4 generic map (50)
+		port map
 		(
 			clk, 							-- fifo4_clk
 			fifo4_clear_n, 			-- fifo4_clear_n
 			fifo4_push, 				-- fifo4_push
-			fifo4_pop,					-- fifo4_pop 
+			fifo4_pop,					-- fifo4_pop
 			fifo4_full, 				-- fifo4_full
 			fifo4_almost_full, 		-- fifo4_almost_full
-			ssram_CS,					-- fifo4_empty
+			fifo4_empty,				-- fifo4_empty
 			cmd_out, 					-- fifo4_in
-			fifo4_out					-- fifo4_out			
+			fifo4_out					-- fifo4_out
 		);
-		
+
 		fifo4_pop <= not ssram_busy;
+		ssram_CS <= not fifo4_empty;
 		ssram_address <= fifo4_out(31 downto 0);
 		ssram_in <= fifo4_out(47 downto 32);
 		ssram_OE <= fifo4_out(48);
 		ssram_WE <= fifo4_out(49);
-		
+
 		avs_s0_readdatavalid <= readdatavalid;
 		avs_s0_waitrequest <= waitrequest;
 		mem_validout <= ssram_validout;
-		
+
 		op <= avs_s0_read or avs_s0_write;
 		op_req <= op;
 		previous_op_req <= por_out;
-		
+
 		-- por flip flop -------------------------------------------------------------------------------------------------------------
 		por: d_flipflop port map (clk, por_enable, por_clear_n, op, por_out);
 

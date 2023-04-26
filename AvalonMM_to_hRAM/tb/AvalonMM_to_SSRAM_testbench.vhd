@@ -82,9 +82,9 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	(
 		ssram32_clk			: in 	std_logic;
 		ssram32_clear_n	: in 	std_logic;
-		ssram32_read		: in 	std_logic;
-		ssram32_write		: in 	std_logic;
-		ssram32_enable		: in 	std_logic;
+		ssram32_OE			: in 	std_logic;
+		ssram32_WE			: in 	std_logic;
+		ssram32_CS			: in 	std_logic;
 		ssram32_address	: in 	std_logic_vector(31 downto 0);
 		ssram32_in			: in 	std_logic_vector(N-1 downto 0);
 		ssram32_out			: out std_logic_vector(N-1 downto 0);

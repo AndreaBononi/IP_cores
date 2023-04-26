@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-24T11:14:44.464Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="8wpS1xUkF1u62jjBSdyU" version="21.2.1" type="device" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-04-26T14:59:18.034Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="srO0iGV5sI4dHnobJiVD" version="21.2.1" type="device" pages="4">
   <diagram id="fC97jBpM_xTiCUfCGoVt" name="AvalonMM_to_hRAM">
-    <mxGraphModel dx="1362" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1578" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -43,7 +43,7 @@
         <mxCell id="tyazFwi2D3Fx87An2y98-17" value="&lt;div&gt;hbus_rwds&lt;/div&gt;" style="text;html=1;align=right;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=15;" parent="1" vertex="1">
           <mxGeometry x="465" y="350" width="90" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="tyazFwi2D3Fx87An2y98-18" value="AvalonMM_hyperRamS27KL0641_interface" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="1" vertex="1">
+        <mxCell id="tyazFwi2D3Fx87An2y98-18" value="AvalonMM_to_hRAM" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="1" vertex="1">
           <mxGeometry x="240" y="160" width="320" height="40" as="geometry" />
         </mxCell>
         <mxCell id="tyazFwi2D3Fx87An2y98-27" value="" style="endArrow=classic;html=1;rounded=0;fontSize=15;" parent="1" edge="1">
@@ -182,7 +182,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="aNipMCgoFr5Zwash_G46" name="AvalonMM_to_SSRAM">
-    <mxGraphModel dx="1362" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1578" dy="876" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -210,7 +210,7 @@
         <mxCell id="7uRNbXWkZxl7LxoGMfkp-8" value="clock_clk" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=15;" parent="1" vertex="1">
           <mxGeometry x="245" y="505" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="7uRNbXWkZxl7LxoGMfkp-14" value="AvalonMM_to_sram" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="1" vertex="1">
+        <mxCell id="7uRNbXWkZxl7LxoGMfkp-14" value="AvalonMM_to_SSRAM" style="rounded=0;whiteSpace=wrap;html=1;fontSize=15;" parent="1" vertex="1">
           <mxGeometry x="240" y="160" width="320" height="40" as="geometry" />
         </mxCell>
         <mxCell id="7uRNbXWkZxl7LxoGMfkp-15" value="" style="endArrow=classic;html=1;rounded=0;fontSize=15;" parent="1" edge="1">
@@ -400,7 +400,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="yq9ThTIYmJ8oE_fTDe8D" name="AvalonMM_to_SSRAM: RTL">
-    <mxGraphModel dx="2212" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2165" dy="688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -708,10 +708,10 @@
             <mxPoint x="700" y="1640" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="LJ7WdXkX7okN0-XqNXuT-3" value="" style="endArrow=classic;html=1;rounded=0;endFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="aS_knNE3I7lOjsBgXEY--1" edge="1">
+        <mxCell id="LJ7WdXkX7okN0-XqNXuT-3" value="" style="endArrow=classic;html=1;rounded=0;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="JJZEfPCGID0rbEX0Mzrz-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="560" y="1099.9499999999998" as="sourcePoint" />
-            <mxPoint x="740" y="1100.12" as="targetPoint" />
+            <mxPoint x="720" y="1120" as="sourcePoint" />
+            <mxPoint x="740" y="1100" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="LJ7WdXkX7okN0-XqNXuT-4" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;ssram_&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;CS&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
@@ -802,11 +802,20 @@
         <mxCell id="t4zxegnHiS7n4P0RUvhL-5" value="fifo4_full" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=15;rotation=90;" parent="1" vertex="1">
           <mxGeometry x="600" y="1804.82" width="80" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="JJZEfPCGID0rbEX0Mzrz-1" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.logic_gates.inverter_2;direction=east;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="632.72" y="1083.12" width="56.57" height="33.94" as="geometry" />
+        </mxCell>
+        <mxCell id="JJZEfPCGID0rbEX0Mzrz-3" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="JJZEfPCGID0rbEX0Mzrz-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="1110" as="sourcePoint" />
+            <mxPoint x="600" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="AvalonMM_to_SSRAM: FSM" id="7cOUtxpOADkt3iQJw6D3">
-    <mxGraphModel dx="2452" dy="901" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3480" dy="1377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="gHbopcMJqhLfQALP6Ct7-0" />
         <mxCell id="gHbopcMJqhLfQALP6Ct7-1" parent="gHbopcMJqhLfQALP6Ct7-0" />
