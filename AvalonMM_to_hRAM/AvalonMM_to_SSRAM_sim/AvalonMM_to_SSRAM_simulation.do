@@ -18,32 +18,5 @@ vcom ../tb/AvalonMM_to_SSRAM_testbench.vhd
 # simulation options
 vsim -c -t 1ns work.AvalonMM_to_SSRAM_testbench -voptargs=+acc
 
-# waveform to visualize
-add wave -position insertpoint  \
-sim:/avalonmm_to_ssram_testbench/DUT/CU/present_state \
-sim:/avalonmm_to_ssram_testbench/clk \
-sim:/avalonmm_to_ssram_testbench/avs_s0_address \
-sim:/avalonmm_to_ssram_testbench/avs_s0_read \
-sim:/avalonmm_to_ssram_testbench/avs_s0_write \
-sim:/avalonmm_to_ssram_testbench/avs_s0_writedata \
-sim:/avalonmm_to_ssram_testbench/avs_s0_readdata \
-sim:/avalonmm_to_ssram_testbench/avs_s0_readdatavalid \
-sim:/avalonmm_to_ssram_testbench/avs_s0_waitrequest \
-sim:/avalonmm_to_ssram_testbench/ssram_out \
-sim:/avalonmm_to_ssram_testbench/ssram_in \
-sim:/avalonmm_to_ssram_testbench/ssram_address \
-sim:/avalonmm_to_ssram_testbench/ssram_OE \
-sim:/avalonmm_to_ssram_testbench/ssram_WE \
-sim:/avalonmm_to_ssram_testbench/ssram_CS \
-sim:/avalonmm_to_ssram_testbench/ssram_validout \
-sim:/avalonmm_to_ssram_testbench/ssram_busy \
-sim:/avalonmm_to_ssram_testbench/stop_sim \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word0 \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word1 \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word2 \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word3 \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/fifo4_pop \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/fifo4_full
-
 run 11us
-# quit -f
+quit -f

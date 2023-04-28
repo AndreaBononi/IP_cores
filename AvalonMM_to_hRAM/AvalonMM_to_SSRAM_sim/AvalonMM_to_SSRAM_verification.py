@@ -81,7 +81,7 @@ print ("Simulation completed")
 cmd = "diff " + expected_file + " " + output_file + " -y --suppress-common-lines | wc -l"
 verification_process = subprocess.run( cmd, shell = True, capture_output = True )
 diff = verification_process.stdout.decode( "utf-8" ).replace("\n", "")
-if ( diff == '0 ' ):
+if ( diff == '0' ):
     print( "Verification passed: DUT is working correctly" )
 else:
     print( "Verification failed: DUT is not working as expected" )

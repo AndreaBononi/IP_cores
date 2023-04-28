@@ -90,14 +90,16 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 				end if;
 			else
 				if (rising_edge(clk)) then
-					avs_s0_read <= '0' after custom_delay;
-					avs_s0_write <= '0' after custom_delay;
-					if (pending_read > 0) then
-						if (avs_s0_readdatavalid = '1') then
-							pending_read := pending_read - 1;
+					if (avs_s0_waitrequest = '0') then
+						avs_s0_read <= '0' after custom_delay;
+						avs_s0_write <= '0' after custom_delay;
+						if (pending_read > 0) then
+							if (avs_s0_readdatavalid = '1') then
+								pending_read := pending_read - 1;
+							end if;
+						else
+							stop_simulation := '1';
 						end if;
-					else
-						stop_simulation := '1';
 					end if;
 				end if;
 			end if;
