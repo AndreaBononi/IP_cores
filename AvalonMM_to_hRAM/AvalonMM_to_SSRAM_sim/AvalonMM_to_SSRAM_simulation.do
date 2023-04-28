@@ -22,7 +22,6 @@ vsim -c -t 1ns work.AvalonMM_to_SSRAM_testbench -voptargs=+acc
 add wave -position insertpoint  \
 sim:/avalonmm_to_ssram_testbench/DUT/CU/present_state \
 sim:/avalonmm_to_ssram_testbench/clk \
-sim:/avalonmm_to_ssram_testbench/rst_n \
 sim:/avalonmm_to_ssram_testbench/avs_s0_address \
 sim:/avalonmm_to_ssram_testbench/avs_s0_read \
 sim:/avalonmm_to_ssram_testbench/avs_s0_write \
@@ -38,15 +37,13 @@ sim:/avalonmm_to_ssram_testbench/ssram_WE \
 sim:/avalonmm_to_ssram_testbench/ssram_CS \
 sim:/avalonmm_to_ssram_testbench/ssram_validout \
 sim:/avalonmm_to_ssram_testbench/ssram_busy \
-sim:/avalonmm_to_ssram_testbench/DUT/mem_validout \
-sim:/avalonmm_to_ssram_testbench/DUT/op_req \
-sim:/avalonmm_to_ssram_testbench/DUT/previous_op_req \
-sim:/avalonmm_to_ssram_testbench/DUT/fifo4_full \
-sim:/avalonmm_to_ssram_testbench/DUT/fifo4_almost_full \
-sim:/avalonmm_to_ssram_testbench/DUT/command_enable \
-sim:/avalonmm_to_ssram_testbench/DUT/por_enable \
-sim:/avalonmm_to_ssram_testbench/DUT/fifo4_push \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/cmd_out
+sim:/avalonmm_to_ssram_testbench/stop_sim \
+sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word0 \
+sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word1 \
+sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word2 \
+sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/word3 \
+sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/fifo4_pop \
+sim:/avalonmm_to_ssram_testbench/DUT/EU/local_fifo/fifo4_full
 
 run 11us
-quit -f
+# quit -f

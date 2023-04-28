@@ -20,9 +20,9 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	-- constants ------------------------------------------------------------------------------------------------------
 	constant	clock_period				: time := 10 ns;
 	constant	reset_time					: time := 15 ns;
-	constant custom_delay					: time := 1 ns;
-	constant ssram_valid_time			: time := 15 ns;
-	
+	constant 	custom_delay				: time := 1 ns;
+	constant 	ssram_valid_time		: time := 15 ns;
+
 	-- signals --------------------------------------------------------------------------------------------------------
 	signal avs_s0_address     		: std_logic_vector(31 downto 0);
 	signal avs_s0_read        		: std_logic;
@@ -43,7 +43,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	signal rst_n			        		: std_logic;
 	signal start_sim          		: std_logic;
 	signal stop_sim		        		: std_logic;
-	
+
 	-- DUT ------------------------------------------------------------------------------------------------------------
 	component AvalonMM_to_SSRAM is
 	port
@@ -70,7 +70,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		rst_n			        		: in    	std_logic
 	);
 	end component;
-	
+
 	-- SSRAM ----------------------------------------------------------------------------------------------------------
 	component ssram32 is
 	generic
@@ -95,12 +95,12 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 
 	-- clock and reset generator --------------------------------------------------------------------------------------
 	component clk_rst_generator is
-	generic	
+	generic
 	(
 		clockperiod	: time	:= 10 ns;		-- clock period
 		resetStop		: time	:= 15 ns			-- initial time interval during which the reset signal is set
-	);		
-	port 	
+	);
+	port
 	(
 		clk 				: out std_logic;
 		rstN	 			: out std_logic;
@@ -108,7 +108,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		stop_sim		: in	std_logic
 	);
 	end component;
-	
+
 	-- monitor ------------------------------------------------------------------------------------------------------
 	component AvalonMM_to_SSRAM_monitor is
 	port
@@ -121,7 +121,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		stop_sim								: in		std_logic
 	);
 	end component;
-	
+
 	-- driver --------------------------------------------------------------------------------------------------------
 	component AvalonMM_to_SSRAM_driver is
 	generic
@@ -143,23 +143,23 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		stop_sim							: out		std_logic := '0'
 	);
 	end component;
-	
+
 	begin
 		-- clock and reset generator instance --------------------------------------------------------------------------
-		clock_reset: clk_rst_generator 
-		generic map 
+		clock_reset: clk_rst_generator
+		generic map
 		(
-			clock_period, 
+			clock_period,
 			reset_time
-		) 
-		port map 
+		)
+		port map
 		(
 			clk,
 			rst_n,
 			start_sim,
 			stop_sim
 		);
-		
+
 		-- DUT instance ------------------------------------------------------------------------------------------------
 		DUT: AvalonMM_to_SSRAM
 		port map
@@ -182,7 +182,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			clk,
 			rst_n
 		);
-		
+
 		-- SSRAM instance ----------------------------------------------------------------------------------------------
 		mem: ssram32
 		generic map
@@ -203,7 +203,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			ssram_validout,
 			ssram_busy
 		);
-		
+
 		-- driver instance ---------------------------------------------------------------------------------------------
 		driver: AvalonMM_to_SSRAM_driver
 		generic map
@@ -224,7 +224,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			start_sim,
 			stop_sim
 		);
-		
+
 		-- monitor instance --------------------------------------------------------------------------------------------
 		monitor: AvalonMM_to_SSRAM_monitor
 		port map
@@ -236,7 +236,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			start_sim,
 			stop_sim
 		);
-			
+
 end behavior;
 
 ----------------------------------------------------------------------------------------------------------------------

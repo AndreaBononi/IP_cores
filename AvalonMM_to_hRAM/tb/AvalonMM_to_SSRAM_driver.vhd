@@ -55,7 +55,7 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 		variable input_address		: std_logic_vector(31 downto 0);
 		variable input_writedata	: std_logic_vector(15 downto 0);
 		variable pending_read			: integer := 0;
-		variable stop							: std_logic := '0';
+		variable stop_simulation	: std_logic := '0';
 		begin
 			file_open(input_file_stat, input_file, "../AvalonMM_to_SSRAM_sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
 			if (not endfile(input_file)) then
@@ -89,19 +89,19 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 					end if;
 				end if;
 			else
-				avs_s0_read <= '0';
-				avs_s0_write <= '0';
-				if (pending_read > 0) then
-					if (rising_edge(clk)) then
+				if (rising_edge(clk)) then
+					avs_s0_read <= '0' after custom_delay;
+					avs_s0_write <= '0' after custom_delay;
+					if (pending_read > 0) then
 						if (avs_s0_readdatavalid = '1') then
 							pending_read := pending_read - 1;
 						end if;
+					else
+						stop_simulation := '1';
 					end if;
-				else
-					stop := '1';
 				end if;
 			end if;
-			stop_sim <= stop;
+			stop_sim <= stop_simulation;
 		end process input_driving;
 
 end behavior;
