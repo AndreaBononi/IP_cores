@@ -9,40 +9,40 @@ entity AvalonMM_to_SSRAM_executionUnit is
 	port
 	(
 		-- AvalonMM signals
-		avs_s0_address     		: in    	std_logic_vector(31 downto 0);
-		avs_s0_read        		: in    	std_logic;
-		avs_s0_write       		: in    	std_logic;
-		avs_s0_writedata   		: in    	std_logic_vector(15 downto 0);
-		avs_s0_readdata    		: out   	std_logic_vector(15 downto 0);
+		avs_s0_address     			: in    	std_logic_vector(31 downto 0);
+		avs_s0_read        			: in    	std_logic;
+		avs_s0_write       			: in    	std_logic;
+		avs_s0_writedata   			: in    	std_logic_vector(15 downto 0);
+		avs_s0_readdata    			: out   	std_logic_vector(15 downto 0);
 		avs_s0_readdatavalid		: out   	std_logic;
 		avs_s0_waitrequest  		: out   	std_logic;
 		-- SSRAM signals
 		ssram_out             	: in		std_logic_vector(15 downto 0);
-		ssram_in             	: out		std_logic_vector(15 downto 0);
+		ssram_in             		: out		std_logic_vector(15 downto 0);
 		ssram_address         	: out		std_logic_vector(31 downto 0);
-		ssram_OE						: out		std_logic;
-		ssram_WE						: out		std_logic;
-		ssram_CS						: out		std_logic;
-		ssram_validout				: in		std_logic;
-		ssram_busy					: in		std_logic;
+		ssram_OE								: out		std_logic;
+		ssram_WE								: out		std_logic;
+		ssram_CS								: out		std_logic;
+		ssram_validout					: in		std_logic;
+		ssram_busy							: in		std_logic;
 		-- clock and reset
-		clk		          		: in    	std_logic;
-		rst_n			        		: in    	std_logic;
+		clk		          				: in    	std_logic;
+		rst_n			        			: in    	std_logic;
 		-- status signals:
-		mem_validout				: out		std_logic;
-		op_req						: out		std_logic;
-		previous_op_req			: out		std_logic;
-		fifo4_full					: out		std_logic;
-		fifo4_almost_full			: out		std_logic;
+		mem_validout						: out		std_logic;
+		op_req									: out		std_logic;
+		previous_op_req					: out		std_logic;
+		fifo4_full							: out		std_logic;
+		fifo4_almost_full				: out		std_logic;
 		-- control signals:
-		waitrequest					: in		std_logic;
-		readdatavalid				: in		std_logic;
-		readdata_enable			: in		std_logic;
-		command_enable				: in		std_logic;
-		por_enable					: in		std_logic;
-		por_clear_n					: in		std_logic;
-		fifo4_push					: in		std_logic;
-		fifo4_clear_n				: in		std_logic
+		waitrequest							: in		std_logic;
+		readdatavalid						: in		std_logic;
+		readdata_enable					: in		std_logic;
+		command_enable					: in		std_logic;
+		por_enable							: in		std_logic;
+		por_clear_n							: in		std_logic;
+		fifo4_push							: in		std_logic;
+		fifo4_clear_n						: in		std_logic
 	);
 end AvalonMM_to_SSRAM_executionUnit;
 
@@ -58,11 +58,11 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		);
 		port
 		(
-			clk		: in 	std_logic;
-			enable	: in 	std_logic;
-			clear_n	: in 	std_logic;
-			reg_in	: in 	std_logic_vector(N-1 downto 0);
-			reg_out	: out std_logic_vector(N-1 downto 0)
+			clk				: in 	std_logic;
+			enable		: in 	std_logic;
+			clear_n		: in 	std_logic;
+			reg_in		: in 	std_logic_vector(N-1 downto 0);
+			reg_out		: out std_logic_vector(N-1 downto 0)
 		);
 	end component;
 
@@ -70,7 +70,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 	component d_flipflop is
 		port
 		(
-			clk			: in std_logic;
+			clk				: in std_logic;
 			enable		: in std_logic;
 			clear_n		: in std_logic;
 			dff_in		: in std_logic;
@@ -86,26 +86,26 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		);
 		port
 		(
-			fifo4_clk				: in 	std_logic;
-			fifo4_clear_n			: in 	std_logic;
-			fifo4_push				: in 	std_logic;
-			fifo4_pop				: in 	std_logic;
-			fifo4_full				: out	std_logic;
+			fifo4_clk						: in 	std_logic;
+			fifo4_clear_n				: in 	std_logic;
+			fifo4_push					: in 	std_logic;
+			fifo4_pop						: in 	std_logic;
+			fifo4_full					: out	std_logic;
 			fifo4_almost_full		: out	std_logic;
-			fifo4_empty				: out std_logic;
-			fifo4_in					: in 	std_logic_vector(N-1 downto 0);
-			fifo4_out				: out std_logic_vector(N-1 downto 0)
+			fifo4_empty					: out std_logic;
+			fifo4_in						: in 	std_logic_vector(N-1 downto 0);
+			fifo4_out						: out std_logic_vector(N-1 downto 0)
 		);
 	end component;
 
 	-- internal signals ------------------------------------------------------------------------------------------------------------
-	signal cmd_in			: std_logic_vector(49 downto 0);
+	signal cmd_in				: std_logic_vector(49 downto 0);
 	signal cmd_out			: std_logic_vector(49 downto 0);
 	signal fifo4_out		: std_logic_vector(49 downto 0);
 	signal fifo4_pop		: std_logic;
 	signal fifo4_empty	: std_logic;
 	signal por_out			: std_logic;
-	signal op				: std_logic;
+	signal op						: std_logic;
 
 	begin
 
@@ -121,15 +121,15 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		local_fifo: fifo4 generic map (50)
 		port map
 		(
-			clk, 							-- fifo4_clk
+			clk, 								-- fifo4_clk
 			fifo4_clear_n, 			-- fifo4_clear_n
 			fifo4_push, 				-- fifo4_push
 			fifo4_pop,					-- fifo4_pop
 			fifo4_full, 				-- fifo4_full
-			fifo4_almost_full, 		-- fifo4_almost_full
+			fifo4_almost_full, 	-- fifo4_almost_full
 			fifo4_empty,				-- fifo4_empty
-			cmd_out, 					-- fifo4_in
-			fifo4_out					-- fifo4_out
+			cmd_out, 						-- fifo4_in
+			fifo4_out						-- fifo4_out
 		);
 
 		fifo4_pop <= not ssram_busy;

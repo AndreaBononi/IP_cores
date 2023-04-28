@@ -18,10 +18,10 @@ end AvalonMM_to_SSRAM_testbench;
 architecture behavior of AvalonMM_to_SSRAM_testbench is
 
 	-- constants ------------------------------------------------------------------------------------------------------
-	constant	clock_period		: time := 10 ns;
-	constant	reset_time			: time := 15 ns;
-	constant custom_delay		: time := 1 ns;
-	constant ssram_valid_time	: time := 15 ns;
+	constant	clock_period				: time := 10 ns;
+	constant	reset_time					: time := 15 ns;
+	constant custom_delay					: time := 1 ns;
+	constant ssram_valid_time			: time := 15 ns;
 	
 	-- signals --------------------------------------------------------------------------------------------------------
 	signal avs_s0_address     		: std_logic_vector(31 downto 0);
@@ -29,20 +29,20 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	signal avs_s0_write       		: std_logic;
 	signal avs_s0_writedata   		: std_logic_vector(15 downto 0);
 	signal avs_s0_readdata    		: std_logic_vector(15 downto 0);
-	signal avs_s0_readdatavalid	: std_logic;
-	signal avs_s0_waitrequest  	: std_logic;
+	signal avs_s0_readdatavalid		: std_logic;
+	signal avs_s0_waitrequest  		: std_logic;
 	signal ssram_out             	: std_logic_vector(15 downto 0);
 	signal ssram_in             	: std_logic_vector(15 downto 0);
 	signal ssram_address         	: std_logic_vector(31 downto 0);
-	signal ssram_OE					: std_logic;
-	signal ssram_WE					: std_logic;
-	signal ssram_CS					: std_logic;
-	signal ssram_validout			: std_logic;
-	signal ssram_busy					: std_logic;
-	signal clk		          		: std_logic;
-	signal rst_n			        	: std_logic;
+	signal ssram_OE								: std_logic;
+	signal ssram_WE								: std_logic;
+	signal ssram_CS								: std_logic;
+	signal ssram_validout					: std_logic;
+	signal ssram_busy							: std_logic;
+	signal clk		          			: std_logic;
+	signal rst_n			        		: std_logic;
 	signal start_sim          		: std_logic;
-	signal stop_sim		        	: std_logic;
+	signal stop_sim		        		: std_logic;
 	
 	-- DUT ------------------------------------------------------------------------------------------------------------
 	component AvalonMM_to_SSRAM is
@@ -54,19 +54,19 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		avs_s0_write       		: in    	std_logic;
 		avs_s0_writedata   		: in    	std_logic_vector(15 downto 0);
 		avs_s0_readdata    		: out   	std_logic_vector(15 downto 0);
-		avs_s0_readdatavalid		: out   	std_logic;
-		avs_s0_waitrequest  		: out   	std_logic;
+		avs_s0_readdatavalid	: out   	std_logic;
+		avs_s0_waitrequest  	: out   	std_logic;
 		-- SSRAM signals
-		ssram_out             	: in		std_logic_vector(15 downto 0);
+		ssram_out             : in		std_logic_vector(15 downto 0);
 		ssram_in             	: out		std_logic_vector(15 downto 0);
-		ssram_address         	: out		std_logic_vector(31 downto 0);
-		ssram_OE						: out		std_logic;
-		ssram_WE						: out		std_logic;
-		ssram_CS						: out		std_logic;
+		ssram_address         : out		std_logic_vector(31 downto 0);
+		ssram_OE							: out		std_logic;
+		ssram_WE							: out		std_logic;
+		ssram_CS							: out		std_logic;
 		ssram_validout				: in		std_logic;
-		ssram_busy					: in		std_logic;
+		ssram_busy						: in		std_logic;
 		-- clock and reset
-		clk		          		: in    	std_logic;
+		clk		          			: in    	std_logic;
 		rst_n			        		: in    	std_logic
 	);
 	end component;
@@ -75,21 +75,21 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	component ssram32 is
 	generic
 	(
-		N 					: integer 	:= 32;
-		valid_time		: time 		:= 5 ns
+		N 								: integer 	:= 32;
+		valid_time				: time 		:= 5 ns
 	);
 	port
 	(
-		ssram32_clk			: in 	std_logic;
-		ssram32_clear_n	: in 	std_logic;
-		ssram32_OE			: in 	std_logic;
-		ssram32_WE			: in 	std_logic;
-		ssram32_CS			: in 	std_logic;
-		ssram32_address	: in 	std_logic_vector(31 downto 0);
-		ssram32_in			: in 	std_logic_vector(N-1 downto 0);
-		ssram32_out			: out std_logic_vector(N-1 downto 0);
+		ssram32_clk				: in 	std_logic;
+		ssram32_clear_n		: in 	std_logic;
+		ssram32_OE				: in 	std_logic;
+		ssram32_WE				: in 	std_logic;
+		ssram32_CS				: in 	std_logic;
+		ssram32_address		: in 	std_logic_vector(31 downto 0);
+		ssram32_in				: in 	std_logic_vector(N-1 downto 0);
+		ssram32_out				: out std_logic_vector(N-1 downto 0);
 		ssram32_validout	: out std_logic;
-		ssram32_busy		: out std_logic
+		ssram32_busy			: out std_logic
 	);
 	end component;
 
@@ -97,7 +97,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	component clk_rst_generator is
 	generic	
 	(
-		clockperiod		: time	:= 10 ns;		-- clock period
+		clockperiod	: time	:= 10 ns;		-- clock period
 		resetStop		: time	:= 15 ns			-- initial time interval during which the reset signal is set
 	);		
 	port 	
@@ -105,7 +105,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		clk 				: out std_logic;
 		rstN	 			: out std_logic;
 		start_sim		: in 	std_logic;
-		stop_sim			: in	std_logic
+		stop_sim		: in	std_logic
 	);
 	end component;
 	
@@ -113,12 +113,12 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	component AvalonMM_to_SSRAM_monitor is
 	port
 	(
-		clk							: in		std_logic;
-		rst_n							: in  	std_logic;
+		clk											: in		std_logic;
+		rst_n										: in  	std_logic;
 		avs_s0_readdatavalid		: in		std_logic;
-		avs_s0_readdata	 		: in 		std_logic_vector(15 downto 0);
-		start_sim					: in		std_logic;
-		stop_sim						: in		std_logic
+		avs_s0_readdata	 				: in 		std_logic_vector(15 downto 0);
+		start_sim								: in		std_logic;
+		stop_sim								: in		std_logic
 	);
 	end component;
 	
@@ -126,21 +126,21 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	component AvalonMM_to_SSRAM_driver is
 	generic
 	(
-		custom_delay				: time := 0 ns
+		custom_delay					: time := 0 ns
 	);
 	port
 	(
-		clk							: in		std_logic;
-		rst_n							: in  	std_logic;
+		clk										: in		std_logic;
+		rst_n									: in  	std_logic;
 		avs_s0_waitrequest 		: in		std_logic;
-		avs_s0_readdatavalid		: in		std_logic;
-		avs_s0_readdata	 		: in 		std_logic_vector(15 downto 0);
+		avs_s0_readdatavalid	: in		std_logic;
+		avs_s0_readdata	 			: in 		std_logic_vector(15 downto 0);
 		avs_s0_address				: out		std_logic_vector(31 downto 0);
 		avs_s0_read       		: out 	std_logic;
 		avs_s0_write      		: out 	std_logic;
 		avs_s0_writedata  		: out 	std_logic_vector(15 downto 0);
-		start_sim					: out		std_logic := '0';
-		stop_sim						: out		std_logic := '0'
+		start_sim							: out		std_logic := '0';
+		stop_sim							: out		std_logic := '0'
 	);
 	end component;
 	

@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 entity clk_rst_generator is
 	generic	
 	(
-		clockperiod		: time	:= 10 ns;		-- clock period
+		clockperiod	: time	:= 10 ns;		-- clock period
 		resetStop		: time	:= 15 ns			-- initial time interval during which the reset signal is set
 	);		
 	port 	
@@ -23,7 +23,7 @@ entity clk_rst_generator is
 		clk 				: out std_logic;
 		rstN	 			: out std_logic;
 		start_sim		: in 	std_logic;
-		stop_sim			: in	std_logic
+		stop_sim		: in	std_logic
 	);
 end clk_rst_generator;
 

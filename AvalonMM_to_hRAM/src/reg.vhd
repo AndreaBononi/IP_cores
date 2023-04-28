@@ -15,11 +15,11 @@ entity reg is
 	);
 	port
 	(
-		clk		: in 	std_logic;
-		enable	: in 	std_logic;
-		clear_n	: in 	std_logic;
-		reg_in	: in 	std_logic_vector(N-1 downto 0);
-		reg_out	: out std_logic_vector(N-1 downto 0)
+		clk				: in 	std_logic;
+		enable		: in 	std_logic;
+		clear_n		: in 	std_logic;
+		reg_in		: in 	std_logic_vector(N-1 downto 0);
+		reg_out		: out std_logic_vector(N-1 downto 0)
 	);
 end reg;
 

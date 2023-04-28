@@ -11,7 +11,7 @@ use ieee.numeric_std.all;
 entity d_flipflop is
 	port 
 	(
-		clk			: in std_logic;
+		clk				: in std_logic;
 		enable		: in std_logic;
 		clear_n		: in std_logic;
 		dff_in		: in std_logic;

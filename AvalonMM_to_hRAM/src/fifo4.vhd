@@ -21,15 +21,15 @@ entity fifo4 is
 	);
 	port
 	(
-		fifo4_clk				: in 	std_logic;
-		fifo4_clear_n			: in 	std_logic;
-		fifo4_push				: in 	std_logic;
-		fifo4_pop				: in 	std_logic;
-		fifo4_full				: out	std_logic;
+		fifo4_clk						: in 	std_logic;
+		fifo4_clear_n				: in 	std_logic;
+		fifo4_push					: in 	std_logic;
+		fifo4_pop						: in 	std_logic;
+		fifo4_full					: out	std_logic;
 		fifo4_almost_full		: out	std_logic;
-		fifo4_empty				: out std_logic;
-		fifo4_in					: in 	std_logic_vector(N-1 downto 0);
-		fifo4_out				: out std_logic_vector(N-1 downto 0)
+		fifo4_empty					: out std_logic;
+		fifo4_in						: in 	std_logic_vector(N-1 downto 0);
+		fifo4_out						: out std_logic_vector(N-1 downto 0)
 	);
 end fifo4;
 
@@ -41,10 +41,10 @@ architecture behavior of fifo4 is
 	signal word1		: std_logic_vector(N-1 downto 0);
 	signal word2		: std_logic_vector(N-1 downto 0);
 	signal word3		: std_logic_vector(N-1 downto 0);
-	signal s0			: std_logic;
-	signal s1			: std_logic;
-	signal s2			: std_logic;
-	signal s3			: std_logic;
+	signal s0				: std_logic;
+	signal s1				: std_logic;
+	signal s2				: std_logic;
+	signal s3				: std_logic;
 	
 	begin
 	

@@ -10,23 +10,23 @@ entity AvalonMM_to_SSRAM_controlUnit is
 	port
 	(
 		-- clock and reset
-		clk						: in 		std_logic;
-		rst_n						: in		std_logic;
+		clk									: in 		std_logic;
+		rst_n								: in		std_logic;
 		-- status signals
-		mem_validout			: in		std_logic;
-		op_req					: in		std_logic;
-		previous_op_req		: in		std_logic;
-		fifo4_full				: in		std_logic;
+		mem_validout				: in		std_logic;
+		op_req							: in		std_logic;
+		previous_op_req			: in		std_logic;
+		fifo4_full					: in		std_logic;
 		fifo4_almost_full		: in		std_logic;
 		-- control signals
-		waitrequest				: out		std_logic;
-		readdatavalid			: out		std_logic;
-		readdata_enable		: out		std_logic;
+		waitrequest					: out		std_logic;
+		readdatavalid				: out		std_logic;
+		readdata_enable			: out		std_logic;
 		command_enable			: out		std_logic;
-		por_enable				: out		std_logic;
-		por_clear_n				: out		std_logic;
-		fifo4_push				: out		std_logic;
-		fifo4_clear_n			: out		std_logic
+		por_enable					: out		std_logic;
+		por_clear_n					: out		std_logic;
+		fifo4_push					: out		std_logic;
+		fifo4_clear_n				: out		std_logic
 	);
 end entity AvalonMM_to_SSRAM_controlUnit;
 

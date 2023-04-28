@@ -21,12 +21,12 @@ use std.textio.all;
 entity AvalonMM_to_SSRAM_monitor is
 	port
 	(
-		clk							: in		std_logic;
-		rst_n							: in  	std_logic;
+		clk											: in		std_logic;
+		rst_n										: in  	std_logic;
 		avs_s0_readdatavalid		: in		std_logic;
-		avs_s0_readdata	 		: in 		std_logic_vector(15 downto 0);
-		start_sim					: in		std_logic;
-		stop_sim						: in		std_logic
+		avs_s0_readdata	 				: in 		std_logic_vector(15 downto 0);
+		start_sim								: in		std_logic;
+		stop_sim								: in		std_logic
 	);
 end AvalonMM_to_SSRAM_monitor;
 
@@ -38,9 +38,9 @@ architecture behavior of AvalonMM_to_SSRAM_monitor is
 
 	begin
 
-		output_file_generation		: process (clk, avs_s0_readdatavalid, start_sim, stop_sim)
-		variable outputline			: line;
-		variable output_file_stat	: file_open_status;
+		output_file_generation			: process (clk, avs_s0_readdatavalid, start_sim, stop_sim)
+		variable outputline					: line;
+		variable output_file_stat		: file_open_status;
 		begin
 			-- file opening -----------------------------------------------------------------------------------------
 			-- if (stop_sim = '0') then

@@ -23,21 +23,21 @@ use std.textio.all;
 entity AvalonMM_to_SSRAM_driver is
 	generic
 	(
-		custom_delay				: time := 0 ns
+		custom_delay					: time := 0 ns
 	);
 	port
 	(
-		clk							: in		std_logic;
-		rst_n							: in  	std_logic;
+		clk										: in		std_logic;
+		rst_n									: in  	std_logic;
 		avs_s0_waitrequest 		: in		std_logic;
-		avs_s0_readdatavalid		: in		std_logic;
-		avs_s0_readdata	 		: in 		std_logic_vector(15 downto 0);
+		avs_s0_readdatavalid	: in		std_logic;
+		avs_s0_readdata	 			: in 		std_logic_vector(15 downto 0);
 		avs_s0_address				: out		std_logic_vector(31 downto 0);
 		avs_s0_read       		: out 	std_logic;
 		avs_s0_write      		: out 	std_logic;
 		avs_s0_writedata  		: out 	std_logic_vector(15 downto 0);
-		start_sim					: out		std_logic := '0';
-		stop_sim						: out		std_logic := '0'
+		start_sim							: out		std_logic := '0';
+		stop_sim							: out		std_logic := '0'
 	);
 end AvalonMM_to_SSRAM_driver;
 
@@ -48,20 +48,16 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 	file input_file: text;
 
 	begin
-		input_driving					: process (clk, rst_n, avs_s0_waitrequest, avs_s0_readdatavalid)
-		variable inputline			: line;
+		input_driving							: process (clk, rst_n, avs_s0_waitrequest, avs_s0_readdatavalid)
+		variable inputline				: line;
 		variable input_file_stat	: file_open_status;
-		variable opcode				: std_logic;
+		variable opcode						: std_logic;
 		variable input_address		: std_logic_vector(31 downto 0);
 		variable input_writedata	: std_logic_vector(15 downto 0);
-		variable pending_read		: integer := 0;
-		variable stop					: std_logic := '0';
+		variable pending_read			: integer := 0;
+		variable stop							: std_logic := '0';
 		begin
-			-- files opening ----------------------------------------------------------------------------------------
-			-- if (end_file = '0') then
 			file_open(input_file_stat, input_file, "../AvalonMM_to_SSRAM_sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
-			-- end if;
-			-- input application ------------------------------------------------------------------------------------
 			if (not endfile(input_file)) then
 				if (rst_n = '0') then
 					avs_s0_read	<= '0';

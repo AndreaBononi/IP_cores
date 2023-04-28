@@ -28,25 +28,25 @@ entity AvalonMM_to_SSRAM is
 	port
 	(
 		-- AvalonMM signals
-		avs_s0_address     		: in    	std_logic_vector(31 downto 0);
-		avs_s0_read        		: in    	std_logic;
-		avs_s0_write       		: in    	std_logic;
-		avs_s0_writedata   		: in    	std_logic_vector(15 downto 0);
-		avs_s0_readdata    		: out   	std_logic_vector(15 downto 0);
+		avs_s0_address     			: in    	std_logic_vector(31 downto 0);
+		avs_s0_read        			: in    	std_logic;
+		avs_s0_write       			: in    	std_logic;
+		avs_s0_writedata   			: in    	std_logic_vector(15 downto 0);
+		avs_s0_readdata    			: out   	std_logic_vector(15 downto 0);
 		avs_s0_readdatavalid		: out   	std_logic;
 		avs_s0_waitrequest  		: out   	std_logic;
 		-- SSRAM signals
 		ssram_out             	: in		std_logic_vector(15 downto 0);
-		ssram_in             	: out		std_logic_vector(15 downto 0);
+		ssram_in             		: out		std_logic_vector(15 downto 0);
 		ssram_address         	: out		std_logic_vector(31 downto 0);
-		ssram_OE						: out		std_logic;
-		ssram_WE						: out		std_logic;
-		ssram_CS						: out		std_logic;
-		ssram_validout				: in		std_logic;
-		ssram_busy					: in		std_logic;
+		ssram_OE								: out		std_logic;
+		ssram_WE								: out		std_logic;
+		ssram_CS								: out		std_logic;
+		ssram_validout					: in		std_logic;
+		ssram_busy							: in		std_logic;
 		-- clock and reset
-		clk		          		: in    	std_logic;
-		rst_n			        		: in    	std_logic
+		clk		          				: in    	std_logic;
+		rst_n			        			: in    	std_logic
 	);
 end entity AvalonMM_to_SSRAM;
 
@@ -59,40 +59,40 @@ architecture rtl of AvalonMM_to_SSRAM is
 	port
 	(
 		-- AvalonMM signals
-		avs_s0_address     		: in    	std_logic_vector(31 downto 0);
-		avs_s0_read        		: in    	std_logic;
-		avs_s0_write       		: in    	std_logic;
-		avs_s0_writedata   		: in    	std_logic_vector(15 downto 0);
-		avs_s0_readdata    		: out   	std_logic_vector(15 downto 0);
+		avs_s0_address     			: in    	std_logic_vector(31 downto 0);
+		avs_s0_read        			: in    	std_logic;
+		avs_s0_write       			: in    	std_logic;
+		avs_s0_writedata   			: in    	std_logic_vector(15 downto 0);
+		avs_s0_readdata    			: out   	std_logic_vector(15 downto 0);
 		avs_s0_readdatavalid		: out   	std_logic;
 		avs_s0_waitrequest  		: out   	std_logic;
 		-- SSRAM signals
 		ssram_out             	: in		std_logic_vector(15 downto 0);
-		ssram_in             	: out		std_logic_vector(15 downto 0);
+		ssram_in             		: out		std_logic_vector(15 downto 0);
 		ssram_address         	: out		std_logic_vector(31 downto 0);
-		ssram_OE						: out		std_logic;
-		ssram_WE						: out		std_logic;
-		ssram_CS						: out		std_logic;
-		ssram_validout				: in		std_logic;
-		ssram_busy					: in		std_logic;
+		ssram_OE								: out		std_logic;
+		ssram_WE								: out		std_logic;
+		ssram_CS								: out		std_logic;
+		ssram_validout					: in		std_logic;
+		ssram_busy							: in		std_logic;
 		-- clock and reset
-		clk		          		: in    	std_logic;
-		rst_n			        		: in    	std_logic;
+		clk		          				: in    	std_logic;
+		rst_n			        			: in    	std_logic;
 		-- status signals:
-		mem_validout				: out		std_logic;
-		op_req						: out		std_logic;
-		previous_op_req			: out		std_logic;
-		fifo4_full					: out		std_logic;
-		fifo4_almost_full			: out		std_logic;
+		mem_validout						: out		std_logic;
+		op_req									: out		std_logic;
+		previous_op_req					: out		std_logic;
+		fifo4_full							: out		std_logic;
+		fifo4_almost_full				: out		std_logic;
 		-- control signals:
-		waitrequest					: in		std_logic;
-		readdatavalid				: in		std_logic;
-		readdata_enable			: in		std_logic;
-		command_enable				: in		std_logic;
-		por_enable					: in		std_logic;
-		por_clear_n					: in		std_logic;
-		fifo4_push					: in		std_logic;
-		fifo4_clear_n				: in		std_logic
+		waitrequest							: in		std_logic;
+		readdatavalid						: in		std_logic;
+		readdata_enable					: in		std_logic;
+		command_enable					: in		std_logic;
+		por_enable							: in		std_logic;
+		por_clear_n							: in		std_logic;
+		fifo4_push							: in		std_logic;
+		fifo4_clear_n						: in		std_logic
 	);
 	end component;
 	
@@ -101,39 +101,39 @@ architecture rtl of AvalonMM_to_SSRAM is
 	port
 	(
 		-- clock and reset
-		clk						: in 		std_logic;
-		rst_n						: in		std_logic;
+		clk									: in 		std_logic;
+		rst_n								: in		std_logic;
 		-- status signals
-		mem_validout			: in		std_logic;
-		op_req					: in		std_logic;
-		previous_op_req		: in		std_logic;
-		fifo4_full				: in		std_logic;
+		mem_validout				: in		std_logic;
+		op_req							: in		std_logic;
+		previous_op_req			: in		std_logic;
+		fifo4_full					: in		std_logic;
 		fifo4_almost_full		: in		std_logic;
 		-- control signals
-		waitrequest				: out		std_logic;
-		readdatavalid			: out		std_logic;
-		readdata_enable		: out		std_logic;
+		waitrequest					: out		std_logic;
+		readdatavalid				: out		std_logic;
+		readdata_enable			: out		std_logic;
 		command_enable			: out		std_logic;
-		por_enable				: out		std_logic;
-		por_clear_n				: out		std_logic;
-		fifo4_push				: out		std_logic;
-		fifo4_clear_n			: out		std_logic
+		por_enable					: out		std_logic;
+		por_clear_n					: out		std_logic;
+		fifo4_push					: out		std_logic;
+		fifo4_clear_n				: out		std_logic
 	);
 	end component;
 	
 	-- signals ---------------------------------------------------------------------------------------------------------------------
-	signal mem_validout			: std_logic;
-	signal op_req					: std_logic;
+	signal mem_validout				: std_logic;
+	signal op_req							: std_logic;
 	signal previous_op_req		: std_logic;
-	signal fifo4_full				: std_logic;
+	signal fifo4_full					: std_logic;
 	signal fifo4_almost_full	: std_logic;
-	signal waitrequest			: std_logic;
+	signal waitrequest				: std_logic;
 	signal readdatavalid			: std_logic;
 	signal readdata_enable		: std_logic;
-	signal command_enable		: std_logic;
-	signal por_enable				: std_logic;
-	signal por_clear_n			: std_logic;
-	signal fifo4_push				: std_logic;
+	signal command_enable			: std_logic;
+	signal por_enable					: std_logic;
+	signal por_clear_n				: std_logic;
+	signal fifo4_push					: std_logic;
 	signal fifo4_clear_n			: std_logic;
 	
 	begin
