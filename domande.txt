@@ -1,0 +1,2 @@
+Timing simulation
+Discriminare tra memory addressing e configuration register addressing
