@@ -137,7 +137,7 @@ Z26 w1682672028
 R2
 R3
 R4
-!i122 573
+!i122 804
 Z27 d/home/andrea/Documents/Tesi_287628/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_sim
 Z28 8../src/AvalonMM_to_SSRAM.vhd
 Z29 F../src/AvalonMM_to_SSRAM.vhd
@@ -147,9 +147,9 @@ VEacPLFej<[8PPmE89QIao3
 !s100 5Vmk8lh>zRo[jW0D]@ej91
 R8
 32
-Z30 !s110 1682683925
+Z30 !s110 1682856016
 !i10b 1
-Z31 !s108 1682683925.000000
+Z31 !s108 1682856016.000000
 Z32 !s90 ../src/AvalonMM_to_SSRAM.vhd|
 Z33 !s107 ../src/AvalonMM_to_SSRAM.vhd|
 !i113 1
@@ -159,7 +159,7 @@ R2
 R3
 R4
 DEx4 work 17 avalonmm_to_ssram 0 22 EacPLFej<[8PPmE89QIao3
-!i122 573
+!i122 804
 l139
 L55 140
 V12131Za>fcZfBHY`zPa<80
@@ -178,7 +178,7 @@ Z34 w1682672084
 R2
 R3
 R4
-!i122 571
+!i122 802
 R27
 Z35 8../src/AvalonMM_to_SSRAM_controlUnit.vhd
 Z36 F../src/AvalonMM_to_SSRAM_controlUnit.vhd
@@ -200,7 +200,7 @@ R2
 R3
 R4
 DEx4 work 29 avalonmm_to_ssram_controlunit 0 22 ^gIC^B17e51k>3V6D0]Fj0
-!i122 571
+!i122 802
 l55
 L35 174
 VNbKA3<1e_N@l26haj7Lh^1
@@ -222,7 +222,7 @@ Z42 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 R2
 R3
 R4
-!i122 577
+!i122 808
 R27
 Z43 8../tb/AvalonMM_to_SSRAM_driver.vhd
 Z44 F../tb/AvalonMM_to_SSRAM_driver.vhd
@@ -232,11 +232,11 @@ V7kd4B<jLFe7`AEcVXVPNi1
 !s100 @;=4z6V]bXgaT5f<3log92
 R8
 32
-R30
+Z45 !s110 1682856017
 !i10b 1
 R31
-Z45 !s90 ../tb/AvalonMM_to_SSRAM_driver.vhd|
-Z46 !s107 ../tb/AvalonMM_to_SSRAM_driver.vhd|
+Z46 !s90 ../tb/AvalonMM_to_SSRAM_driver.vhd|
+Z47 !s107 ../tb/AvalonMM_to_SSRAM_driver.vhd|
 !i113 1
 R13
 Abehavior
@@ -247,29 +247,29 @@ R2
 R3
 R4
 DEx4 work 24 avalonmm_to_ssram_driver 0 22 7kd4B<jLFe7`AEcVXVPNi1
-!i122 577
+!i122 808
 l50
 L46 64
 VT=<9?n62c><S5^]jleV5E1
 !s100 2bzQM<];NKhajQU^]i9hD2
 R8
 32
-R30
+R45
 !i10b 1
 R31
-R45
 R46
+R47
 !i113 1
 R13
 Eavalonmm_to_ssram_executionunit
-Z47 w1682672206
+Z48 w1682672206
 R2
 R3
 R4
-!i122 572
+!i122 803
 R27
-Z48 8../src/AvalonMM_to_SSRAM_executionUnit.vhd
-Z49 F../src/AvalonMM_to_SSRAM_executionUnit.vhd
+Z49 8../src/AvalonMM_to_SSRAM_executionUnit.vhd
+Z50 F../src/AvalonMM_to_SSRAM_executionUnit.vhd
 l0
 L8 1
 VbIfM5Q;TFS8_hLGHR_[931
@@ -279,8 +279,8 @@ R8
 R30
 !i10b 1
 R31
-Z50 !s90 ../src/AvalonMM_to_SSRAM_executionUnit.vhd|
-Z51 !s107 ../src/AvalonMM_to_SSRAM_executionUnit.vhd|
+Z51 !s90 ../src/AvalonMM_to_SSRAM_executionUnit.vhd|
+Z52 !s107 ../src/AvalonMM_to_SSRAM_executionUnit.vhd|
 !i113 1
 R13
 Artl
@@ -288,7 +288,7 @@ R2
 R3
 R4
 DEx4 work 31 avalonmm_to_ssram_executionunit 0 22 bIfM5Q;TFS8_hLGHR_[931
-!i122 572
+!i122 803
 l110
 L51 106
 Vo:AFEGHkf06F2nH7W0BUl0
@@ -298,22 +298,22 @@ R8
 R30
 !i10b 1
 R31
-R50
 R51
+R52
 !i113 1
 R13
 Eavalonmm_to_ssram_monitor
-Z52 w1682673425
+Z53 w1682673425
 R40
 R41
 R42
 R2
 R3
 R4
-!i122 576
+!i122 807
 R27
-Z53 8../tb/AvalonMM_to_SSRAM_monitor.vhd
-Z54 F../tb/AvalonMM_to_SSRAM_monitor.vhd
+Z54 8../tb/AvalonMM_to_SSRAM_monitor.vhd
+Z55 F../tb/AvalonMM_to_SSRAM_monitor.vhd
 l0
 L21 1
 V`K;maVcR`Hm[U:5^nk7T90
@@ -323,8 +323,8 @@ R8
 R30
 !i10b 1
 R31
-Z55 !s90 ../tb/AvalonMM_to_SSRAM_monitor.vhd|
-Z56 !s107 ../tb/AvalonMM_to_SSRAM_monitor.vhd|
+Z56 !s90 ../tb/AvalonMM_to_SSRAM_monitor.vhd|
+Z57 !s107 ../tb/AvalonMM_to_SSRAM_monitor.vhd|
 !i113 1
 R13
 Abehavior
@@ -335,7 +335,7 @@ R2
 R3
 R4
 DEx4 work 25 avalonmm_to_ssram_monitor 0 22 `K;maVcR`Hm[U:5^nk7T90
-!i122 576
+!i122 807
 l39
 L35 24
 VkJmmPeSNjoEUTg_:KT34B2
@@ -345,49 +345,49 @@ R8
 R30
 !i10b 1
 R31
-R55
 R56
+R57
 !i113 1
 R13
 Eavalonmm_to_ssram_testbench
-Z57 w1682674290
+Z58 w1682856015
 R2
 R3
 R4
-!i122 578
+!i122 809
 R27
-Z58 8../tb/AvalonMM_to_SSRAM_testbench.vhd
-Z59 F../tb/AvalonMM_to_SSRAM_testbench.vhd
+Z59 8../tb/AvalonMM_to_SSRAM_testbench.vhd
+Z60 F../tb/AvalonMM_to_SSRAM_testbench.vhd
 l0
-Z60 L13 1
+Z61 L13 1
 VJWcMN];hVlTLRB6;C[ehW1
 !s100 ;[d:Km<<a>1`X7@lf0Anm0
 R8
 32
-R30
+R45
 !i10b 1
-R31
-Z61 !s90 ../tb/AvalonMM_to_SSRAM_testbench.vhd|
-Z62 !s107 ../tb/AvalonMM_to_SSRAM_testbench.vhd|
+Z62 !s108 1682856017.000000
+Z63 !s90 ../tb/AvalonMM_to_SSRAM_testbench.vhd|
+Z64 !s107 ../tb/AvalonMM_to_SSRAM_testbench.vhd|
 !i113 1
 R13
 Abehavior
 R2
 R3
 R4
-Z63 DEx4 work 27 avalonmm_to_ssram_testbench 0 22 JWcMN];hVlTLRB6;C[ehW1
-!i122 578
+Z65 DEx4 work 27 avalonmm_to_ssram_testbench 0 22 JWcMN];hVlTLRB6;C[ehW1
+!i122 809
 l147
-Z64 L18 223
-Z65 V;e^@ALOz9S8H43?SlISXc3
-Z66 !s100 Mef8;@f50HL5=8Ykb]]:L0
+Z66 L18 223
+V:5oQKS4RD54S^S>GmOBfK2
+!s100 LS^6R6UiO:Y5A[DZ<QMHF2
 R8
 32
-R30
+R45
 !i10b 1
-R31
-R61
 R62
+R63
+R64
 !i113 1
 R13
 Eclk_rst_generator
@@ -395,7 +395,7 @@ Z67 w1682671881
 R2
 R3
 R4
-!i122 574
+!i122 805
 R27
 Z68 8../tb/clk_rst_generator.vhd
 Z69 F../tb/clk_rst_generator.vhd
@@ -417,7 +417,7 @@ R2
 R3
 R4
 DEx4 work 17 clk_rst_generator 0 22 35?CM<fMPfn^:7@6me`VL1
-!i122 574
+!i122 805
 l36
 L32 24
 VYm9L0lNaHzVCS0d=DV22<2
@@ -436,7 +436,7 @@ Z72 w1682671434
 R2
 R3
 R4
-!i122 569
+!i122 800
 R27
 Z73 8../src/d_flipflop.vhd
 Z74 F../src/d_flipflop.vhd
@@ -458,7 +458,7 @@ R2
 R3
 R4
 DEx4 work 10 d_flipflop 0 22 RE4H]^OD3:QGJDfkn:ROn2
-!i122 569
+!i122 800
 l26
 L24 16
 V_J`TT^c3:H_I]KI^j>>aQ3
@@ -477,7 +477,7 @@ Z77 w1682671475
 R2
 R3
 R4
-!i122 570
+!i122 801
 R27
 Z78 8../src/fifo4.vhd
 Z79 F../src/fifo4.vhd
@@ -499,7 +499,7 @@ R2
 R3
 R4
 DEx4 work 5 fifo4 0 22 FTH@;X=?0Wj>=7@Vm`_]c1
-!i122 570
+!i122 801
 l49
 L38 82
 VRIdnJ1nbfo>V1DFcKikZ03
@@ -570,7 +570,7 @@ Z88 d/home/andrea/Documents/Tesi_287628/AvalonMM_to_hRAM/sim
 Z89 8../src/mux_2to1.vhd
 Z90 F../src/mux_2to1.vhd
 l0
-R60
+R61
 V>W49oI8@8_j<8EYFR0nP40
 !s100 V@UEnY<IKFSbd?CL4Eeh^1
 R8
@@ -606,7 +606,7 @@ Z95 w1682672230
 R2
 R3
 R4
-!i122 568
+!i122 799
 R27
 Z96 8../src/reg.vhd
 Z97 F../src/reg.vhd
@@ -628,7 +628,7 @@ R2
 R3
 R4
 DEx4 work 3 reg 0 22 dniQJ[@QJNCHJgRQ]nCgC2
-!i122 568
+!i122 799
 l29
 L28 13
 VbOODHZYV:fcFdQk:9P_I>0
@@ -688,7 +688,7 @@ Z105 w1682671589
 R2
 R3
 R4
-!i122 575
+!i122 806
 R27
 Z106 8../tb/ssram32.vhd
 Z107 F../tb/ssram32.vhd
@@ -710,7 +710,7 @@ R2
 R3
 R4
 DEx4 work 7 ssram32 0 22 mFI;<^j`g^iGMR09<zFGc0
-!i122 575
+!i122 806
 l54
 L43 41
 VFgRW2dJ]K1B:^8E^GdeIk2

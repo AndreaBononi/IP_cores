@@ -21,7 +21,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	constant clock_period: time := 10 ns;
 	constant reset_time: time := 15 ns;
 	constant custom_delay: time := 1 ns;
-	constant ssram_valid_time: time := 25 ns;
+	constant ssram_valid_time: time := 15 ns;
 
 	-- signals --------------------------------------------------------------------------------------------------------
 	signal avs_s0_address     		: std_logic_vector(31 downto 0);
