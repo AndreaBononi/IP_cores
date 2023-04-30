@@ -9,12 +9,10 @@
 /AvalonMM_to_hRAM/output_files
 /AvalonMM_to_hRAM/AvalonMM_to_hRAM_sim/vsim.wlf
 /AvalonMM_to_hRAM/AvalonMM_to_hRAM_sim/transcript
-/AvalonMM_to_hRAM/AvalonMM_to_hRAM_sim/work
-/AvalonMM_to_hRAM/AvalonMM_to_hRAM_sim/__pycache__
-/AvalonMM_to_hRAM/AvalonMM_to_hRAM_sim/vsim_log_*
+/AvalonMM_to_hRAM/AvalonMM_to_hRAM_sim/work/
+/AvalonMM_to_hRAM/AvalonMM_to_hRAM_sim/__pycache__/
 /datasheets/NIOS_QSYS_tutorial.pdf
 /datasheets/QUARTUS_MODELSIM_tutorial.pdf
-/fpga-master/
 /generic_vhd_files/
 /dubbi.txt
 /note.odt
