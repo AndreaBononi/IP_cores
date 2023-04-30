@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------------------------------------
+INFO
+VSIM path: ~/intelFPGA/20.1/modelsim_ase/bin/vsim
+Project: AvalonMM_to_SSRAM
+Tested SSRAM valid times values: ['5 ns', '15 ns', '25 ns']
+Clock period employed: 10 ns
+--------------------------------------------------------------------------------------------------------------
+NOTICE
+File ../tb/AvalonMM_to_SSRAM_testbench.vhd must include the exact following line:
+"constant ssram_valid_time: time := [0123456789]* ns"
+--------------------------------------------------------------------------------------------------------------
+Starting simulation for SSRAM valid time equal to 5 ns ... 
+Simulation completed 
+DUT is working correctly 
+--------------------------------------------------------------------------------------------------------------
+Starting simulation for SSRAM valid time equal to 15 ns ... 
+Simulation completed 
+DUT is working correctly 
+--------------------------------------------------------------------------------------------------------------
+Starting simulation for SSRAM valid time equal to 25 ns ... 
+Simulation completed 
+DUT is working correctly 
+--------------------------------------------------------------------------------------------------------------
+Verification result: PASSED 

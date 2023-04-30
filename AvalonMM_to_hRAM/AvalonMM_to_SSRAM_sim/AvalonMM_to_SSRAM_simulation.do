@@ -18,5 +18,5 @@ vcom ../tb/AvalonMM_to_SSRAM_testbench.vhd
 # simulation options
 vsim -c -t 1ns work.AvalonMM_to_SSRAM_testbench -voptargs=+acc
 
-run 11us
+run 20us
 quit -f

@@ -1,0 +1,176 @@
+# Current time Sun Apr 30 18:14:15 2023
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x0876a966: '<unknown (@0x876a966)>'
+# 1    0x0876ab05: '<unknown (@0x876ab05)>'
+# 2    0x082b3528: '<unknown (@0x82b3528)>'
+# 3    0x08637de6: '<unknown (@0x8637de6)>'
+# 4    0x086380b4: '<unknown (@0x86380b4)>'
+# 5    0xf7cb7f01: '<unknown (@0xf7cb7f01)>'
+# 6    0xf7cb80e2: 'exit + 0x00000022' in '/lib/i386-linux-gnu/libc.so.6'
+# 7    0x0863515e: '<unknown (@0x863515e)>'
+# 8    0x091697fc: '<unknown (@0x91697fc)>'
+# 9    0x0863c3da: '<unknown (@0x863c3da)>'
+# 10   0xf7fcf56b: '<unknown (@0xf7fcf56b)>'
+# 11   0xf7fcf544: '<unknown (@0xf7fcf544)>'
+# 12   0xf7e8197d: 'pthread_cond_timedwait@@GLIBC_2.3.2 + 0x000002bd' in '/lib/i386-linux-gnu/libpthread.so.0'
+# 13   0x0816ef4c: '<unknown (@0x816ef4c)>'
+# 14   0x08b65f86: '<unknown (@0x8b65f86)>'
+# 15   0x08b5bd75: '<unknown (@0x8b5bd75)>'
+# 16   0x0875a9cf: '<unknown (@0x875a9cf)>'
+# 17   0x0876bab1: '<unknown (@0x876bab1)>'
+# 18   0x08a9a379: '<unknown (@0x8a9a379)>'
+# 19   0x09235bba: '<unknown (@0x9235bba)>'
+# 20   0x0923b143: '<unknown (@0x923b143)>'
+# 21   0x0923b25a: '<unknown (@0x923b25a)>'
+# 22   0x0923c901: '<unknown (@0x923c901)>'
+# 23   0x0923cc76: '<unknown (@0x923cc76)>'
+# 24   0x08d20668: '<unknown (@0x8d20668)>'
+# 25   0x092e4977: '<unknown (@0x92e4977)>'
+# 26   0x0933ec3c: '<unknown (@0x933ec3c)>'
+# 27   0x09341a98: '<unknown (@0x9341a98)>'
+# 28   0x092fde68: '<unknown (@0x92fde68)>'
+# 29   0x092fe175: '<unknown (@0x92fe175)>'
+# 30   0x090ec6c0: '<unknown (@0x90ec6c0)>'
+# 31   0x0879fb79: '<unknown (@0x879fb79)>'
+# 32   0x0863aebb: '<unknown (@0x863aebb)>'
+# End of Stack Trace
+
+
+# Current time Sun Apr 30 18:14:15 2023
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x0876a966: '<unknown (@0x876a966)>'
+# 1    0x0876ab05: '<unknown (@0x876ab05)>'
+# 2    0x082b3528: '<unknown (@0x82b3528)>'
+# 3    0x08637de6: '<unknown (@0x8637de6)>'
+# 4    0x086380b4: '<unknown (@0x86380b4)>'
+# 5    0xf7cb7f01: '<unknown (@0xf7cb7f01)>'
+# 6    0xf7cb80e2: 'exit + 0x00000022' in '/lib/i386-linux-gnu/libc.so.6'
+# 7    0x0863515e: '<unknown (@0x863515e)>'
+# 8    0x091697fc: '<unknown (@0x91697fc)>'
+# 9    0x0863c3da: '<unknown (@0x863c3da)>'
+# 10   0xf7fcf56b: '<unknown (@0xf7fcf56b)>'
+# 11   0xf7fcf544: '<unknown (@0xf7fcf544)>'
+# 12   0xf7e8197d: 'pthread_cond_timedwait@@GLIBC_2.3.2 + 0x000002bd' in '/lib/i386-linux-gnu/libpthread.so.0'
+# 13   0x0816ef4c: '<unknown (@0x816ef4c)>'
+# 14   0x08b65f86: '<unknown (@0x8b65f86)>'
+# 15   0x08b5bd75: '<unknown (@0x8b5bd75)>'
+# 16   0x0875a9cf: '<unknown (@0x875a9cf)>'
+# 17   0x0876bab1: '<unknown (@0x876bab1)>'
+# 18   0x08a9a379: '<unknown (@0x8a9a379)>'
+# 19   0x09235bba: '<unknown (@0x9235bba)>'
+# 20   0x0923b143: '<unknown (@0x923b143)>'
+# 21   0x0923b25a: '<unknown (@0x923b25a)>'
+# 22   0x0923c901: '<unknown (@0x923c901)>'
+# 23   0x0923cc76: '<unknown (@0x923cc76)>'
+# 24   0x08d20668: '<unknown (@0x8d20668)>'
+# 25   0x092e4977: '<unknown (@0x92e4977)>'
+# 26   0x0933ec3c: '<unknown (@0x933ec3c)>'
+# 27   0x09341a98: '<unknown (@0x9341a98)>'
+# 28   0x092fde68: '<unknown (@0x92fde68)>'
+# 29   0x092fe175: '<unknown (@0x92fe175)>'
+# 30   0x090ec6c0: '<unknown (@0x90ec6c0)>'
+# 31   0x0879fb79: '<unknown (@0x879fb79)>'
+# 32   0x0863aebb: '<unknown (@0x863aebb)>'
+# End of Stack Trace
+
+
+# Current time Sun Apr 30 18:14:15 2023
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x0876a966: '<unknown (@0x876a966)>'
+# 1    0x0876ab05: '<unknown (@0x876ab05)>'
+# 2    0x082b3528: '<unknown (@0x82b3528)>'
+# 3    0x08637de6: '<unknown (@0x8637de6)>'
+# 4    0x086380b4: '<unknown (@0x86380b4)>'
+# 5    0xf7cb7f01: '<unknown (@0xf7cb7f01)>'
+# 6    0xf7cb80e2: 'exit + 0x00000022' in '/lib/i386-linux-gnu/libc.so.6'
+# 7    0x0863515e: '<unknown (@0x863515e)>'
+# 8    0x091697fc: '<unknown (@0x91697fc)>'
+# 9    0x0863c3da: '<unknown (@0x863c3da)>'
+# 10   0xf7fcf56b: '<unknown (@0xf7fcf56b)>'
+# 11   0xf7fcf544: '<unknown (@0xf7fcf544)>'
+# 12   0xf7e8197d: 'pthread_cond_timedwait@@GLIBC_2.3.2 + 0x000002bd' in '/lib/i386-linux-gnu/libpthread.so.0'
+# 13   0x0816ef4c: '<unknown (@0x816ef4c)>'
+# 14   0x08b65f86: '<unknown (@0x8b65f86)>'
+# 15   0x08b5bd75: '<unknown (@0x8b5bd75)>'
+# 16   0x0875a9cf: '<unknown (@0x875a9cf)>'
+# 17   0x0876bab1: '<unknown (@0x876bab1)>'
+# 18   0x08a9a379: '<unknown (@0x8a9a379)>'
+# 19   0x09235bba: '<unknown (@0x9235bba)>'
+# 20   0x0923b143: '<unknown (@0x923b143)>'
+# 21   0x0923b25a: '<unknown (@0x923b25a)>'
+# 22   0x0923c901: '<unknown (@0x923c901)>'
+# 23   0x0923cc76: '<unknown (@0x923cc76)>'
+# 24   0x08d20668: '<unknown (@0x8d20668)>'
+# 25   0x092e4977: '<unknown (@0x92e4977)>'
+# 26   0x0933ec3c: '<unknown (@0x933ec3c)>'
+# 27   0x09341a98: '<unknown (@0x9341a98)>'
+# 28   0x092fde68: '<unknown (@0x92fde68)>'
+# 29   0x092fe175: '<unknown (@0x92fe175)>'
+# 30   0x090ec6c0: '<unknown (@0x90ec6c0)>'
+# 31   0x0879fb79: '<unknown (@0x879fb79)>'
+# 32   0x0863aebb: '<unknown (@0x863aebb)>'
+# End of Stack Trace
+
+
+# Current time Sun Apr 30 18:14:15 2023
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x0876a966: '<unknown (@0x876a966)>'
+# 1    0x0876ab05: '<unknown (@0x876ab05)>'
+# 2    0x082b3528: '<unknown (@0x82b3528)>'
+# 3    0x08637de6: '<unknown (@0x8637de6)>'
+# 4    0x086380b4: '<unknown (@0x86380b4)>'
+# 5    0xf7cb7f01: '<unknown (@0xf7cb7f01)>'
+# 6    0xf7cb80e2: 'exit + 0x00000022' in '/lib/i386-linux-gnu/libc.so.6'
+# 7    0x0863515e: '<unknown (@0x863515e)>'
+# 8    0x091697fc: '<unknown (@0x91697fc)>'
+# 9    0x0863c3da: '<unknown (@0x863c3da)>'
+# 10   0xf7fcf56b: '<unknown (@0xf7fcf56b)>'
+# 11   0xf7fcf544: '<unknown (@0xf7fcf544)>'
+# 12   0xf7e8197d: 'pthread_cond_timedwait@@GLIBC_2.3.2 + 0x000002bd' in '/lib/i386-linux-gnu/libpthread.so.0'
+# 13   0x0816ef4c: '<unknown (@0x816ef4c)>'
+# 14   0x08b65f86: '<unknown (@0x8b65f86)>'
+# 15   0x08b5bd75: '<unknown (@0x8b5bd75)>'
+# 16   0x0875a9cf: '<unknown (@0x875a9cf)>'
+# 17   0x0876bab1: '<unknown (@0x876bab1)>'
+# 18   0x08a9a379: '<unknown (@0x8a9a379)>'
+# 19   0x09235bba: '<unknown (@0x9235bba)>'
+# 20   0x0923b143: '<unknown (@0x923b143)>'
+# 21   0x0923b25a: '<unknown (@0x923b25a)>'
+# 22   0x0923c901: '<unknown (@0x923c901)>'
+# 23   0x0923cc76: '<unknown (@0x923cc76)>'
+# 24   0x08d20668: '<unknown (@0x8d20668)>'
+# 25   0x092e4977: '<unknown (@0x92e4977)>'
+# 26   0x0933ec3c: '<unknown (@0x933ec3c)>'
+# 27   0x09341a98: '<unknown (@0x9341a98)>'
+# 28   0x092fde68: '<unknown (@0x92fde68)>'
+# 29   0x092fe175: '<unknown (@0x92fe175)>'
+# 30   0x090ec6c0: '<unknown (@0x90ec6c0)>'
+# 31   0x0879fb79: '<unknown (@0x879fb79)>'
+# 32   0x0863aebb: '<unknown (@0x863aebb)>'
+# End of Stack Trace
+
+
