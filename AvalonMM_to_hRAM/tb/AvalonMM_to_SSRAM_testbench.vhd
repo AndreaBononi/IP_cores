@@ -39,6 +39,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	signal ssram_CS								: std_logic;
 	signal ssram_validout					: std_logic;
 	signal ssram_busy							: std_logic;
+	signal ssram_clear_n					: std_logic;
 	signal clk		          			: std_logic;
 	signal rst_n			        		: std_logic;
 	signal start_sim          		: std_logic;
@@ -65,6 +66,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		ssram_CS							: out		std_logic;
 		ssram_validout				: in		std_logic;
 		ssram_busy						: in		std_logic;
+		ssram_clear_n					: out		std_logic;
 		-- clock and reset
 		clk		          			: in    	std_logic;
 		rst_n			        		: in    	std_logic
@@ -179,6 +181,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			ssram_CS,
 			ssram_validout,
 			ssram_busy,
+			ssram_clear_n,
 			clk,
 			rst_n
 		);

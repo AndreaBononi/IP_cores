@@ -6,7 +6,7 @@ use IEEE.numeric_std.all;
 -- component able to interface an AvalonMM bus with an SSRAM
 
 -- avs_s0_address: memory address
--- avs_s0_read: select read operation 
+-- avs_s0_read: select read operation
 -- avs_s0_write: select write operation
 -- avs_s0_readdata: read result
 -- avs_s0_writedata: data to be written in the memory
@@ -44,6 +44,7 @@ entity AvalonMM_to_SSRAM is
 		ssram_CS								: out		std_logic;
 		ssram_validout					: in		std_logic;
 		ssram_busy							: in		std_logic;
+		ssram_clear_n						: out		std_logic;
 		-- clock and reset
 		clk		          				: in    	std_logic;
 		rst_n			        			: in    	std_logic
@@ -75,6 +76,7 @@ architecture rtl of AvalonMM_to_SSRAM is
 		ssram_CS								: out		std_logic;
 		ssram_validout					: in		std_logic;
 		ssram_busy							: in		std_logic;
+		ssram_clear_n						: out		std_logic;
 		-- clock and reset
 		clk		          				: in    	std_logic;
 		rst_n			        			: in    	std_logic;
@@ -95,7 +97,7 @@ architecture rtl of AvalonMM_to_SSRAM is
 		fifo4_clear_n						: in		std_logic
 	);
 	end component;
-	
+
 	-- control unit ---------------------------------------------------------------------------------------------------------------
 	component AvalonMM_to_SSRAM_controlUnit is
 	port
@@ -120,7 +122,7 @@ architecture rtl of AvalonMM_to_SSRAM is
 		fifo4_clear_n				: out		std_logic
 	);
 	end component;
-	
+
 	-- signals ---------------------------------------------------------------------------------------------------------------------
 	signal mem_validout				: std_logic;
 	signal op_req							: std_logic;
@@ -135,9 +137,9 @@ architecture rtl of AvalonMM_to_SSRAM is
 	signal por_clear_n				: std_logic;
 	signal fifo4_push					: std_logic;
 	signal fifo4_clear_n			: std_logic;
-	
+
 	begin
-	
+
 		EU: AvalonMM_to_SSRAM_executionUnit port map
 		(
 			avs_s0_address,
@@ -155,6 +157,7 @@ architecture rtl of AvalonMM_to_SSRAM is
 			ssram_CS,
 			ssram_validout,
 			ssram_busy,
+			ssram_clear_n,
 			clk,
 			rst_n,
 			mem_validout,
@@ -171,7 +174,7 @@ architecture rtl of AvalonMM_to_SSRAM is
 			fifo4_push,
 			fifo4_clear_n
 		);
-		
+
 		CU: AvalonMM_to_SSRAM_controlUnit port map
 		(
 			clk,

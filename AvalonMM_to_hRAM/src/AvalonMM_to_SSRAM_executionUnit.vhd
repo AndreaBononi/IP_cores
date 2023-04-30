@@ -25,6 +25,7 @@ entity AvalonMM_to_SSRAM_executionUnit is
 		ssram_CS								: out		std_logic;
 		ssram_validout					: in		std_logic;
 		ssram_busy							: in		std_logic;
+		ssram_clear_n						: out		std_logic;
 		-- clock and reset
 		clk		          				: in    	std_logic;
 		rst_n			        			: in    	std_logic;
@@ -138,10 +139,12 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		ssram_in <= fifo4_out(47 downto 32);
 		ssram_OE <= fifo4_out(48);
 		ssram_WE <= fifo4_out(49);
+		ssram_clear_n <= rst_n;
 
 		avs_s0_readdatavalid <= readdatavalid;
 		avs_s0_waitrequest <= waitrequest;
 		mem_validout <= ssram_validout;
+
 
 		op <= avs_s0_read or avs_s0_write;
 		op_req <= op;
