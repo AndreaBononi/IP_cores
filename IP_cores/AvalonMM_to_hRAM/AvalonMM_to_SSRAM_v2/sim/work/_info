@@ -1,0 +1,474 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/andrea/Documents/Tesi_287628/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_sim
+Eavalonmm_to_ssram
+Z0 w1682874355
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 60
+Z4 d/home/andrea/Documents/Tesi_287628/AvalonMM_to_SSRAM_v1/sim
+Z5 8../src/AvalonMM_to_SSRAM.vhd
+Z6 F../src/AvalonMM_to_SSRAM.vhd
+l0
+L27 1
+Vf??>oEWEYLi74MHU[BVJU3
+!s100 @_PNlY9RFfk9@6_VOGl_;3
+Z7 OV;C;2020.1;71
+32
+Z8 !s110 1683124381
+!i10b 1
+Z9 !s108 1683124381.000000
+Z10 !s90 ../src/AvalonMM_to_SSRAM.vhd|
+Z11 !s107 ../src/AvalonMM_to_SSRAM.vhd|
+!i113 1
+Z12 tExplicit 1 CvgOpt 0
+Artl
+R1
+R2
+R3
+DEx4 work 17 avalonmm_to_ssram 0 22 f??>oEWEYLi74MHU[BVJU3
+!i122 60
+l141
+L56 142
+VYhd3QEkXmhIY;bJzfHdf=0
+!s100 Yg?f5^h:Z;>h8gO<?G_oW3
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+Eavalonmm_to_ssram_controlunit
+Z13 w1682672084
+R1
+R2
+R3
+!i122 58
+R4
+Z14 8../src/AvalonMM_to_SSRAM_controlUnit.vhd
+Z15 F../src/AvalonMM_to_SSRAM_controlUnit.vhd
+l0
+L9 1
+V^gIC^B17e51k>3V6D0]Fj0
+!s100 d7m6=0_>mFN_oNeMoYeYg2
+R7
+32
+R8
+!i10b 1
+R9
+Z16 !s90 ../src/AvalonMM_to_SSRAM_controlUnit.vhd|
+Z17 !s107 ../src/AvalonMM_to_SSRAM_controlUnit.vhd|
+!i113 1
+R12
+Afsm
+R1
+R2
+R3
+DEx4 work 29 avalonmm_to_ssram_controlunit 0 22 ^gIC^B17e51k>3V6D0]Fj0
+!i122 58
+l55
+L35 174
+VNbKA3<1e_N@l26haj7Lh^1
+!s100 TYG2mFYzI7lLLzCGgn:[e1
+R7
+32
+R8
+!i10b 1
+R9
+R16
+R17
+!i113 1
+R12
+Eavalonmm_to_ssram_driver
+Z18 w1683124003
+Z19 DPx4 ieee 16 std_logic_textio 0 22 ^l:n6VFdg74Q?CKDhjD]D3
+Z20 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z21 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+R1
+R2
+R3
+!i122 64
+R4
+Z22 8../tb/AvalonMM_to_SSRAM_driver.vhd
+Z23 F../tb/AvalonMM_to_SSRAM_driver.vhd
+l0
+L23 1
+V7kd4B<jLFe7`AEcVXVPNi1
+!s100 @;=4z6V]bXgaT5f<3log92
+R7
+32
+R8
+!i10b 1
+R9
+Z24 !s90 ../tb/AvalonMM_to_SSRAM_driver.vhd|
+Z25 !s107 ../tb/AvalonMM_to_SSRAM_driver.vhd|
+!i113 1
+R12
+Abehavior
+R19
+R20
+R21
+R1
+R2
+R3
+DEx4 work 24 avalonmm_to_ssram_driver 0 22 7kd4B<jLFe7`AEcVXVPNi1
+!i122 64
+l50
+L46 64
+V6od;@XoZjj6H7d:O6QWJ10
+!s100 B:KLCBOd?9TSdGdEWRi220
+R7
+32
+R8
+!i10b 1
+R9
+R24
+R25
+!i113 1
+R12
+Eavalonmm_to_ssram_executionunit
+Z26 w1682874231
+R1
+R2
+R3
+!i122 59
+R4
+Z27 8../src/AvalonMM_to_SSRAM_executionUnit.vhd
+Z28 F../src/AvalonMM_to_SSRAM_executionUnit.vhd
+l0
+L8 1
+V]fe:XA_TJ4fEdlMCPLJXY1
+!s100 Hcj1J8aI;CjDHjJm^oU_l2
+R7
+32
+R8
+!i10b 1
+R9
+Z29 !s90 ../src/AvalonMM_to_SSRAM_executionUnit.vhd|
+Z30 !s107 ../src/AvalonMM_to_SSRAM_executionUnit.vhd|
+!i113 1
+R12
+Artl
+R1
+R2
+R3
+DEx4 work 31 avalonmm_to_ssram_executionunit 0 22 ]fe:XA_TJ4fEdlMCPLJXY1
+!i122 59
+l111
+L52 108
+V?a5fLna0NfL=jB0o7USD50
+!s100 MIilg8hKhnBV[]GoSUXe:1
+R7
+32
+R8
+!i10b 1
+R9
+R29
+R30
+!i113 1
+R12
+Eavalonmm_to_ssram_monitor
+Z31 w1683124013
+R19
+R20
+R21
+R1
+R2
+R3
+!i122 63
+R4
+Z32 8../tb/AvalonMM_to_SSRAM_monitor.vhd
+Z33 F../tb/AvalonMM_to_SSRAM_monitor.vhd
+l0
+L21 1
+V`K;maVcR`Hm[U:5^nk7T90
+!s100 6k]TW`g^jCzKg=@0afhCG1
+R7
+32
+R8
+!i10b 1
+R9
+Z34 !s90 ../tb/AvalonMM_to_SSRAM_monitor.vhd|
+Z35 !s107 ../tb/AvalonMM_to_SSRAM_monitor.vhd|
+!i113 1
+R12
+Abehavior
+R19
+R20
+R21
+R1
+R2
+R3
+DEx4 work 25 avalonmm_to_ssram_monitor 0 22 `K;maVcR`Hm[U:5^nk7T90
+!i122 63
+l39
+L35 24
+VH0@NU]@7HnTCRhcOgCj9b3
+!s100 QK:k69JN1[fHS7Xc6oj`_0
+R7
+32
+R8
+!i10b 1
+R9
+R34
+R35
+!i113 1
+R12
+Eavalonmm_to_ssram_testbench
+Z36 w1683124380
+R1
+R2
+R3
+!i122 65
+R4
+Z37 8../tb/AvalonMM_to_SSRAM_testbench.vhd
+Z38 F../tb/AvalonMM_to_SSRAM_testbench.vhd
+l0
+L13 1
+VJWcMN];hVlTLRB6;C[ehW1
+!s100 ;[d:Km<<a>1`X7@lf0Anm0
+R7
+32
+R8
+!i10b 1
+R9
+Z39 !s90 ../tb/AvalonMM_to_SSRAM_testbench.vhd|
+Z40 !s107 ../tb/AvalonMM_to_SSRAM_testbench.vhd|
+!i113 1
+R12
+Abehavior
+R1
+R2
+R3
+Z41 DEx4 work 27 avalonmm_to_ssram_testbench 0 22 JWcMN];hVlTLRB6;C[ehW1
+!i122 65
+l149
+Z42 L18 226
+VT[;V;5TV?Jjmkz5CPf55C1
+!s100 M@i9GfIT1:olP=]Uoolk43
+R7
+32
+R8
+!i10b 1
+R9
+R39
+R40
+!i113 1
+R12
+Eclk_rst_generator
+Z43 w1682671881
+R1
+R2
+R3
+!i122 61
+R4
+Z44 8../tb/clk_rst_generator.vhd
+Z45 F../tb/clk_rst_generator.vhd
+l0
+L15 1
+V35?CM<fMPfn^:7@6me`VL1
+!s100 lcY3^Bdz3<?ze;@JWUcT>2
+R7
+32
+R8
+!i10b 1
+R9
+Z46 !s90 ../tb/clk_rst_generator.vhd|
+Z47 !s107 ../tb/clk_rst_generator.vhd|
+!i113 1
+R12
+Abehavior
+R1
+R2
+R3
+DEx4 work 17 clk_rst_generator 0 22 35?CM<fMPfn^:7@6me`VL1
+!i122 61
+l36
+L32 24
+VYm9L0lNaHzVCS0d=DV22<2
+!s100 COaYKGRd;Va_jXYbz6:LO3
+R7
+32
+R8
+!i10b 1
+R9
+R46
+R47
+!i113 1
+R12
+Ed_flipflop
+Z48 w1682671434
+R1
+R2
+R3
+!i122 56
+R4
+Z49 8../src/d_flipflop.vhd
+Z50 F../src/d_flipflop.vhd
+l0
+Z51 L11 1
+VRE4H]^OD3:QGJDfkn:ROn2
+!s100 h11io]S4NXJ>g:lPjK_8<2
+R7
+32
+R8
+!i10b 1
+R9
+Z52 !s90 ../src/d_flipflop.vhd|
+Z53 !s107 ../src/d_flipflop.vhd|
+!i113 1
+R12
+Abehavior
+R1
+R2
+R3
+DEx4 work 10 d_flipflop 0 22 RE4H]^OD3:QGJDfkn:ROn2
+!i122 56
+l26
+L24 16
+V_J`TT^c3:H_I]KI^j>>aQ3
+!s100 <N;29BfI=cz[0VU`A00UC2
+R7
+32
+R8
+!i10b 1
+R9
+R52
+R53
+!i113 1
+R12
+Efifo4
+Z54 w1682671475
+R1
+R2
+R3
+!i122 57
+R4
+Z55 8../src/fifo4.vhd
+Z56 F../src/fifo4.vhd
+l0
+L17 1
+VFTH@;X=?0Wj>=7@Vm`_]c1
+!s100 Na9KAJ?h==fbOz1DmGU`Z2
+R7
+32
+R8
+!i10b 1
+R9
+Z57 !s90 ../src/fifo4.vhd|
+Z58 !s107 ../src/fifo4.vhd|
+!i113 1
+R12
+Abehavior
+R1
+R2
+R3
+DEx4 work 5 fifo4 0 22 FTH@;X=?0Wj>=7@Vm`_]c1
+!i122 57
+l49
+L38 82
+VRIdnJ1nbfo>V1DFcKikZ03
+!s100 :YN:l<lGQndN6_a?RTf>h0
+R7
+32
+R8
+!i10b 1
+R9
+R57
+R58
+!i113 1
+R12
+Ereg
+Z59 w1682672230
+R1
+R2
+R3
+!i122 55
+R4
+Z60 8../src/reg.vhd
+Z61 F../src/reg.vhd
+l0
+R51
+VdniQJ[@QJNCHJgRQ]nCgC2
+!s100 `f@O@[InO2<:g^Bb^6nkg0
+R7
+32
+R8
+!i10b 1
+R9
+Z62 !s90 ../src/reg.vhd|
+Z63 !s107 ../src/reg.vhd|
+!i113 1
+R12
+Abehavior
+R1
+R2
+R3
+DEx4 work 3 reg 0 22 dniQJ[@QJNCHJgRQ]nCgC2
+!i122 55
+l29
+L28 13
+VbOODHZYV:fcFdQk:9P_I>0
+!s100 [cP8_B9Mm29P1TL<]jkW?1
+R7
+32
+R8
+!i10b 1
+R9
+R62
+R63
+!i113 1
+R12
+Essram32
+Z64 w1682671589
+R1
+R2
+R3
+!i122 62
+R4
+Z65 8../tb/ssram32.vhd
+Z66 F../tb/ssram32.vhd
+l0
+L20 1
+VmFI;<^j`g^iGMR09<zFGc0
+!s100 9YPOA@P73nWkB4@S:WlKR2
+R7
+32
+R8
+!i10b 1
+R9
+Z67 !s90 ../tb/ssram32.vhd|
+Z68 !s107 ../tb/ssram32.vhd|
+!i113 1
+R12
+Abehavior
+R1
+R2
+R3
+DEx4 work 7 ssram32 0 22 mFI;<^j`g^iGMR09<zFGc0
+!i122 62
+l54
+L43 41
+VFgRW2dJ]K1B:^8E^GdeIk2
+!s100 8UQzBO?P1oTDFX5fV?>iz1
+R7
+32
+R8
+!i10b 1
+R9
+R67
+R68
+!i113 1
+R12
