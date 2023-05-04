@@ -10,6 +10,8 @@ Clock della hRAM:
 	-- Transactions are initiated with CS# falling while CK = LOW and CK# = HIG
 Devo fare un clock gating?
 
+COme sfruttare il RWDS per campionare una lettura?
+
 Alignment:
-	-- Come faccio a far oscillare RWDS come il clock ma shiftato?
+	-- Come faccio a far oscillare RWDS come il clock ma shiftato in scrittura?
 	-- Command or Address values are center aligned with clock transitions (come?)

@@ -14,3 +14,4 @@
 /IP_cores/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_v2/src/*.bak
 /IP_cores/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_v2/tb/*.bak
 /IP_cores/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_v2/sim/__pycache__/
+/IP_cores.zip
