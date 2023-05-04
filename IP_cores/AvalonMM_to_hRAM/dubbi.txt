@@ -1,4 +1,4 @@
-Timing simulation: se e come farla
+Timing simulation: se e come farla?
 
 Come discriminare tra memory addressing e configuration register addressing?
 Nell'interfaccia standard AvalonMM non esiste un segnale per poterlo fare
