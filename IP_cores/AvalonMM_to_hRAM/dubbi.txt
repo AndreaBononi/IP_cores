@@ -1,13 +1,15 @@
-Timing simulation: come farla?
+Timing simulation: se e come farla
 
 Come discriminare tra memory addressing e configuration register addressing?
 Nell'interfaccia standard AvalonMM non esiste un segnale per poterlo fare
 Una possibilità è quella di inserire parallelamente all'interfaccia AvalonMM anche un'interfaccia Conduit (personalizzabile)
-Lo stesso discorso può essere fatto per la selezione del Burst Type
+Lo stesso discorso può essere fatto per la selezione del Burst Type volendola rendere dinamica.
 
 Clock della hRAM: 
 	-- the clock is not required to be free-running, it may remain idle while CS# is HIGH
 	-- Transactions are initiated with CS# falling while CK = LOW and CK# = HIG
 Devo fare un clock gating?
 
-Command or Address values are center aligned with clock transitions (come?)
+Alignment:
+	-- Come faccio a far oscillare RWDS come il clock ma shiftato?
+	-- Command or Address values are center aligned with clock transitions (come?)
