@@ -7,11 +7,11 @@ Lo stesso discorso può essere fatto per la selezione del Burst Type volendola r
 
 Clock della hRAM: 
 	-- the clock is not required to be free-running, it may remain idle while CS# is HIGH
-	-- Transactions are initiated with CS# falling while CK = LOW and CK# = HIG
+	-- Transactions are initiated with CS# falling while CK = LOW and CK# = HIGH
 Devo fare un clock gating?
 
-COme sfruttare il RWDS per campionare una lettura?
+RWDS deve essere usato al posto del clock per campionare i dati in lettura, ma per poterlo fare dobbiamo prima shiftarlo di 90°: come?
 
 Alignment:
 	-- Come faccio a far oscillare RWDS come il clock ma shiftato in scrittura?
-	-- Command or Address values are center aligned with clock transitions (come?)
+	-- Command or Address values are center aligned with clock transitions: mi serve nuovamente sfasare di 90°, ma come?
