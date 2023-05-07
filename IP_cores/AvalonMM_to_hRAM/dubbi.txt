@@ -1,17 +1,18 @@
 Timing simulation: se e come farla?
 
 Come discriminare tra memory addressing e configuration register addressing?
-Nell'interfaccia standard AvalonMM non esiste un segnale per poterlo fare
-Una possibilità è quella di inserire parallelamente all'interfaccia AvalonMM anche un'interfaccia Conduit (personalizzabile)
-Lo stesso discorso può essere fatto per la selezione del Burst Type volendola rendere dinamica.
+Una possibilità è quella di inserire parallelamente all'interfaccia AvalonMM anche un'interfaccia Conduit (personalizzabile).
+UNa'ltra possibilità consiste nel realizzare un indirizzamento virtuale.
+Lo stesso discorso può essere fatto per la selezione del Burst Type, ma in questo caso avrebbe poco senso creare un indirizamento virtuale.
 
-Clock della hRAM: 
-	-- the clock is not required to be free-running, it may remain idle while CS# is HIGH
-	-- Transactions are initiated with CS# falling while CK = LOW and CK# = HIGH
-Devo fare un clock gating?
+Clock della hRAM: devo fare un clock gating? Potrei avere problemi su Quartus?
 
-RWDS deve essere usato al posto del clock per campionare i dati in lettura, ma per poterlo fare dobbiamo prima shiftarlo di 90°: come?
+Come realizzare lo shift di 90°?
 
-Alignment:
-	-- Come faccio a far oscillare RWDS come il clock ma shiftato in scrittura?
-	-- Command or Address values are center aligned with clock transitions: mi serve nuovamente sfasare di 90°, ma come?
+RWDS viene utilizzato per campionare i byte letti, che vengono poi messi insieme a coppie per ricostruire il dato.
+Il dato ricostruito prima o poi deve essere campionato con il clock interno e non con RWDS, come farlo senza avere problemi?
+Il problema si pone più che altro per letture a burst.
+
+Passaggio da macchina a stati impossibile o dannoso in certi casi
+
+Ha senso un pulse egenrator che geenra l'impulso sul negative edge del clock ma campiona l'enable sul positive edge del clock?
