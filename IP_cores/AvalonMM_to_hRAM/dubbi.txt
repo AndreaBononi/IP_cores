@@ -15,4 +15,4 @@ Il problema si pone più che altro per letture a burst.
 
 Passaggio da macchina a stati impossibile o dannoso in certi casi
 
-Ha senso un pulse egenrator che geenra l'impulso sul negative edge del clock ma campiona l'enable sul positive edge del clock?
+Data masking in scrittura: è corretto come è stato fatto?
