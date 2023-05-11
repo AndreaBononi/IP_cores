@@ -1,0 +1,7 @@
+registro di configurazione esterno (invece che riferirmi ai registri di configurazione della hRAM mi riferisco ad un registro di config creato da me e lo inizializzo tramite generics) (impostare tutte le opzioni dei registri di config con dei generics, e prevedere che solo alcune di esse posano essere cambiate, ad esempio il power down mode).
+
+DELAY: cortocircuitare i due segnali senza ritardarli, quindi usare timing analyzer per creare un constraint sul ritardo minimo/massimo tra essi. Creare un blocco apposito per farlo. Con timing analyzer di fatto si genera un sdc. Leggere link inviato da professore e cercarne di simili, potrebbe essere utile. Utilizzare il file sdc anche per forzare tutti i vincoli temporali necessari. Provare ad usarlo con il blocco gia funzionale.
+
+
+CLOCK: tenerlo free-running e far lavorare memoria e interfaccia allo stesso clock, anche nel caso non fosse possibile arrivare a 100MHz.
+

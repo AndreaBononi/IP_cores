@@ -2,7 +2,7 @@ Timing simulation: se e come farla?
 
 Come discriminare tra memory addressing e configuration register addressing?
 Una possibilità è quella di inserire parallelamente all'interfaccia AvalonMM anche un'interfaccia Conduit (personalizzabile).
-UNa'ltra possibilità consiste nel realizzare un indirizzamento virtuale.
+Una'ltra possibilità consiste nel realizzare un indirizzamento virtuale.
 Lo stesso discorso può essere fatto per la selezione del Burst Type, ma in questo caso avrebbe poco senso creare un indirizamento virtuale.
 
 Clock della hRAM: devo fare un clock gating? Potrei avere problemi su Quartus?
