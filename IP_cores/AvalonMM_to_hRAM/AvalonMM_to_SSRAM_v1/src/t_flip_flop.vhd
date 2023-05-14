@@ -4,37 +4,45 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- flip flop type D
+-- flip flop type T
 
 -------------------------------------------------------------------------------------------------------
 
-entity d_flipflop is
+entity t_flip_flop is
 	port
 	(
 		clk				: in 	std_logic;
 		enable		: in 	std_logic;
 		clear_n		: in 	std_logic;
-		dff_in		: in 	std_logic;
-		dff_out		: out std_logic
+		tff_in		: in 	std_logic;
+		tff_out		: out std_logic
 	);
-end d_flipflop;
+end t_flip_flop;
 
 -------------------------------------------------------------------------------------------------------
 
-architecture behavior of d_flipflop is
+architecture behavior of t_flip_flop is
+
+	signal dummy_out: std_logic;
 
 	begin
 
-		dff_process: process (clk, clear_n, enable)
+		tff_process: process (clk, clear_n, enable)
 		begin
 			if (rising_edge(clk)) then
 				if (clear_n = '0') then
-					dff_out <= '0';
+					dummy_out <= '0';
 				elsif (enable = '1') then
-					dff_out <= dff_in;
-            end if;
+					if (tff_in = '0') then
+						dummy_out <= dummy_out;
+					elsif (tff_in = '1') then
+						dummy_out <= not(dummy_out);
+			    end if;
+				end if;
 			end if;
-		end process dff_process;
+		end process tff_process;
+
+	tff_out <= dummy_out;
 
 end behavior;
 

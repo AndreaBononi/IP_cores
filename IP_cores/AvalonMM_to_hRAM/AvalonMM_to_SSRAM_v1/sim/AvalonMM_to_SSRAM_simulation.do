@@ -3,6 +3,7 @@ vlib work
 # source files
 vcom ../src/reg.vhd
 vcom ../src/d_flipflop.vhd
+vcom ../src/t_flip_flop.vhd
 vcom ../src/fifo4.vhd
 vcom ../src/AvalonMM_to_SSRAM_controlUnit.vhd
 vcom ../src/AvalonMM_to_SSRAM_executionUnit.vhd
@@ -18,5 +19,5 @@ vcom ../tb/AvalonMM_to_SSRAM_testbench.vhd
 # simulation options
 vsim -c -t 1ns work.AvalonMM_to_SSRAM_testbench -voptargs=+acc
 
-run 20us
+run 30us
 quit -f

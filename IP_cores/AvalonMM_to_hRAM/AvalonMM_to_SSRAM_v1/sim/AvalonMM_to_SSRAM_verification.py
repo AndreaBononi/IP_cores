@@ -28,6 +28,8 @@ write_opcode = '1'
 # environment preparation --------------------------------------------------------------------------------------------------------------
 subprocess.run( "rm -r sim_*ns", shell=True )
 subprocess.run( "rm -r " + log_files_dir, shell=True )
+subprocess.run( "rm " + expected_file, shell=True )
+subprocess.run( "rm " + stimuli_file, shell=True )
 
 # log file opening ---------------------------------------------------------------------------------------------------------------------
 subprocess.run( "mkdir log_files", shell=True )
@@ -148,7 +150,7 @@ for time in ssram_valid_time:
     subprocess.run( 'mkdir sim_' + time.replace(" ", ""), shell=True )
     subprocess.run( 'mv ' + output_file + ' ./sim_' + time.replace(" ", "") + '/', shell=True )
     # output verification
-    cmd = "diff " + expected_file + " ./sim_" + time.replace(" ", "") + "/" + output_file + " -y --suppress-common-lines | wc -l"
+    cmd = "diff " + expected_file + " ./sim_" + time.replace(" ", "") + "/" + output_file + " -y --suppress-common-lines -N | wc -l"
     verification_process = subprocess.run( cmd, shell = True, capture_output = True )
     diff = verification_process.stdout.decode( "utf-8" ).replace("\n", "")
     if ( diff == '0' ):
