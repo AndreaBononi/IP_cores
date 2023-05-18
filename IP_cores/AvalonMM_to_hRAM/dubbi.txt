@@ -16,3 +16,7 @@ Il problema si pone più che altro per letture a burst.
 Passaggio da macchina a stati impossibile o dannoso in certi casi
 
 Data masking in scrittura: è corretto come è stato fatto?
+
+POWER DOWN: il blocco ssram_to_hram riceve una richiesta di power down (scrittura del config reg1 in cui si abilita il power down).
+Il blocco deve attivare ssram_busy per tutto il tempo T_DPDIN richiesto alla hRAM ad entrare in power down mode (serve un contatore).
+Analogamente, quando arriva la richiesta di uscita dal power down mode il blocco deve attivare ssram_busy per tutto il tempo necessario ad uscirne.
