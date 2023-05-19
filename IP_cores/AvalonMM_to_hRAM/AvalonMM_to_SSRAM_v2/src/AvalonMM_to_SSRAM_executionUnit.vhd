@@ -6,8 +6,21 @@ use IEEE.numeric_std.all;
 ------------------------------------------------------------------------------------------------------------------------------------
 
 entity AvalonMM_to_SSRAM_executionUnit is
+	generic
+	(
+		-- configuration register 0 (dpd_mode_enable and fixed_latency_enable ar not present, since they can be modified run time)
+		burst_lenght									: std_logic_vector(1 downto 0) := "11";
+		hybrid_burst_enable						: std_logic := '1';
+		initial_latency								: std_logic_vector(3 downto 0) := "0001";
+		drive_strength								: std_logic_vector(2 downto 0) := "000";
+		-- configuration register 1
+		distributed_refresh_interval	: std_logic_vector(1 downto 0) := "10"
+	);
 	port
 	(
+		-- clock and reset
+		clk		          				: in    std_logic;
+		rst_n			        			: in    std_logic;
 		-- AvalonMM signals
 		avs_s0_address     			: in    std_logic_vector(31 downto 0);
 		avs_s0_read        			: in    std_logic;
@@ -23,11 +36,9 @@ entity AvalonMM_to_SSRAM_executionUnit is
 		ssram_OE								: out		std_logic;
 		ssram_WE								: out		std_logic;
 		ssram_validout					: in		std_logic;
+		ssram_address_space			: in		std_logic;
 		ssram_busy							: in		std_logic;
 		ssram_clear_n						: out		std_logic;
-		-- clock and reset
-		clk		          				: in    std_logic;
-		rst_n			        			: in    std_logic;
 		-- status signals:
 		mem_validout						: out		std_logic;
 		mem_busy								: out		std_logic;
@@ -35,17 +46,27 @@ entity AvalonMM_to_SSRAM_executionUnit is
 		fifo4_full							: out		std_logic;
 		fifo4_almost_full				: out		std_logic;
 		fifo4_empty							: out		std_logic;
+		dpd_mode_n							: out 	std_logic;
 		op_req									: out		std_logic;
 		previous_op_req					: out		std_logic;
+		write_op								: out 	std_logic;
+		config_reg_access				: out 	std_logic;
 		-- control signals:
 		waitrequest							: in		std_logic;
 		readdatavalid						: in		std_logic;
 		readdata_enable					: in		std_logic;
 		command_enable					: in		std_logic;
+		virtual_config_enable		: in		std_logic;
+		virtual_config_clear_n	: in		std_logic;
+		muxout_sel							: in		std_logic;
+		config_reg_sel					: in		std_logic;
+		mem_input_sel						: in		std_logic;
+		mem_address_space				: in		std_logic;
 		por_enable							: in		std_logic;
 		por_clear_n							: in		std_logic;
 		tgl_clear_n							: in		std_logic;
 		mem_enable							: in		std_logic;
+		force_write							: in		std_logic;
 		fifo4_push							: in		std_logic;
 		fifo4_pop								: in		std_logic;
 		fifo4_clear_n						: in		std_logic
@@ -69,6 +90,21 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 			clear_n		: in 	std_logic;
 			reg_in		: in 	std_logic_vector(N-1 downto 0);
 			reg_out		: out std_logic_vector(N-1 downto 0)
+		);
+	end component;
+
+	-- multiplexer 2 inputs --------------------------------------------------------------------------------------------------------
+	component mux_2to1 is
+		generic
+		(
+			N : integer := 1
+		);
+		port
+		(
+			mux_in_0		: in		std_logic_vector((N-1) downto 0);
+			mux_in_1		: in		std_logic_vector((N-1) downto 0);
+			sel					: in 		std_logic;
+			out_mux			: out 	std_logic_vector((N-1) downto 0)
 		);
 	end component;
 
@@ -117,13 +153,18 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 	end component;
 
 	-- internal signals ------------------------------------------------------------------------------------------------------------
-	signal cmd_in							: std_logic_vector(49 downto 0);
-	signal cmd_out						: std_logic_vector(49 downto 0);
-	signal fifo4_out					: std_logic_vector(49 downto 0);
-	signal fifo4_empty_local	: std_logic;
-	signal tgl_in							: std_logic;
-	signal por_out						: std_logic;
-	signal op									: std_logic;
+	signal cmd_in									: std_logic_vector(49 downto 0);
+	signal cmd_out								: std_logic_vector(49 downto 0);
+	signal virtual_config_in			: std_logic_vector(15 downto 0);
+	signal virtual_config_out			: std_logic_vector(15 downto 0);
+	signal config_reg_mux_out			: std_logic_vector(15 downto 0);
+	signal config_addr_mux_out		: std_logic_vector(15 downto 0);
+	signal address_space_mux_out	: std_logic_vector(31 downto 0);
+	signal fifo4_out							: std_logic_vector(49 downto 0);
+	signal fifo4_empty_local			: std_logic;
+	signal tgl_in									: std_logic;
+	signal por_out								: std_logic;
+	signal op											: std_logic;
 
 	begin
 
