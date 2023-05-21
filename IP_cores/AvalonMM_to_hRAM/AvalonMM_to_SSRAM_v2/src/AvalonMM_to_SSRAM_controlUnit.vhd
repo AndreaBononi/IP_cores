@@ -9,27 +9,34 @@ use IEEE.numeric_std.all;
 entity AvalonMM_to_SSRAM_controlUnit is
 	port
 	(
-		-- clock and reset
-		clk											: in 		std_logic;
-		rst_n										: in		std_logic;
-		-- status signals
+		-- status signals:
 		mem_validout						: in		std_logic;
 		mem_busy								: in		std_logic;
 		mem_avail								: in		std_logic;
 		fifo4_full							: in		std_logic;
 		fifo4_almost_full				: in		std_logic;
 		fifo4_empty							: in		std_logic;
+		dpd_mode								: in 		std_logic;
 		op_req									: in		std_logic;
 		previous_op_req					: in		std_logic;
-		-- control signals
+		write_op								: in 		std_logic;
+		config_reg_access				: in 		std_logic;
+		-- control signals:
 		waitrequest							: out		std_logic;
 		readdatavalid						: out		std_logic;
 		readdata_enable					: out		std_logic;
 		command_enable					: out		std_logic;
+		virtual_config_enable		: out		std_logic;
+		virtual_config_clear_n	: out		std_logic;
+		out_sel									: out		std_logic;
+		config_sel							: out		std_logic;
+		mem_input_sel						: out		std_logic;
+		address_space_sel				: out		std_logic;
 		por_enable							: out		std_logic;
 		por_clear_n							: out		std_logic;
 		tgl_clear_n							: out		std_logic;
 		mem_enable							: out		std_logic;
+		force_write							: out		std_logic;
 		fifo4_push							: out		std_logic;
 		fifo4_pop								: out		std_logic;
 		fifo4_clear_n						: out		std_logic
@@ -44,6 +51,11 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 	type state is
 	(
 		reset,
+		config_init,
+		config0_init_memcmd,
+		config0_init_waitmem,
+		config1_init_memcmd,
+		config1_init_waitmem,
 		idle,
 		idle_pop,
 		idle_valid,
@@ -59,7 +71,17 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 		push_afterfull,
 		push_afterfull_pop,
 		push_afterfull_valid,
-		push_afterfull_pop_valid
+		push_afterfull_pop_valid,
+		waiting_config,
+		waiting_config_valid,
+		waiting_config_pop,
+		waiting_config_pop_valid,
+		waiting_config_intra,
+		waiting_config_intra_valid,
+		config_reading_valid,
+		config_writing,
+		config_writing_memcmd,
+		config_writing_waitmem
 	);
 
 	-- states declaration -----------------------------------------------------------------------------------------------------------
@@ -72,10 +94,10 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 		next_state_evaluation: process
 		(
 			-- sensitivity list
-			rst_n, present_state,
-			mem_validout, mem_busy, mem_avail,
+			rst_n, present_state, config_reg_access,
+			mem_validout, mem_busy, mem_avail, write_op,
 			fifo4_full, fifo4_almost_full, fifo4_empty,
-			op_req, previous_op_req
+			op_req, previous_op_req, dpd_mode_n
 		)
 		begin
 			if (rst_n = '0') then
@@ -84,40 +106,83 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 				case present_state is
 					---------------------------------------------------------------------------------------------------------------------
 					when reset =>
-						next_state <= idle;
+						next_state <= config_init;
+					---------------------------------------------------------------------------------------------------------------------
+					when config_init =>
+						next_state <= config0_init_memcmd;
+					---------------------------------------------------------------------------------------------------------------------
+					when config0_init_memcmd =>
+						next_state <= config0_init_waitmem;
+					---------------------------------------------------------------------------------------------------------------------
+					when config0_init_waitmem =>
+						if (mem_busy = '1') then
+							next_state <= config0_init_waitmem;
+						else
+							next_state <= config1_init_memcmd;
+						end if;
+					---------------------------------------------------------------------------------------------------------------------
+					when config1_init_memcmd =>
+						next_state <= config1_init_waitmem;
+					---------------------------------------------------------------------------------------------------------------------
+					when config1_init_waitmem =>
+						if (mem_busy = '1') then
+							next_state <= config1_init_waitmem;
+						else
+							next_state <= idle;
+						end if;
 					---------------------------------------------------------------------------------------------------------------------
 					when
 						idle | idle_pop | idle_valid | idle_pop_valid | push | push_pop | push_valid | push_pop_valid |
-						push_afterfull | push_afterfull_pop | push_afterfull_valid | push_afterfull_pop_valid
+						push_afterfull | push_afterfull_pop | push_afterfull_valid | push_afterfull_pop_valid | config_reading_valid
 						=>
 						if (mem_validout = '1') then
 							if (op_req = '1') then
-								if (previous_op_req = '1') then
-									if (fifo4_almost_full = '1') then
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= waiting_pop_valid;
+								if (config_reg_access = '1') then
+									if (fifo4_empty = '1') then
+										if (mem_busy = '1') then
+											next_state <= waiting_config_valid;
 										else
-											next_state <= waiting_valid;
+											next_state <= waiting_config_intra_valid;
 										end if;
 									else
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= push_pop_valid;
+										if (mem_busy = '0' and mem_avail = '1') then
+											next_state <= waiting_config_pop_valid;
 										else
-											next_state <= push_valid;
+											next_state <= waiting_config_valid;
 										end if;
 									end if;
 								else
-									if (fifo4_full = '1') then
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= waiting_pop_valid;
-										else
-											next_state <= waiting_valid;
-										end if;
+									if (dpd_mode = '1') then
+										next_state <= idle;
 									else
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= push_pop_valid;
+										if (previous_op_req = '1') then
+											if (fifo4_almost_full = '1') then
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= waiting_pop_valid;
+												else
+													next_state <= waiting_valid;
+												end if;
+											else
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= push_pop_valid;
+												else
+													next_state <= push_valid;
+												end if;
+											end if;
 										else
-											next_state <= push_valid;
+											if (fifo4_full = '1') then
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= waiting_pop_valid;
+												else
+													next_state <= waiting_valid;
+												end if;
+											else
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= push_pop_valid;
+												else
+													next_state <= push_valid;
+												end if;
+											end if;
 										end if;
 									end if;
 								end if;
@@ -130,32 +195,52 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 							end if;
 						else
 							if (op_req = '1') then
-								if (previous_op_req = '1') then
-									if (fifo4_almost_full = '1') then
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= waiting_pop;
+								if (config_reg_access = '1') then
+									if (fifo4_empty = '1') then
+										if (mem_busy = '1') then
+											next_state <= waiting_config;
 										else
-											next_state <= waiting;
+											next_state <= waiting_config_intra;
 										end if;
 									else
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= push_pop;
+										if (mem_busy = '0' and mem_avail = '1') then
+											next_state <= waiting_config_pop;
 										else
-											next_state <= push;
+											next_state <= waiting_config;
 										end if;
 									end if;
 								else
-									if (fifo4_full = '1') then
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= waiting_pop;
-										else
-											next_state <= waiting;
-										end if;
+									if (dpd_mode = '1') then
+										next_state <= idle;
 									else
-										if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
-											next_state <= push_pop;
+										if (previous_op_req = '1') then
+											if (fifo4_almost_full = '1') then
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= waiting_pop;
+												else
+													next_state <= waiting;
+												end if;
+											else
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= push_pop;
+												else
+													next_state <= push;
+												end if;
+											end if;
 										else
-											next_state <= push;
+											if (fifo4_full = '1') then
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= waiting_pop;
+												else
+													next_state <= waiting;
+												end if;
+											else
+												if (mem_busy = '0' and fifo4_empty = '0' and mem_avail = '1') then
+													next_state <= push_pop;
+												else
+													next_state <= push;
+												end if;
+											end if;
 										end if;
 									end if;
 								end if;
@@ -199,6 +284,57 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 							end if;
 						end if;
 					---------------------------------------------------------------------------------------------------------------------
+					when waiting_config | waiting_config_valid | waiting_config_pop | waiting_config_pop_valid =>
+						if (mem_validout = '1') then
+							if (fifo4_empty = '1') then
+								if (mem_busy = '1') then
+									next_state <= waiting_config_valid;
+								else
+									next_state <= waiting_config_intra_valid;
+								end if;
+							else
+								if (mem_busy = '0' and mem_avail = '1') then
+									next_state <= waiting_config_pop_valid;
+								else
+									next_state <= waiting_config_valid;
+								end if;
+							end if;
+						else
+							if (fifo4_empty = '1') then
+								if (mem_busy = '1') then
+									next_state <= waiting_config;
+								else
+									next_state <= waiting_config_intra;
+								end if;
+							else
+								if (mem_busy = '0' and mem_avail = '1') then
+									next_state <= waiting_config_pop;
+								else
+									next_state <= waiting_config;
+								end if;
+							end if;
+						end if;
+					---------------------------------------------------------------------------------------------------------------------
+					when waiting_config_intra | waiting_config_intra_valid =>
+						if (write_op = '1') then
+							next_state <= config_writing;
+						else
+							next_state <= config_reading_valid;
+						end if;
+					---------------------------------------------------------------------------------------------------------------------
+					when config_writing =>
+						next_state <= config_writing_memcmd;
+					---------------------------------------------------------------------------------------------------------------------
+					when config_writing_memcmd =>
+						next_state <= config_writing_waitmem;
+					---------------------------------------------------------------------------------------------------------------------
+					when config_writing_waitmem =>
+						if (mem_busy = '1') then
+							next_state <= config_writing_waitmem;
+						else
+							next_state <= idle;
+						end if;
+					---------------------------------------------------------------------------------------------------------------------
 					when others =>
 						next_state <= reset;
 					---------------------------------------------------------------------------------------------------------------------
@@ -231,6 +367,13 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 			tgl_clear_n	<= '1';
 			mem_enable <= '0';
 			fifo4_pop	<= '0';
+			virtual_config_enable	<= '0';
+			virtual_config_clear_n <= '1';
+			out_sel <= '0';
+			config_sel <= '0';
+			mem_input_sel	<= '0';
+			address_space_sel	<= '0';
+			force_write	<= '0';
 			---------------------------------------------------------------------------------------------------------------------------
 			case present_state is
 				------------------------------------------------------------------------------------------------------------------------
@@ -239,6 +382,30 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 					fifo4_clear_n <= '0';
 					por_clear_n <= '0';
 					tgl_clear_n <= '0';
+					virtual_config_clear_n <= '0';
+				------------------------------------------------------------------------------------------------------------------------
+				when config_init =>
+					waitrequest <= '1';
+					config_enable <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config0_init_memcmd =>
+					waitrequest <= '1';
+					mem_input_sel <= '1';
+					mem_address_space <= '1';
+					force_write <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config0_init_waitmem =>
+					waitrequest <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config1_init_memcmd =>
+					waitrequest <= '1';
+					mem_input_sel <= '1';
+					mem_address_space <= '1';
+					force_write <= '1';
+					config_reg_sel <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config1_init_waitmem =>
+					waitrequest <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when idle =>
 					command_enable <= '1';
@@ -347,6 +514,56 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 					readdatavalid <= '1';
 					mem_enable <= '1';
 					fifo4_pop <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when waiting_config =>
+					waitrequest <= '1';
+					readdata_enable <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when waiting_config_valid =>
+					waitrequest <= '1';
+					readdata_enable <= '1';
+					readdatavalid <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when waiting_config_pop =>
+					waitrequest <= '1';
+					readdata_enable <= '1';
+					mem_enable <= '1';
+					fifo4_pop <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when waiting_config_pop_valid =>
+					waitrequest <= '1';
+					readdata_enable <= '1';
+					readdatavalid <= '1';
+					mem_enable <= '1';
+					fifo4_pop <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when waiting_config_intra =>
+					waitrequest <= '1';
+					readdata_enable <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when waiting_config_intra_valid =>
+					waitrequest <= '1';
+					readdata_enable <= '1';
+					readdatavalid <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config_reading_valid =>
+					command_enable <= '1';
+					por_enable <= '1';
+					readdatavalid <= '1';
+					muxout_sel <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config_writing =>
+					waitrequest <= '1';
+					config_enable <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config_writing_memcmd =>
+					waitrequest <= '1';
+					mem_input_sel <= '1';
+					mem_address_space <= '1';
+					force_write <= '1';
+				------------------------------------------------------------------------------------------------------------------------
+				when config_writing_waitmem =>
+					waitrequest <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 			end case;
 		end process control_signals_definition;
