@@ -83,7 +83,7 @@ log.write( "--------------------------------------------------------------------
 log.write( "\n" )
 
 # virtual memory creation --------------------------------------------------------------------------------------------------------------
-mem = memory.memory( address_binary_size = real_address_binary_size, word_binary_size = word_binary_size )
+mem = memory.memory( address_size = real_address_binary_size, word_size = word_binary_size )
 mem.reset()
 
 # stimuli and expected results generation ----------------------------------------------------------------------------------------------

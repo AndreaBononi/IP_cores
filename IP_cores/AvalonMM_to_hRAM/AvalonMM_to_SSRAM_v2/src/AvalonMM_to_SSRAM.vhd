@@ -70,8 +70,6 @@ architecture rtl of AvalonMM_to_SSRAM is
 
 	-- execution unit -------------------------------------------------------------------------------------------------------------
 	component AvalonMM_to_SSRAM_executionUnit is
-		port
-		(
 		generic
 		(
 			burst_lenght									: std_logic_vector(1 downto 0) := "11";
@@ -100,7 +98,7 @@ architecture rtl of AvalonMM_to_SSRAM is
 			ssram_OE								: out		std_logic;
 			ssram_WE								: out		std_logic;
 			ssram_validout					: in		std_logic;
-			ssram_address_space			: in		std_logic;
+			ssram_address_space			: out		std_logic;
 			ssram_busy							: in		std_logic;
 			ssram_clear_n						: out		std_logic;
 			-- status signals:
@@ -141,6 +139,9 @@ architecture rtl of AvalonMM_to_SSRAM is
 	component AvalonMM_to_SSRAM_controlUnit is
 		port
 		(
+			-- clock and reset:
+			clk											: in		std_logic;
+			rst_n										: in		std_logic;
 			-- status signals:
 			mem_validout						: in		std_logic;
 			mem_busy								: in		std_logic;

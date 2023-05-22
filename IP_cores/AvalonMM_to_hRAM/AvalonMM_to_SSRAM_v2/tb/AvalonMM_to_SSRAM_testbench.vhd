@@ -22,9 +22,17 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	constant reset_time: time := 15 ns;
 	constant custom_delay: time := 1 ns;
 	constant ssram_valid_time: time := 25 ns;
+	constant burst_lenght: std_logic_vector(1 downto 0) := "11";
+	constant hybrid_burst_enable: std_logic := '1';
+	constant initial_latency: std_logic_vector(3 downto 0) := "0001";
+	constant drive_strength: std_logic_vector(2 downto 0) := "000";
+	constant distributed_refresh_interval: std_logic_vector(1 downto 0) := "10";
+	constant config0_addr: std_logic_vector(31 downto 0) := "00000000000000000000100000000000";
+	constant config1_addr: std_logic_vector(31 downto 0) := "00000000000000000000100000000001";
 
 	-- signals --------------------------------------------------------------------------------------------------------
 	signal avs_s0_address     		: std_logic_vector(31 downto 0);
+	signal ssram_address_space		: std_logic;
 	signal avs_s0_read        		: std_logic;
 	signal avs_s0_write       		: std_logic;
 	signal avs_s0_writedata   		: std_logic_vector(15 downto 0);
@@ -60,6 +68,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		ssram_out             : in		std_logic_vector(15 downto 0);
 		ssram_in             	: out		std_logic_vector(15 downto 0);
 		ssram_address         : out		std_logic_vector(31 downto 0);
+		ssram_address_space		: out 	std_logic;
 		ssram_OE							: out		std_logic;
 		ssram_WE							: out		std_logic;
 		ssram_validout				: in		std_logic;
@@ -75,21 +84,24 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	component ssram32 is
 	generic
 	(
-		N 								: integer 	:= 32;
-		valid_time				: time 		:= 5 ns
+		N 								: integer := 32;
+		valid_time				: time := 5 ns;
+		config0_addr			: std_logic_vector(31 downto 0) := "00000000000000000000100000000000";
+		config1_addr			: std_logic_vector(31 downto 0) := "00000000000000000000100000000001"
 	);
 	port
 	(
-		ssram32_clk				: in 	std_logic;
-		ssram32_clear_n		: in 	std_logic;
-		ssram32_OE				: in 	std_logic;
-		ssram32_WE				: in 	std_logic;
-		ssram32_CS				: in 	std_logic;
-		ssram32_address		: in 	std_logic_vector(31 downto 0);
-		ssram32_in				: in 	std_logic_vector(N-1 downto 0);
-		ssram32_out				: out std_logic_vector(N-1 downto 0);
-		ssram32_validout	: out std_logic;
-		ssram32_busy			: out std_logic
+		ssram32_clk							: in 	std_logic;
+		ssram32_clear_n					: in 	std_logic;
+		ssram32_OE							: in 	std_logic;
+		ssram32_WE							: in 	std_logic;
+		ssram32_CS							: in 	std_logic;
+		ssram32_address_space		: in 	std_logic;
+		ssram32_address					: in 	std_logic_vector(31 downto 0);
+		ssram32_in							: in 	std_logic_vector(N-1 downto 0);
+		ssram32_out							: out std_logic_vector(N-1 downto 0);
+		ssram32_validout				: out std_logic;
+		ssram32_busy						: out std_logic
 	);
 	end component;
 
@@ -174,6 +186,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			ssram_out,
 			ssram_in,
 			ssram_address,
+			ssram_address_space,
 			ssram_OE,
 			ssram_WE,
 			ssram_validout,
@@ -188,7 +201,9 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		generic map
 		(
 			16,
-			ssram_valid_time
+			ssram_valid_time,
+			config0_addr,
+			config1_addr
 		)
 		port map
 		(
@@ -197,6 +212,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			ssram_OE,
 			ssram_WE,
 			'1',
+			ssram_address_space,
 			ssram_address,
 			ssram_in,
 			ssram_out,

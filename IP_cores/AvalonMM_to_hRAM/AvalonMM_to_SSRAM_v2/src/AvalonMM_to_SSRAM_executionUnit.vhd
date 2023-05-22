@@ -34,7 +34,7 @@ entity AvalonMM_to_SSRAM_executionUnit is
 		ssram_OE								: out		std_logic;
 		ssram_WE								: out		std_logic;
 		ssram_validout					: in		std_logic;
-		ssram_address_space			: in		std_logic;
+		ssram_address_space			: out		std_logic;
 		ssram_busy							: in		std_logic;
 		ssram_clear_n						: out		std_logic;
 		-- status signals:
@@ -161,7 +161,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 	signal config_mux_in0					: std_logic_vector(15 downto 0);
 	signal config_mux_in1					: std_logic_vector(15 downto 0);
 	signal config_mux_out					: std_logic_vector(15 downto 0);
-	signal config_addr_mux_out		: std_logic_vector(15 downto 0);
+	signal config_addr_mux_out		: std_logic_vector(31 downto 0);
 	signal address_space_mux_out	: std_logic_vector(31 downto 0);
 	signal out_mux_in0						: std_logic_vector(15 downto 0);
 	signal fifo4_out							: std_logic_vector(49 downto 0);
@@ -186,17 +186,17 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		previous_op_req <= por_out;
 
 		POR: d_flipflop port map (clk, por_enable, por_clear_n, op, por_out);
-
-		config_reg_access <=
-			not avs_s0_address(22) nand avs_s0_address(21) nand avs_s0_address(20) nand avs_s0_address(19)
-			nand avs_s0_address(18) nand avs_s0_address(17) nand avs_s0_address(16) nand avs_s0_address(15)
-			nand avs_s0_address(14) nand avs_s0_address(13) nand avs_s0_address(12) nand avs_s0_address(11)
-			nand avs_s0_address(10) nand avs_s0_address(9) nand avs_s0_address(8) nand avs_s0_address(7)
-			nand avs_s0_address(6) nand avs_s0_address(5) nand avs_s0_address(4) nand avs_s0_address(3)
-			nand avs_s0_address(2) nand avs_s0_address(1) nand avs_s0_address(0)
+		
+		config_reg_access <= 	
+			avs_s0_address(22) or (not avs_s0_address(21)) or (not avs_s0_address(20)) or (not avs_s0_address(19)) 
+			or (not avs_s0_address(18)) or (not avs_s0_address(17)) or (not avs_s0_address(16)) or (not avs_s0_address(15))
+			or (not avs_s0_address(14)) or (not avs_s0_address(13)) or (not avs_s0_address(12)) or (not avs_s0_address(11)) 
+			or (not avs_s0_address(10)) or (not avs_s0_address(9)) or (not avs_s0_address(8)) or (not avs_s0_address(7)) 
+			or (not avs_s0_address(6)) or (not avs_s0_address(5)) or (not avs_s0_address(4)) or (not avs_s0_address(3)) 
+			or (not avs_s0_address(2)) or (not avs_s0_address(1)) or (not avs_s0_address(0))
 		;
 
-		virtual_config_in(15 downto 0) 	<= "00000000000000";
+		virtual_config_in(15 downto 2) 	<= "00000000000000";
 		virtual_config_in(1 downto 0) 	<= cmd_out(33 downto 32);
 
 		VIRTUAL_CONFIG: reg generic map (16) port map (clk, virtual_config_enable, virtual_config_clear_n, virtual_config_in, virtual_config_out);
@@ -218,7 +218,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 
 		READDATA: reg generic map (16) port map (clk, readdata_enable, '1', ssram_out, out_mux_in0);
 
-		LOCAL__FIFO: fifo4 generic map (50)
+		LOCAL_FIFO: fifo4 generic map (50)
 		port map
 		(
 			clk, 								-- fifo4_clk

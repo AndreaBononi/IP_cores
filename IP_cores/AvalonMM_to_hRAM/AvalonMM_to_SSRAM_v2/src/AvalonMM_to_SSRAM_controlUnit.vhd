@@ -9,6 +9,9 @@ use IEEE.numeric_std.all;
 entity AvalonMM_to_SSRAM_controlUnit is
 	port
 	(
+		-- clock and reset:
+		clk											: in		std_logic;
+		rst_n										: in		std_logic;
 		-- status signals:
 		mem_validout						: in		std_logic;
 		mem_busy								: in		std_logic;
@@ -97,7 +100,7 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 			rst_n, present_state, config_reg_access,
 			mem_validout, mem_busy, mem_avail, write_op,
 			fifo4_full, fifo4_almost_full, fifo4_empty,
-			op_req, previous_op_req, dpd_mode_n
+			op_req, previous_op_req, dpd_mode
 		)
 		begin
 			if (rst_n = '0') then
@@ -386,12 +389,12 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 				------------------------------------------------------------------------------------------------------------------------
 				when config_init =>
 					waitrequest <= '1';
-					config_enable <= '1';
+					virtual_config_enable <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when config0_init_memcmd =>
 					waitrequest <= '1';
 					mem_input_sel <= '1';
-					mem_address_space <= '1';
+					address_space_sel <= '1';
 					force_write <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when config0_init_waitmem =>
@@ -400,9 +403,9 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 				when config1_init_memcmd =>
 					waitrequest <= '1';
 					mem_input_sel <= '1';
-					mem_address_space <= '1';
+					address_space_sel <= '1';
 					force_write <= '1';
-					config_reg_sel <= '1';
+					config_sel <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when config1_init_waitmem =>
 					waitrequest <= '1';
@@ -550,16 +553,16 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 					command_enable <= '1';
 					por_enable <= '1';
 					readdatavalid <= '1';
-					muxout_sel <= '1';
+					out_sel <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when config_writing =>
 					waitrequest <= '1';
-					config_enable <= '1';
+					virtual_config_enable <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when config_writing_memcmd =>
 					waitrequest <= '1';
 					mem_input_sel <= '1';
-					mem_address_space <= '1';
+					address_space_sel <= '1';
 					force_write <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when config_writing_waitmem =>
