@@ -19,11 +19,17 @@ tb_file = "../tb/AvalonMM_to_SSRAM_testbench.vhd"
 vsim_path = '~/intelFPGA/20.1/modelsim_ase/bin/vsim'
 ssram_valid_time = ["5 ns", "15 ns", "25 ns"]
 clock = "10 ns"
-virtual_address_binary_size = 32    # the memory virtually has 32 addressing bits, but only the 8 less significant bits are considered
-real_address_binary_size = 8
-word_binary_size = 16
+address_size = 32
+working_address_size = 8        # the memory has 32 addressing bits, but only the 8 less significant bits are employed to test it
+word_size = 16
 read_opcode = '0'
 write_opcode = '1'
+config0_addr = "00000000000000000000100000000000"
+config1_addr = "00000000000000000000100000000001"
+config0_default_value = "0000111100011111"
+config1_default_value = "0000000000000010"
+virtual_config_addr = "00000000010000000000000000000000"
+virtual_config_default_value = "0000000000000000"
 
 # environment preparation --------------------------------------------------------------------------------------------------------------
 subprocess.run( "rm -r sim_*ns", shell=True )
@@ -82,9 +88,12 @@ log.write( "\n" )
 log.write( "--------------------------------------------------------------------------------------------------------------" )
 log.write( "\n" )
 
-# virtual memory creation --------------------------------------------------------------------------------------------------------------
-mem = memory.memory( address_size = real_address_binary_size, word_size = word_binary_size )
+# virtual memory creation and configuration registers initialization -------------------------------------------------------------------
+mem = memory.memory( address_size = address_size, word_size = word_size )
 mem.reset()
+mem.add_register( address = config0_addr, value = config0_default_value )
+mem.add_register( address = config1_addr, value = config1_default_value )
+mem.add_register( address = virtual_config_addr, value = virtual_config_default_value )
 
 # stimuli and expected results generation ----------------------------------------------------------------------------------------------
 # at first, all memory locations are written with a random writedata
@@ -93,26 +102,21 @@ try:
     stimuli = open( stimuli_file, "w" )
     expected = open( expected_file, "w" )
     # generate writing operations
-    for decimal_address in range( 0, 2 ** real_address_binary_size ):
-        address = format( decimal_address, str( real_address_binary_size ) + 'b' ).replace(" ", "0")
-        writedata = format( random.randint( 0,  2 ** word_binary_size ), str( word_binary_size ) + 'b' ).replace(" ", "0")
+    for decimal_address in range( 0, 2 ** working_address_size ):
+        address = format( decimal_address, str( address_size ) + 'b' ).replace(" ", "0")
+        writedata = format( random.randint( 0,  2 ** word_size ), str( word_size ) + 'b' ).replace(" ", "0")
         # stimuli file updating
         stimuli.write( write_opcode )
-        for idx in range (real_address_binary_size, virtual_address_binary_size):
-            stimuli.write( str( 0 ) )
         stimuli.write( address )
         stimuli.write( writedata )
         stimuli.write( "\n" )
         # high-level model updating
         mem.write( address =  address, writedata = writedata )
     # generate reading operations and expected results
-    for decimal_address in range( 0, 2 ** real_address_binary_size ):
-        address = format( decimal_address, str( real_address_binary_size ) + 'b' ).replace(" ", "0")
-        # stimuli file updating
+    for decimal_address in range( 0, 2 ** working_address_size ):
+        address = format( decimal_address, str( address_size ) + 'b' ).replace(" ", "0")
         # stimuli file updating
         stimuli.write( read_opcode )
-        for idx in range (real_address_binary_size, virtual_address_binary_size):
-            stimuli.write( str( 0 ) )
         stimuli.write( address )
         stimuli.write( "\n" )
         # evaluate expected result using high-level model

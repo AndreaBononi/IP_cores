@@ -10,7 +10,7 @@ use std.textio.all;
 
 -- monitor (output storage) for AvalonMM_to_SSRAM
 -- clock and active low reset must be provided
--- the output file (named "AvalonMM_to_SSRAM_readValues.txt") contains the reading results
+-- the output file ("AvalonMM_to_SSRAM_readValues.txt") contains the reading results
 -- it is necessary to set the reset signal at least once in order to start storing data
 
 -- start_sim is equal to '0' before starting the simulation, then it remains equal to '1'
