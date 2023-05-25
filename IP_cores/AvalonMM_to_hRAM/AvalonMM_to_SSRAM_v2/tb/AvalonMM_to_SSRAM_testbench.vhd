@@ -19,15 +19,20 @@ use ieee.numeric_std.all;
 -- at the beginning, "preliminary_check" is set to stop the driver from starting to send commands to the DUT
 -- while "preliminary_check" is set, the driver is still able to check the value of avs_s0_waitrequest, so that it can notify when the initialization is terminated
 -- when the initialization is terminated, "init" is reset to 0 by the driver
--- when "init" is reset to 0, the verification of the configurtion registers is performed
--- once the verification of the configuration registers is completed, "preliminary_check" is reset to 0
+-- when "init" is reset to 0, the content of the memory configuration registers is read, then "preliminary_check" is reset to 0
 -- when "preliminary_check" is reset to 0, the driver starts to provide new commands to the DUT
 
--- the verification of the configuration registers is implemented in this file
+-- the initial reading of of the memory configuration registers is implemented in this file
 -- it forces a configuration register reading to the memory without passing through the DUT
 -- after a certain delay the memory provides the result and sets ssram_validout
 -- the DUT catches ssram_validout and propagate the configuration register value to the AvalonMM side
--- for this reason, the forced reading is catched by the monitor and the result is stored in the same file ot all the other readings
+-- for this reason, the forced reading is catched by the monitor and the result is stored in the same file of all the other reading results
+
+-- after the initial reading of the memory configuration registers, the driver provides a set of memory writing and memory reading operations
+-- at the end, it also provides a virtual configuration register writing and a virtual configuration register reading
+-- after these last two operations, it is useful to verify again the value of the config0 register of the memory (config1 cannot be modified)
+-- the final reading of the memory configuration registers is also implemented in this file
+-- the result is is stored in the same file of all the other reading results
 
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -75,7 +80,8 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 
 	-- simulation signals ---------------------------------------------------------------------------------------------
 	signal start_sim          				: std_logic;
-	signal stop_sim		        				: std_logic;
+	signal stop_sim		        				: std_logic := '0';
+	signal driver_stop        				: std_logic;
 	signal init			          				: std_logic;
 	signal preliminary_check					: std_logic := '1';
 	signal force_read									: std_logic := '0';
@@ -186,7 +192,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		avs_s0_write      		: out 	std_logic;
 		avs_s0_writedata  		: out 	std_logic_vector(15 downto 0);
 		start_sim							: out		std_logic := '0';
-		stop_sim							: out		std_logic := '0';
+		driver_stop						: out		std_logic := '0';
 		init									: out		std_logic := '1'
 	);
 	end component;
@@ -293,7 +299,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			avs_s0_write,
 			avs_s0_writedata,
 			start_sim,
-			stop_sim
+			driver_stop
 		);
 
 		-- monitor instance --------------------------------------------------------------------------------------------
@@ -308,14 +314,16 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			stop_sim
 		);
 
-		-- verification of the configuration registers initialization --------------------------------------------------
-		config_regs_init_verification		: process (init, preliminary_check, ssram32_busy)
+		-- initial and final configuration registers reading -------------------------------------------------------------
+		config_regs_init_verification		: process (clk, init, preliminary_check, ssram32_busy, avs_s0_readdatavalid, driver_stop)
 		variable outputline							: line;
 		variable output_file_stat				: file_open_status;
 		variable count									: integer := 0;
+		variable final_read							: integer := 0;
 		begin
 			file_open(output_file_stat, output_file, "../sim/AvalonMM_to_SSRAM_memRegs.txt", write_mode);
 			if (init = '0' and preliminary_check = '1' and ssram32_busy = '0') then
+				-- initial configuration registers reading
 				if (rising_edge(clk)) then
 					force_read <= '1';
 					force_config_space <= '1';
@@ -328,21 +336,24 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 						preliminary_check <= '0';
 					end if;
 				end if;
+			elsif (driver_stop = '1' and final_read = '0') then
+				-- final configuration register reading
+				if (rising_edge(clk)) then
+					force_read <= '1';
+					force_config_space <= '1';
+					custom_address <= config0_addr;
+					final_read <= '1';
+				end if;
+			elsif (final_read = '1' and avs_s0_readdatavalid) then
+				-- the final configuration register reading has already been commanded (final_read = '1')
+				-- we just have to wait for its completion before terminating the simulation
+				-- when avs_s0_readdatavalid goes high, the operation is completed
+				stop_sim <= '1';
 			else
 				force_read <= '0';
 				force_config_space <= '0';
 			end if;
 		end process config_regs_init_verification;
-
-		-- verification of the final configuration register operation ----------------------------------------------------
-		config_reg_final_verification: process ()
-		begin
-			if (stop_sim = '1') then
-				--
-				--
-				--
-			end if;
-		end process config_reg_final_verification;
 
 end behavior;
 
