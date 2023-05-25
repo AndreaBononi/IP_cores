@@ -82,6 +82,8 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	signal force_config_space					: std_logic := '0';
 	signal controlled_ssram_WE				: std_logic;
 	signal controlled_ssram_spacing		: std_logic;
+	signal controlled_ssram_address		: std_logic_vector(31 downto 0);
+	signal custom_address							: std_logic_vector(31 downto 0);
 
 	-- DUT ------------------------------------------------------------------------------------------------------------
 	component AvalonMM_to_SSRAM is
@@ -189,6 +191,21 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	);
 	end component;
 
+	-- multiplexer 2 inputs -----------------------------------------------------------------------------------------
+	component mux_2to1 is
+		generic
+		(
+			N : integer := 1
+		);
+		port
+		(
+			mux_in_0		: in		std_logic_vector((N-1) downto 0);
+			mux_in_1		: in		std_logic_vector((N-1) downto 0);
+			sel					: in 		std_logic;
+			out_mux			: out 	std_logic_vector((N-1) downto 0)
+		);
+	end component;
+
 	begin
 		-- clock and reset generator instance --------------------------------------------------------------------------
 		clock_reset: clk_rst_generator
@@ -229,6 +246,8 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			rst_n
 		);
 
+		verification_mux: mux_2to1 generic map (32) port map (ssram_address, custom_address, force_config_space, controlled_ssram_address);
+
 		controlled_ssram_WE <= ssram_WE or force_read;
 		controlled_ssram_spacing <= ssram_address_space or force_config_space;
 
@@ -249,7 +268,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			controlled_ssram_WE,
 			'1',
 			controlled_ssram_spacing,
-			ssram_address,
+			controlled_ssram_address,
 			ssram_in,
 			ssram_out,
 			ssram_validout,
@@ -290,24 +309,40 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		);
 
 		-- verification of the configuration registers initialization --------------------------------------------------
-		config_regs_init_verification		: process (init)
+		config_regs_init_verification		: process (init, preliminary_check, ssram32_busy)
 		variable outputline							: line;
 		variable output_file_stat				: file_open_status;
 		variable count									: integer := 0;
 		begin
 			file_open(output_file_stat, output_file, "../sim/AvalonMM_to_SSRAM_memRegs.txt", write_mode);
-			if (init = '0' and preliminary_check = '1') then
+			if (init = '0' and preliminary_check = '1' and ssram32_busy = '0') then
 				if (rising_edge(clk)) then
 					force_read <= '1';
 					force_config_space <= '1';
-
-					-- MULTIPLEXARE L'INGRESSO DI INDIRZZO DELLA MEMORIA PER POTER FORZARE L'INDIRIZZO DEL REGISTRO DI CONFIG
-					-- RIPETERE L'OPERAZIONE PER ENTRAMBI I REGISTRI DI CONFIG PRIMA DI SETTARE PRELIMINARY CHECK (SFRUTTARE COUNT)
-
+					if (count = 0) then
+						custom_address <= config0_addr;
+						count := 1;
+					else
+						custom_address <= config1_addr;
+						count := 0;
+						preliminary_check <= '0';
+					end if;
 				end if;
-				-- preliminary_check <= '0';
+			else
+				force_read <= '0';
+				force_config_space <= '0';
 			end if;
 		end process config_regs_init_verification;
+
+		-- verification of the final configuration register operation ----------------------------------------------------
+		config_reg_final_verification: process ()
+		begin
+			if (stop_sim = '1') then
+				--
+				--
+				--
+			end if;
+		end process config_reg_final_verification;
 
 end behavior;
 

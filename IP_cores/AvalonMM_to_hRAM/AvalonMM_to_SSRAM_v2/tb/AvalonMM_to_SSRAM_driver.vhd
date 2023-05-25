@@ -11,7 +11,8 @@ use std.textio.all;
 -- driver for AvalonMM_to_SSRAM
 -- custom input delay (equal for all the input signals) for functional simulation
 
--- the input file ("AvalonMM_to_SSRAM_stimuli.txt") contains the operations (read or write in the memory or in the virtual configuration register)
+-- "AvalonMM_to_SSRAM_stimuli.txt" contains a sequence of operations related to the memory (read or write)
+-- "AvalonMM_to_SSRAM_config_stimuli.txt" contains a single writing operation of the config register followed by a single reading operation of the config register
 -- each row of the input file is made up by 49 bits (write operation) or 33 bits (read operation)
 -- the first bit represents the opcode ('0' to read, '1' to write)
 -- the following 32 bits represent the memory address
@@ -46,33 +47,37 @@ end AvalonMM_to_SSRAM_driver;
 
 architecture behavior of AvalonMM_to_SSRAM_driver is
 
-	file input_file: text;
+	file mem_file: text;
+	file config_file: text;
 
 	begin
-		input_driving							: process (clk, rst_n, avs_s0_waitrequest, avs_s0_readdatavalid, preliminary_check)
-		variable inputline				: line;
-		variable input_file_stat	: file_open_status;
-		variable opcode						: std_logic;
-		variable input_address		: std_logic_vector(31 downto 0);
-		variable input_writedata	: std_logic_vector(15 downto 0);
-		variable pending_read			: integer := 0;
-		variable stop_simulation	: std_logic := '0';
-		variable local_init 			: std_logic := '1';
+		input_driving								: process (clk, rst_n, avs_s0_waitrequest, avs_s0_readdatavalid, preliminary_check)
+		variable inputline					: line;
+		variable mem_file_stat			: file_open_status;
+		variable config_file_stat		: file_open_status;
+		variable opcode							: std_logic;
+		variable input_address			: std_logic_vector(31 downto 0);
+		variable input_writedata		: std_logic_vector(15 downto 0);
+		variable pending_read				: integer := 0;
+		variable stop_simulation		: std_logic := '0';
+		variable mem_op_end					: std_logic := '0';
+		variable local_init 				: std_logic := '1';
 		begin
-			file_open(input_file_stat, input_file, "../sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
+			file_open(mem_file_stat, mem_file, "../sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
+			file_open(config_file_stat, config_file, "../sim/AvalonMM_to_SSRAM_config_stimuli.txt", read_mode);
 			if (preliminary_check = '1') then
 				if (avs_s0_waitrequest = '0') then
 					local_init := '0';
 				end if;
 			else
-				if (not endfile(input_file)) then
+				if (not endfile(mem_file)) then
 					if (rst_n = '0') then
 						avs_s0_read	<= '0';
 						avs_s0_write <= '0';
 						start_sim <= '1';
 					elsif (rising_edge(clk)) then
 						if (avs_s0_waitrequest = '0') then
-							readline(input_file, inputline);
+							readline(mem_file, inputline);
 							read(inputline, opcode);
 							if (opcode = '0') then
 								-- start reading ----------------------------------------------------------------------------
@@ -96,18 +101,28 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 						end if;
 					end if;
 				else
-					if (rising_edge(clk)) then
-						if (avs_s0_waitrequest = '0') then
-							avs_s0_read <= '0' after custom_delay;
-							avs_s0_write <= '0' after custom_delay;
-							if (pending_read > 0) then
-								if (avs_s0_readdatavalid = '1') then
-									pending_read := pending_read - 1;
+					if (mem_op_end = '0') then
+						-- wait for the completion of all the pending operations ------------------------------------------
+						if (rising_edge(clk)) then
+							if (avs_s0_waitrequest = '0') then
+								avs_s0_read <= '0' after custom_delay;
+								avs_s0_write <= '0' after custom_delay;
+								if (pending_read > 0) then
+									if (avs_s0_readdatavalid = '1') then
+										pending_read := pending_read - 1;
+									end if;
+								else
+									mem_op_end := '1';
 								end if;
-							else
-								stop_simulation := '1';
 							end if;
 						end if;
+					else
+						-- start configuration register operations --------------------------------------------------------
+						--
+						--
+						--
+						--
+						stop_simulation := '1';
 					end if;
 				end if;
 			end if;
@@ -117,4 +132,4 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 
 end behavior;
 
-------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------

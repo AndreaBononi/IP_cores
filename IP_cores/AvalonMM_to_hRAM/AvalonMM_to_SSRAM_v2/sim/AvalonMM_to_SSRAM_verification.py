@@ -101,7 +101,10 @@ mem.add_register( address = virtual_config_addr, value = virtual_config_default_
 try:
     stimuli = open( stimuli_file, "w" )
     expected = open( expected_file, "w" )
-    # generate writing operations
+    # the first couple of expected results is the initial content of the configuration registers
+    expected.write( mem.read_register( address = config0_addr ) )
+    expected.write( mem.read_register( address = config1_addr ) )
+    # generate memory writing operations
     for decimal_address in range( 0, 2 ** working_address_size ):
         address = format( decimal_address, str( address_size ) + 'b' ).replace(" ", "0")
         writedata = format( random.randint( 0,  2 ** word_size ), str( word_size ) + 'b' ).replace(" ", "0")
@@ -112,7 +115,7 @@ try:
         stimuli.write( "\n" )
         # high-level model updating
         mem.write( address =  address, writedata = writedata )
-    # generate reading operations and expected results
+    # generate memory reading operations and expected results
     for decimal_address in range( 0, 2 ** working_address_size ):
         address = format( decimal_address, str( address_size ) + 'b' ).replace(" ", "0")
         # stimuli file updating
