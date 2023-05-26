@@ -7,16 +7,27 @@ import subprocess
 # private modules ----------------------------------------------------------------------------------------------------------------------
 import memory
 
-# constants ----------------------------------------------------------------------------------------------------------------------------
+# files and directories ----------------------------------------------------------------------------------------------------------------
 simulation_project = "AvalonMM_to_SSRAM"
 log_files_dir = "log_files"
 log_file = log_files_dir + "/AvalonMM_to_SSRAM_simulation_log.txt"
 stimuli_file = "AvalonMM_to_SSRAM_stimuli.txt"
+config_stimuli_file = "AvalonMM_to_SSRAM_config_stimuli.txt"
 output_file = "AvalonMM_to_SSRAM_readValues.txt"
 expected_file = "AvalonMM_to_SSRAM_expectedReadValues.txt"
 simulation_file = "AvalonMM_to_SSRAM_simulation.do"
 tb_file = "../tb/AvalonMM_to_SSRAM_testbench.vhd"
 vsim_path = '~/intelFPGA/20.1/modelsim_ase/bin/vsim'
+
+# constants ----------------------------------------------------------------------------------------------------------------------------
+config0_addr = "00000000000000000000100000000000"
+config1_addr = "00000000000000000000100000000001"
+config0_default_value = "1000111100011111"
+config1_default_value = "0000000000000010"
+virtual_config_addr = "00000000010000000000000000000000"
+virtual_config_default_value = "0000000000000000"
+virtual_config_custom_value = "0000000000000011"
+config0_custom_value = "0000111100010111"
 ssram_valid_time = ["5 ns", "15 ns", "25 ns"]
 clock = "10 ns"
 address_size = 32
@@ -24,12 +35,6 @@ working_address_size = 8        # the memory has 32 addressing bits, but only th
 word_size = 16
 read_opcode = '0'
 write_opcode = '1'
-config0_addr = "00000000000000000000100000000000"
-config1_addr = "00000000000000000000100000000001"
-config0_default_value = "0000111100011111"
-config1_default_value = "0000000000000010"
-virtual_config_addr = "00000000010000000000000000000000"
-virtual_config_default_value = "0000000000000000"
 
 # environment preparation --------------------------------------------------------------------------------------------------------------
 subprocess.run( "rm -r sim_*ns", shell=True )
@@ -100,10 +105,13 @@ mem.add_register( address = virtual_config_addr, value = virtual_config_default_
 # later, the value of each memory location is read
 try:
     stimuli = open( stimuli_file, "w" )
+    config_stimuli = open( config_stimuli_file, "w" )
     expected = open( expected_file, "w" )
     # the first couple of expected results is the initial content of the configuration registers
     expected.write( mem.read_register( address = config0_addr ) )
+    expected.write( "\n" )
     expected.write( mem.read_register( address = config1_addr ) )
+    expected.write( "\n" )
     # generate memory writing operations
     for decimal_address in range( 0, 2 ** working_address_size ):
         address = format( decimal_address, str( address_size ) + 'b' ).replace(" ", "0")
@@ -125,6 +133,23 @@ try:
         # evaluate expected result using high-level model
         expected.write( mem.read( address = address ) )
         expected.write( "\n" )
+    # generate virtual configuration register write operation
+    stimuli.write( write_opcode )
+    stimuli.write( virtual_config_addr )
+    stimuli.write( virtual_config_custom_value )
+    stimuli.write( "\n" )
+    # high-level model updating
+    mem.write_register( address = virtual_config_addr, value = virtual_config_custom_value )
+    # generate virtual configuration register read operation
+    stimuli.write( read_opcode )
+    stimuli.write( virtual_config_addr )
+    stimuli.write( "\n" )
+    # evaluate expected result using high-level model
+    expected.write( mem.read_register( address = virtual_config_addr ) )
+    expected.write( "\n" )
+    # the last expected result is the final reading of the configuration register 0
+    expected.write( mem.read_register( address = config0_addr ) )
+    expected.write( "\n" )
 except OSError:
     print( "Error: files creation failed" )
     log.write( "Error: files creation failed" )

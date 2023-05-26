@@ -3,19 +3,9 @@ Reading pref.tcl
 # 2020.1
 
 # do AvalonMM_to_SSRAM_simulation.do
+# ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
-# vcom ../src/reg.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity reg
-# -- Compiling architecture behavior of reg
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
 # vcom ../src/d_flipflop.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -23,10 +13,10 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity d_flipflop
 # -- Compiling architecture behavior of d_flipflop
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
 # vcom ../src/t_flip_flop.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -34,10 +24,32 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity t_flip_flop
 # -- Compiling architecture behavior of t_flip_flop
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
+# vcom ../src/reg.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity reg
+# -- Compiling architecture behavior of reg
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:00:39 on May 26,2023
+# vcom ../src/mux_2to1.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity mux_2to1
+# -- Compiling architecture behavior of mux_2to1
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:00:39 on May 26,2023
 # vcom ../src/fifo4.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -45,10 +57,10 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity fifo4
 # -- Compiling architecture behavior of fifo4
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
 # vcom ../src/AvalonMM_to_SSRAM_controlUnit.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -56,10 +68,10 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity AvalonMM_to_SSRAM_controlUnit
 # -- Compiling architecture fsm of AvalonMM_to_SSRAM_controlUnit
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
 # vcom ../src/AvalonMM_to_SSRAM_executionUnit.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -67,10 +79,10 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity AvalonMM_to_SSRAM_executionUnit
 # -- Compiling architecture rtl of AvalonMM_to_SSRAM_executionUnit
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
 # vcom ../src/AvalonMM_to_SSRAM.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -78,10 +90,10 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity AvalonMM_to_SSRAM
 # -- Compiling architecture rtl of AvalonMM_to_SSRAM
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
 # vcom ../tb/clk_rst_generator.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -89,10 +101,10 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity clk_rst_generator
 # -- Compiling architecture behavior of clk_rst_generator
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:39 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:39 on May 26,2023
 # vcom ../tb/ssram32.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -100,10 +112,10 @@ Reading pref.tcl
 # -- Loading package NUMERIC_STD
 # -- Compiling entity ssram32
 # -- Compiling architecture behavior of ssram32
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:40 on May 26,2023, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:40 on May 26,2023
 # vcom ../tb/AvalonMM_to_SSRAM_monitor.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -114,10 +126,10 @@ Reading pref.tcl
 # -- Loading package std_logic_textio
 # -- Compiling entity AvalonMM_to_SSRAM_monitor
 # -- Compiling architecture behavior of AvalonMM_to_SSRAM_monitor
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:40 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:40 on May 26,2023
 # vcom ../tb/AvalonMM_to_SSRAM_driver.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -128,41 +140,45 @@ Reading pref.tcl
 # -- Loading package std_logic_textio
 # -- Compiling entity AvalonMM_to_SSRAM_driver
 # -- Compiling architecture behavior of AvalonMM_to_SSRAM_driver
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:40 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:40 on May 26,2023
 # vcom ../tb/AvalonMM_to_SSRAM_testbench.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package std_logic_textio
 # -- Compiling entity AvalonMM_to_SSRAM_testbench
 # -- Compiling architecture behavior of AvalonMM_to_SSRAM_testbench
-# End time: 17:06:32 on May 14,2023, Elapsed time: 0:00:00
+# End time: 19:00:40 on May 26,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -c -t 1ns work.AvalonMM_to_SSRAM_testbench -voptargs="+acc" 
-# Start time: 17:06:32 on May 14,2023
+# Start time: 19:00:40 on May 26,2023
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading ieee.std_logic_textio(body)
 # Loading work.avalonmm_to_ssram_testbench(behavior)
 # Loading work.clk_rst_generator(behavior)
 # Loading work.avalonmm_to_ssram(rtl)
 # Loading work.avalonmm_to_ssram_executionunit(rtl)
 # Loading work.reg(behavior)
+# Loading work.d_flipflop(behavior)
+# Loading work.mux_2to1(behavior)
 # Loading work.fifo4(behavior)
 # Loading work.t_flip_flop(behavior)
-# Loading work.d_flipflop(behavior)
 # Loading work.avalonmm_to_ssram_controlunit(fsm)
 # Loading work.ssram32(behavior)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading ieee.std_logic_textio(body)
 # Loading work.avalonmm_to_ssram_driver(behavior)
 # Loading work.avalonmm_to_ssram_monitor(behavior)
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ns  Iteration: 0  Instance: /avalonmm_to_ssram_testbench/mem
-# End time: 17:06:33 on May 14,2023, Elapsed time: 0:00:01
+VSIM 2> # End time: 19:00:41 on May 26,2023, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1

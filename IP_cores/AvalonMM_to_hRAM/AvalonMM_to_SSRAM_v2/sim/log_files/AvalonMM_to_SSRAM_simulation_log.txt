@@ -11,14 +11,17 @@ File ../tb/AvalonMM_to_SSRAM_testbench.vhd must include the exact following line
 --------------------------------------------------------------------------------------------------------------
 Starting simulation for SSRAM valid time equal to 5 ns ... 
 Simulation completed 
-DUT is working correctly 
+DUT is not working as expected 
+2 errors detected 
 --------------------------------------------------------------------------------------------------------------
 Starting simulation for SSRAM valid time equal to 15 ns ... 
 Simulation completed 
-DUT is working correctly 
+DUT is not working as expected 
+2 errors detected 
 --------------------------------------------------------------------------------------------------------------
 Starting simulation for SSRAM valid time equal to 25 ns ... 
 Simulation completed 
-DUT is working correctly 
+DUT is not working as expected 
+2 errors detected 
 --------------------------------------------------------------------------------------------------------------
-Verification result: PASSED 
+Verification result: FAILED 

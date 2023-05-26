@@ -37,7 +37,7 @@ entity AvalonMM_to_SSRAM_driver is
 		avs_s0_read       		: out 	std_logic;
 		avs_s0_write      		: out 	std_logic;
 		avs_s0_writedata  		: out 	std_logic_vector(15 downto 0);
-		start_sim							: out		std_logic := '0';
+		start_sim							:	out		std_logic := '0';
 		driver_stop						: out		std_logic := '0';
 		init									: out		std_logic := '1'
 	);
@@ -50,6 +50,8 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 	file mem_file: text;
 	file config_file: text;
 
+	signal pending: integer; -- RIMUOVERE!!!
+
 	begin
 		input_driving								: process (clk, rst_n, avs_s0_waitrequest, avs_s0_readdatavalid, preliminary_check)
 		variable inputline					: line;
@@ -59,23 +61,19 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 		variable input_address			: std_logic_vector(31 downto 0);
 		variable input_writedata		: std_logic_vector(15 downto 0);
 		variable pending_read				: integer := 0;
-		variable drv_stop						: std_logic := '0';
 		variable mem_op_end					: std_logic := '0';
-		variable local_init 				: std_logic := '1';
 		begin
 			file_open(mem_file_stat, mem_file, "../sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
 			file_open(config_file_stat, config_file, "../sim/AvalonMM_to_SSRAM_config_stimuli.txt", read_mode);
-			if (preliminary_check = '1') then
-				if (avs_s0_waitrequest = '0') then
-					local_init := '0';
-				end if;
+			if (rst_n = '0') then
+				avs_s0_read	<= '0';
+				avs_s0_write <= '0';
+				start_sim <= '1';
+			elsif (preliminary_check = '1' and avs_s0_waitrequest = '0') then
+				init <= '0';
 			else
 				if (not endfile(mem_file)) then
-					if (rst_n = '0') then
-						avs_s0_read	<= '0';
-						avs_s0_write <= '0';
-						start_sim <= '1';
-					elsif (rising_edge(clk)) then
+					if (rising_edge(clk)) then
 						if (avs_s0_waitrequest = '0') then
 							readline(mem_file, inputline);
 							read(inputline, opcode);
@@ -155,7 +153,7 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 											pending_read := pending_read - 1;
 										end if;
 									else
-										drv_stop := '1';
+										driver_stop <= '1';
 									end if;
 								end if;
 							end if;
@@ -163,8 +161,7 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 					end if;
 				end if;
 			end if;
-			driver_stop <= drv_stop;
-			init <= local_init;
+			pending <= pending_read;
 		end process input_driving;
 
 end behavior;

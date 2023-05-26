@@ -186,14 +186,14 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		previous_op_req <= por_out;
 
 		POR: d_flipflop port map (clk, por_enable, por_clear_n, op, por_out);
-		
-		config_reg_access <= 	
-			avs_s0_address(22) or (not avs_s0_address(21)) or (not avs_s0_address(20)) or (not avs_s0_address(19)) 
-			or (not avs_s0_address(18)) or (not avs_s0_address(17)) or (not avs_s0_address(16)) or (not avs_s0_address(15))
-			or (not avs_s0_address(14)) or (not avs_s0_address(13)) or (not avs_s0_address(12)) or (not avs_s0_address(11)) 
-			or (not avs_s0_address(10)) or (not avs_s0_address(9)) or (not avs_s0_address(8)) or (not avs_s0_address(7)) 
-			or (not avs_s0_address(6)) or (not avs_s0_address(5)) or (not avs_s0_address(4)) or (not avs_s0_address(3)) 
-			or (not avs_s0_address(2)) or (not avs_s0_address(1)) or (not avs_s0_address(0))
+
+		config_reg_access <=
+			avs_s0_address(22) and (not avs_s0_address(21)) and (not avs_s0_address(20)) and (not avs_s0_address(19))
+			and (not avs_s0_address(18)) and (not avs_s0_address(17)) and (not avs_s0_address(16)) and (not avs_s0_address(15))
+			and (not avs_s0_address(14)) and (not avs_s0_address(13)) and (not avs_s0_address(12)) and (not avs_s0_address(11))
+			and (not avs_s0_address(10)) and (not avs_s0_address(9)) and (not avs_s0_address(8)) and (not avs_s0_address(7))
+			and (not avs_s0_address(6)) and (not avs_s0_address(5)) and (not avs_s0_address(4)) and (not avs_s0_address(3))
+			and (not avs_s0_address(2)) and (not avs_s0_address(1)) and (not avs_s0_address(0))
 		;
 
 		virtual_config_in(15 downto 2) 	<= "00000000000000";
@@ -205,7 +205,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 		config_mux_in0(14 downto 12)	<= drive_strength;
 		config_mux_in0(11 downto 8)		<= "1111";
 		config_mux_in0(7 downto 4) 		<= initial_latency;
-		config_mux_in0(3)							<= virtual_config_out(1);
+		config_mux_in0(3)							<= not(virtual_config_out(1));
 		config_mux_in0(2) 						<= hybrid_burst_enable;
 		config_mux_in0(1 downto 0) 		<= burst_lenght;
 

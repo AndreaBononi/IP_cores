@@ -54,7 +54,7 @@ else:
         # if address_size and/or word_size cannot be converted in integer numbers, AttributeError is raised
         def __init__( self, address_size = 32, word_size = 16 ):
             try:
-                if ( int( address_binary_size ) in self.__lenghts and int( word_binary_size ) in self.__lenghts ):
+                if ( int( address_size ) in self.__lenghts and int( word_size ) in self.__lenghts ):
                     self.__address_size = int( address_size )
                     self.__word_size = int( word_size )
                     self.__memory_size = ( 2 ** ( int( address_size ) ) ) * ( int( word_size ) )

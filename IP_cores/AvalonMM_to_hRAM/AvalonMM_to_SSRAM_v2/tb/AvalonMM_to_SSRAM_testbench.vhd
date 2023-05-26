@@ -3,6 +3,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_textio.all;
+library std;
+use std.textio.all;
 
 -- testbench file for Avalon_to_SSRAM
 -- only the driver (input application) and the monitor (output storage) are created locally
@@ -43,7 +47,10 @@ end AvalonMM_to_SSRAM_testbench;
 
 architecture behavior of AvalonMM_to_SSRAM_testbench is
 
-	-- constants ------------------------------------------------------------------------------------------------------
+	-- outout file -----------------------------------------------------------------------------------------------------
+	file output_file: text;
+
+	-- constants -------------------------------------------------------------------------------------------------------
 	constant clock_period: time := 10 ns;
 	constant reset_time: time := 15 ns;
 	constant custom_delay: time := 1 ns;
@@ -79,14 +86,14 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 	signal ssram_clear_n					: std_logic;
 
 	-- simulation signals ---------------------------------------------------------------------------------------------
-	signal start_sim          				: std_logic;
+	signal start_sim		        			: std_logic;
 	signal stop_sim		        				: std_logic := '0';
 	signal driver_stop        				: std_logic;
 	signal init			          				: std_logic;
 	signal preliminary_check					: std_logic := '1';
 	signal force_read									: std_logic := '0';
 	signal force_config_space					: std_logic := '0';
-	signal controlled_ssram_WE				: std_logic;
+	signal controlled_ssram_OE				: std_logic;
 	signal controlled_ssram_spacing		: std_logic;
 	signal controlled_ssram_address		: std_logic_vector(31 downto 0);
 	signal custom_address							: std_logic_vector(31 downto 0);
@@ -191,7 +198,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		avs_s0_read       		: out 	std_logic;
 		avs_s0_write      		: out 	std_logic;
 		avs_s0_writedata  		: out 	std_logic_vector(15 downto 0);
-		start_sim							: out		std_logic := '0';
+		start_sim							:	out		std_logic := '0';
 		driver_stop						: out		std_logic := '0';
 		init									: out		std_logic := '1'
 	);
@@ -224,7 +231,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		(
 			clk,
 			rst_n,
-			start_sim,
+			'1',
 			stop_sim
 		);
 
@@ -254,7 +261,7 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 
 		verification_mux: mux_2to1 generic map (32) port map (ssram_address, custom_address, force_config_space, controlled_ssram_address);
 
-		controlled_ssram_WE <= ssram_WE or force_read;
+		controlled_ssram_OE <= ssram_OE or force_read;
 		controlled_ssram_spacing <= ssram_address_space or force_config_space;
 
 		-- SSRAM instance ----------------------------------------------------------------------------------------------
@@ -270,8 +277,8 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		(
 			clk,
 			rst_n,
-			ssram_OE,
-			controlled_ssram_WE,
+			controlled_ssram_OE,
+			ssram_WE,
 			'1',
 			controlled_ssram_spacing,
 			controlled_ssram_address,
@@ -293,13 +300,15 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 			rst_n,
 			avs_s0_waitrequest,
 			avs_s0_readdatavalid,
+			preliminary_check,
 			avs_s0_readdata,
 			avs_s0_address,
 			avs_s0_read,
 			avs_s0_write,
 			avs_s0_writedata,
 			start_sim,
-			driver_stop
+			driver_stop,
+			init
 		);
 
 		-- monitor instance --------------------------------------------------------------------------------------------
@@ -315,43 +324,42 @@ architecture behavior of AvalonMM_to_SSRAM_testbench is
 		);
 
 		-- initial and final configuration registers reading -------------------------------------------------------------
-		config_regs_init_verification		: process (clk, init, preliminary_check, ssram32_busy, avs_s0_readdatavalid, driver_stop)
-		variable outputline							: line;
-		variable output_file_stat				: file_open_status;
-		variable count									: integer := 0;
-		variable final_read							: integer := 0;
+		config_regs_init_verification		: process (clk, init, preliminary_check, ssram_busy, avs_s0_readdatavalid, driver_stop)
+		variable count									: std_logic := '0';
+		variable final_read							: std_logic := '0';
+		variable busy_delay							: std_logic := '0';
 		begin
-			file_open(output_file_stat, output_file, "../sim/AvalonMM_to_SSRAM_memRegs.txt", write_mode);
-			if (init = '0' and preliminary_check = '1' and ssram32_busy = '0') then
-				-- initial configuration registers reading
-				if (rising_edge(clk)) then
+			if (rising_edge(clk)) then
+				if (init = '0' and preliminary_check = '1' and ssram_busy = '0' and busy_delay = '0') then
+					-- initial configuration registers reading
 					force_read <= '1';
 					force_config_space <= '1';
-					if (count = 0) then
+					if (count = '0') then
 						custom_address <= config0_addr;
-						count := 1;
+						count := '1';
+						busy_delay := '1';
 					else
 						custom_address <= config1_addr;
-						count := 0;
+						count := '0';
 						preliminary_check <= '0';
+						busy_delay := '1';
 					end if;
-				end if;
-			elsif (driver_stop = '1' and final_read = '0') then
-				-- final configuration register reading
-				if (rising_edge(clk)) then
+				elsif (driver_stop = '1' and final_read = '0') then
+					-- final configuration register reading
 					force_read <= '1';
 					force_config_space <= '1';
 					custom_address <= config0_addr;
-					final_read <= '1';
+					final_read := '1';
+				elsif (final_read = '1' and avs_s0_readdatavalid = '1') then
+					-- the final configuration register reading has already been commanded (final_read = '1')
+					-- we just have to wait for its completion before terminating the simulation
+					-- when avs_s0_readdatavalid goes high, the operation is completed
+					stop_sim <= '1';
+				else
+					force_read <= '0';
+					force_config_space <= '0';
+					busy_delay := '0';
 				end if;
-			elsif (final_read = '1' and avs_s0_readdatavalid) then
-				-- the final configuration register reading has already been commanded (final_read = '1')
-				-- we just have to wait for its completion before terminating the simulation
-				-- when avs_s0_readdatavalid goes high, the operation is completed
-				stop_sim <= '1';
-			else
-				force_read <= '0';
-				force_config_space <= '0';
 			end if;
 		end process config_regs_init_verification;
 
