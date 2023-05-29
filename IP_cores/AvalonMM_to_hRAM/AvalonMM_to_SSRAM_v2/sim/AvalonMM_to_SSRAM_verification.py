@@ -12,6 +12,7 @@ simulation_project = "AvalonMM_to_SSRAM"
 log_files_dir = "log_files"
 log_file = log_files_dir + "/AvalonMM_to_SSRAM_simulation_log.txt"
 stimuli_file = "AvalonMM_to_SSRAM_stimuli.txt"
+stimuli2_file = "AvalonMM_to_SSRAM_stimuli2.txt"
 config_stimuli_file = "AvalonMM_to_SSRAM_config_stimuli.txt"
 output_file = "AvalonMM_to_SSRAM_readValues.txt"
 expected_file = "AvalonMM_to_SSRAM_expectedReadValues.txt"
@@ -26,8 +27,8 @@ config0_default_value = "1000111100011111"
 config1_default_value = "0000000000000010"
 virtual_config_addr = "00000000010000000000000000000000"
 virtual_config_default_value = "0000000000000000"
-virtual_config_custom_value = "0000000000000011"
-config0_custom_value = "0000111100010111"
+virtual_config_dpd_value = "0000000000000011"
+config0_dpd_value = "0000111100010111"
 ssram_valid_time = ["5 ns", "15 ns", "25 ns"]
 clock = "10 ns"
 address_size = 32
@@ -136,11 +137,11 @@ try:
     # generate virtual configuration register write operation
     stimuli.write( write_opcode )
     stimuli.write( virtual_config_addr )
-    stimuli.write( virtual_config_custom_value )
+    stimuli.write( virtual_config_dpd_value )
     stimuli.write( "\n" )
     # high-level model updating
-    mem.write_register( address = virtual_config_addr, value = virtual_config_custom_value )
-    mem.write_register( address = config0_addr, value = config0_custom_value )
+    mem.write_register( address = virtual_config_addr, value = virtual_config_dpd_value )
+    mem.write_register( address = config0_addr, value = config0_dpd_value )
     # generate virtual configuration register read operation
     stimuli.write( read_opcode )
     stimuli.write( virtual_config_addr )
@@ -151,6 +152,9 @@ try:
     # the last expected result is the final reading of the configuration register 0
     expected.write( mem.read_register( address = config0_addr ) )
     expected.write( "\n" )
+    # dpd mode has been turned on
+    # after that, the memory stimuli file is applied again to the DUT
+    # however, the high-level model must not be updated, since all these operations should be ignored
 except OSError:
     print( "Error: files creation failed" )
     log.write( "Error: files creation failed" )
@@ -162,6 +166,8 @@ except AttributeError:
 else:
     stimuli.close()
     expected.close()
+    subprocess.run( 'cp ' + stimuli_file + ' ' + stimuli2_file, shell=True )
+
 
 # simulation and verification ---------------------------------------------------------------------------------------------------------
 # a dedicated simulation is performed for each SSRAM valid time value

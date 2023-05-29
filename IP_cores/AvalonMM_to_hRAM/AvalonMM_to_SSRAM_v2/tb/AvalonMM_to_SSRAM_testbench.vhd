@@ -33,8 +33,10 @@ use std.textio.all;
 -- for this reason, the forced reading is catched by the monitor and the result is stored in the same file of all the other reading results
 
 -- after the initial reading of the memory configuration registers, the driver provides a set of memory writing and memory reading operations
--- at the end, it also provides a virtual configuration register writing and a virtual configuration register reading
--- after these last two operations, it is useful to verify again the value of the config0 register of the memory (config1 cannot be modified)
+-- at a certain point, it also provides a virtual configuration register writing and a virtual configuration register reading
+-- with this operation, dpd mode is turned on
+-- after this operation, other memroy operations are commanded, but they will be ignored by the DUT (since dpd mode is on)
+-- at the end, it is useful to verify again the value of the config0 register of the memory (config1 cannot be modified)
 -- the final reading of the memory configuration registers is also implemented in this file
 -- the result is is stored in the same file of all the other reading results
 

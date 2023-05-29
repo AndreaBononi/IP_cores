@@ -13,6 +13,7 @@ use std.textio.all;
 
 -- "AvalonMM_to_SSRAM_stimuli.txt" contains a sequence of operations related to the memory (read or write)
 -- "AvalonMM_to_SSRAM_config_stimuli.txt" contains a single writing operation of the config register followed by a single reading operation of the config register
+-- "AvalonMM_to_SSRAM_stimuli.txt" contains another sequence of operations related to the memory (read or write)
 -- each row of the input files is made up by 49 bits (write operation) or 33 bits (read operation)
 -- the first bit represents the opcode ('0' to read, '1' to write)
 -- the following 32 bits represent the memory address
@@ -49,6 +50,7 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 
 	file mem_file: text;
 	file config_file: text;
+	file mem2_file: text;
 
 	signal pending: integer; -- RIMUOVERE!!!
 
@@ -57,14 +59,15 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 		variable inputline					: line;
 		variable mem_file_stat			: file_open_status;
 		variable config_file_stat		: file_open_status;
+		variable mem2_file_stat			: file_open_status;
 		variable opcode							: std_logic;
 		variable input_address			: std_logic_vector(31 downto 0);
 		variable input_writedata		: std_logic_vector(15 downto 0);
 		variable pending_read				: integer := 0;
-		variable mem_op_end					: std_logic := '0';
 		begin
 			file_open(mem_file_stat, mem_file, "../sim/AvalonMM_to_SSRAM_stimuli.txt", read_mode);
 			file_open(config_file_stat, config_file, "../sim/AvalonMM_to_SSRAM_config_stimuli.txt", read_mode);
+			file_open(mem2_file_stat, mem2_file, "../sim/AvalonMM_to_SSRAM_stimuli2.txt", read_mode);
 			if (rst_n = '0') then
 				avs_s0_read	<= '0';
 				avs_s0_write <= '0';
@@ -99,37 +102,48 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 						end if;
 					end if;
 				else
-					if (mem_op_end = '0') then
-						-- wait for the completion of all the pending operations ------------------------------------------
+					-- start configuration register operations --------------------------------------------------------
+					if (not endfile(config_file)) then
 						if (rising_edge(clk)) then
-							if (pending_read > 0) then
-								if (avs_s0_readdatavalid = '1') then
-									pending_read := pending_read - 1;
-								end if;
-							else
-								mem_op_end := '1';
-							end if;
 							if (avs_s0_waitrequest = '0') then
-								avs_s0_read <= '0' after custom_delay;
-								avs_s0_write <= '0' after custom_delay;
+								readline(config_file, inputline);
+								read(inputline, opcode);
+								if (opcode = '0') then
+									-- start reading operation ----------------------------------------------------------------
+									read(inputline, input_address);
+									avs_s0_write <= '0' after custom_delay;
+									avs_s0_read <= '1' after custom_delay;
+									avs_s0_address <= input_address after custom_delay;
+									pending_read := pending_read + 1;
+								elsif (opcode = '1') then
+									-- start writing operation ----------------------------------------------------------------
+									read(inputline, input_address);
+									read(inputline, input_writedata);
+									avs_s0_read <= '0' after custom_delay;
+									avs_s0_write <= '1' after custom_delay;
+									avs_s0_address <= input_address after custom_delay;
+									avs_s0_writedata <= input_writedata after custom_delay;
+								end if;
+							end if;
+							if (avs_s0_readdatavalid = '1' and pending_read > 0) then
+								pending_read := pending_read - 1;
 							end if;
 						end if;
 					else
-						-- start configuration register operations --------------------------------------------------------
-						if (not endfile(config_file)) then
+						--start useless memory operations -----------------------------------------------------------------
+						if (not endfile(mem2_file)) then
 							if (rising_edge(clk)) then
 								if (avs_s0_waitrequest = '0') then
-									readline(config_file, inputline);
+									readline(mem2_file, inputline);
 									read(inputline, opcode);
 									if (opcode = '0') then
-										-- start reading operation ----------------------------------------------------------------
+										-- start reading operation --------------------------------------------------------------------
 										read(inputline, input_address);
 										avs_s0_write <= '0' after custom_delay;
 										avs_s0_read <= '1' after custom_delay;
 										avs_s0_address <= input_address after custom_delay;
-										pending_read := pending_read + 1;
 									elsif (opcode = '1') then
-										-- start writing operation ----------------------------------------------------------------
+										-- start writing operation --------------------------------------------------------------------
 										read(inputline, input_address);
 										read(inputline, input_writedata);
 										avs_s0_read <= '0' after custom_delay;
@@ -138,7 +152,9 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 										avs_s0_writedata <= input_writedata after custom_delay;
 									end if;
 								end if;
-								if (avs_s0_readdatavalid = '1' and pending_read > 0) then
+							end if;
+							if (pending_read > 0) then
+								if (avs_s0_readdatavalid = '1') then
 									pending_read := pending_read - 1;
 								end if;
 							end if;
