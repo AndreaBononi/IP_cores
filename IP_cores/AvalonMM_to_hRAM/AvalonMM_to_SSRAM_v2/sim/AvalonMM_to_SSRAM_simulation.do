@@ -62,6 +62,7 @@ sim:/avalonmm_to_ssram_testbench/DUT/CU/address_space_sel \
 sim:/avalonmm_to_ssram_testbench/DUT/CU/mem_enable \
 sim:/avalonmm_to_ssram_testbench/DUT/CU/force_write \
 sim:/avalonmm_to_ssram_testbench/DUT/EU/virtual_config_out \
-sim:/avalonmm_to_ssram_testbench/DUT/EU/virtual_config_in 
+sim:/avalonmm_to_ssram_testbench/DUT/EU/virtual_config_in \
+sim:/avalonmm_to_ssram_testbench/driver/pending
 run 30us
-# quit -f
+quit -f

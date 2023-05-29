@@ -54,7 +54,6 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 	type state is
 	(
 		reset,
-		config_init,
 		config0_init_memcmd,
 		config0_init_waitmem,
 		config1_init_memcmd,
@@ -109,9 +108,6 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 				case present_state is
 					---------------------------------------------------------------------------------------------------------------------
 					when reset =>
-						next_state <= config_init;
-					---------------------------------------------------------------------------------------------------------------------
-					when config_init =>
 						next_state <= config0_init_memcmd;
 					---------------------------------------------------------------------------------------------------------------------
 					when config0_init_memcmd =>
@@ -386,9 +382,6 @@ architecture fsm of AvalonMM_to_SSRAM_controlUnit is
 					por_clear_n <= '0';
 					tgl_clear_n <= '0';
 					virtual_config_clear_n <= '0';
-				------------------------------------------------------------------------------------------------------------------------
-				when config_init =>
-					waitrequest <= '1';
 				------------------------------------------------------------------------------------------------------------------------
 				when config0_init_memcmd =>
 					waitrequest <= '1';

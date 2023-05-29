@@ -102,16 +102,16 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 					if (mem_op_end = '0') then
 						-- wait for the completion of all the pending operations ------------------------------------------
 						if (rising_edge(clk)) then
+							if (pending_read > 0) then
+								if (avs_s0_readdatavalid = '1') then
+									pending_read := pending_read - 1;
+								end if;
+							else
+								mem_op_end := '1';
+							end if;
 							if (avs_s0_waitrequest = '0') then
 								avs_s0_read <= '0' after custom_delay;
 								avs_s0_write <= '0' after custom_delay;
-								if (pending_read > 0) then
-									if (avs_s0_readdatavalid = '1') then
-										pending_read := pending_read - 1;
-									end if;
-								else
-									mem_op_end := '1';
-								end if;
 							end if;
 						end if;
 					else
@@ -145,16 +145,16 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 						else
 							-- wait for completion --------------------------------------------------------------------------
 							if (rising_edge(clk)) then
+								if (pending_read > 0) then
+									if (avs_s0_readdatavalid = '1') then
+										pending_read := pending_read - 1;
+									end if;
+								else
+									driver_stop <= '1';
+								end if;
 								if (avs_s0_waitrequest = '0') then
 									avs_s0_read <= '0' after custom_delay;
 									avs_s0_write <= '0' after custom_delay;
-									if (pending_read > 0) then
-										if (avs_s0_readdatavalid = '1') then
-											pending_read := pending_read - 1;
-										end if;
-									else
-										driver_stop <= '1';
-									end if;
 								end if;
 							end if;
 						end if;

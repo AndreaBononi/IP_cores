@@ -140,6 +140,7 @@ try:
     stimuli.write( "\n" )
     # high-level model updating
     mem.write_register( address = virtual_config_addr, value = virtual_config_custom_value )
+    mem.write_register( address = config0_addr, value = config0_custom_value )
     # generate virtual configuration register read operation
     stimuli.write( read_opcode )
     stimuli.write( virtual_config_addr )
