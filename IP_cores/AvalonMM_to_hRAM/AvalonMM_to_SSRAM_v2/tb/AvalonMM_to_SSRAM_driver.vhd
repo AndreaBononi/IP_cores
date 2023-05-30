@@ -52,8 +52,6 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 	file config_file: text;
 	file mem2_file: text;
 
-	signal pending: integer; -- RIMUOVERE!!!
-
 	begin
 		input_driving								: process (clk, rst_n, avs_s0_waitrequest, avs_s0_readdatavalid, preliminary_check)
 		variable inputline					: line;
@@ -177,7 +175,6 @@ architecture behavior of AvalonMM_to_SSRAM_driver is
 					end if;
 				end if;
 			end if;
-			pending <= pending_read;
 		end process input_driving;
 
 end behavior;

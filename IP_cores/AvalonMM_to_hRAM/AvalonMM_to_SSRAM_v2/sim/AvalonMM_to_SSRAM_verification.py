@@ -135,17 +135,17 @@ try:
         expected.write( mem.read( address = address ) )
         expected.write( "\n" )
     # generate virtual configuration register write operation
-    stimuli.write( write_opcode )
-    stimuli.write( virtual_config_addr )
-    stimuli.write( virtual_config_dpd_value )
-    stimuli.write( "\n" )
+    config_stimuli.write( write_opcode )
+    config_stimuli.write( virtual_config_addr )
+    config_stimuli.write( virtual_config_dpd_value )
+    config_stimuli.write( "\n" )
     # high-level model updating
     mem.write_register( address = virtual_config_addr, value = virtual_config_dpd_value )
     mem.write_register( address = config0_addr, value = config0_dpd_value )
     # generate virtual configuration register read operation
-    stimuli.write( read_opcode )
-    stimuli.write( virtual_config_addr )
-    stimuli.write( "\n" )
+    config_stimuli.write( read_opcode )
+    config_stimuli.write( virtual_config_addr )
+    config_stimuli.write( "\n" )
     # evaluate expected result using high-level model
     expected.write( mem.read_register( address = virtual_config_addr ) )
     expected.write( "\n" )
@@ -165,6 +165,7 @@ except AttributeError:
     raise
 else:
     stimuli.close()
+    config_stimuli.close()
     expected.close()
     subprocess.run( 'cp ' + stimuli_file + ' ' + stimuli2_file, shell=True )
 
