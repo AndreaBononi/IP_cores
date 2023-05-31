@@ -1,22 +1,8 @@
-Timing simulation: se e come farla?
-
-Come discriminare tra memory addressing e configuration register addressing?
-Una possibilità è quella di inserire parallelamente all'interfaccia AvalonMM anche un'interfaccia Conduit (personalizzabile).
-Una'ltra possibilità consiste nel realizzare un indirizzamento virtuale.
-Lo stesso discorso può essere fatto per la selezione del Burst Type, ma in questo caso avrebbe poco senso creare un indirizamento virtuale.
-
-Clock della hRAM: devo fare un clock gating? Potrei avere problemi su Quartus?
-
-Come realizzare lo shift di 90°?
+RWDS SHIFT: differenza tra timing constraint (timing analyzer) e circuito con pll/dll
 
 RWDS viene utilizzato per campionare i byte letti, che vengono poi messi insieme a coppie per ricostruire il dato.
 Il dato ricostruito prima o poi deve essere campionato con il clock interno e non con RWDS, come farlo senza avere problemi?
 Il problema si pone più che altro per letture a burst.
 
-Passaggio da macchina a stati impossibile o dannoso in certi casi
+Data masking in scrittura: è corretto come è stato fatto (shifted clock come selettore di un mux) ?
 
-Data masking in scrittura: è corretto come è stato fatto?
-
-POWER DOWN: il blocco ssram_to_hram riceve una richiesta di power down (scrittura del config reg1 in cui si abilita il power down).
-Il blocco deve attivare ssram_busy per tutto il tempo T_DPDIN richiesto alla hRAM ad entrare in power down mode (serve un contatore).
-Analogamente, quando arriva la richiesta di uscita dal power down mode il blocco deve attivare ssram_busy per tutto il tempo necessario ad uscirne.
