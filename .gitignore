@@ -2,7 +2,7 @@
 /fpga-user/
 /fpga-master/
 /docs/
-/datasheets/
+/cad_datasheets/
 /IP_cores/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_v1/db/
 /IP_cores/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_v1/incremental_db/
 /IP_cores/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_v1/output_files/
