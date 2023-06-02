@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-29T14:03:51.337Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0" etag="5mWuTukKELwsNB3m2znI" version="21.3.5" type="device" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-06-02T17:12:28.815Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0" etag="Mm57J936b7Xhxbw_0pbE" version="21.3.6" type="device" pages="4">
   <diagram id="aNipMCgoFr5Zwash_G46" name="AvalonMM_to_SSRAM">
-    <mxGraphModel dx="1054" dy="610" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1362" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -226,14 +226,11 @@
         <mxCell id="lHwEbxfXvSUswyJkpIzo-4" value="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=15;" parent="1" vertex="1">
           <mxGeometry x="649.75" y="178.74" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="lHwEbxfXvSUswyJkpIzo-5" value="&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;La descrizione e i timing diagram dei segnali lato AvalonMM è contenuta nel manuale del bus Avalon fornito da Intel.&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Per quanto riguarda il lato SSRAM:&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;&lt;ul&gt;&lt;li&gt;ssram_in: dato in ingresso alla memoria in fase di scrittura&lt;/li&gt;&lt;li&gt;ssram_out: dato in uscita dalla mermoria in fase di scrittura&lt;/li&gt;&lt;li&gt;ssram_address: indirizzo al quale effettuare l&#39;operazione di lettura/scrittura&lt;/li&gt;&lt;li&gt;ssram_address_spacing: selezione spazio di memoria / registri di configurazione&lt;br&gt;&lt;/li&gt;&lt;li&gt;ssram_OE: richiesta operazione di lettura (da attivare contemporaneamente all&#39;indirizzo)&lt;/li&gt;&lt;li&gt;ssram_WE: richiesta operazione di scrittura (da attivare contemporaneamente all&#39;indirizzo e al dato in ingresso)&lt;/li&gt;&lt;li&gt;ssram_validout: segnale di validità del dato in uscita (attivo contemporaneamente all&#39;uscita valida)&lt;br&gt;&lt;/li&gt;&lt;li&gt;ssram_busy: segnale tramite il quale la memoria segnala di non poter campionare i valori in ingresso ad essa&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;Nel caso di lettura, il segnale ssram_busy si disattiva contemporaneamente all&#39;impulso su ssram_validout&lt;/div&gt;&lt;div style=&quot;font-size: 15px;&quot;&gt;Il segnale ssram_validout non dovrebbe mai attivarsi quando la memoria è in DPD, ma nel caso si attivasse sarebbe ignorato&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="11" y="660" width="837.5" height="300" as="geometry" />
-        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="AvalonMM_to_SSRAM: RTL" id="xgOTYnnc5dOO5Jlde8V4">
-    <mxGraphModel dx="1904" dy="610" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4255" dy="1915" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="sEW1re1bT8H7BAdPNqU6-0" />
         <mxCell id="sEW1re1bT8H7BAdPNqU6-1" parent="sEW1re1bT8H7BAdPNqU6-0" />
