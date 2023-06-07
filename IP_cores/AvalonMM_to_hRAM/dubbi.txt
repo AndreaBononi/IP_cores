@@ -1,10 +1,8 @@
 RWDS SHIFT: differenza tra timing constraint (timing analyzer) e circuito con pll/dll
 
-Perchè contare LantencyCount quando è sufficiente utilizzare RWDS per campionare il dato?
+Perchè contare LantencyCount in lettura quando è sufficiente utilizzare RWDS per campionare il dato?
 
-RWDS viene utilizzato per campionare i byte letti, che vengono poi messi insieme a coppie per ricostruire il dato.
-Il dato ricostruito prima o poi deve essere campionato con il clock interno e non con RWDS, come farlo senza avere problemi?
-Il problema si pone più che altro per letture a burst.
+Sincronizzazione dato ricostrutio per campionarlo con il clock: è corretto come è stata fatta?
 
 Data masking in scrittura: è corretto come è stato fatto (shifted clock come selettore di un mux) ?
 
