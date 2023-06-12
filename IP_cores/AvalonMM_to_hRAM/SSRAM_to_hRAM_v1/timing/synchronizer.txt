@@ -1,0 +1,25 @@
+{
+ signal: 
+ [
+  {name: 'CLK', wave: '01010101010101010101010101010'},
+  {name: 'din (readbytes_out)', wave: 'z.....x=x=x=x=x=x=z..........', data: ["d0", "d1", "d2", "d3", "d4", "d5"], phase:0.9},
+  {name: 'din_strobe (RWDS_360shift)', wave: '0......101010101010..........', phase:0.4},
+  {name: 'code_counter_out', wave: '=......=.=.=.=.=.=........=..', data: ["00", "01", "10", "11", "00", "01", "10", "00"], phase:0.4},
+  {name: 'readdata00_out', wave: 'x......=.......=.......x.....', data: ["d0", "d4"], phase:0.4},
+  {name: 'readdata01_out', wave: 'x........=.......=.......x...', data: ["d1", "d5"], phase:0.4},
+  {name: 'readdata10_out', wave: 'x..........=.......x.........', data: ["d2"], phase:0.4},
+  {name: 'readdata11_out', wave: 'x............=.......x.......', data: ["d3"], phase:0.4},
+  {name: 'synchronizer_out', wave: '0......1..................0..', phase:0.4},
+  {name: 'datamux_sel', wave: '=..........=.=.=.=.=.=.=.....', data: ["00", "01", "10", "11", "00", "01", "10", "00"]},
+  {name: 'dataout_enable', wave: '0........1.............0.....'},
+  {name: 'validout', wave: '0..........1...........0.....'},
+  {name: 'ssram_out', wave: 'x..........=.=.=.=.=.=.x.....', data: ["d0", "d1", "d2", "d3", "d4", "d5"]},
+  {name: 'bustlen_counter_enable', wave: '0........1.............0.....'},  
+  {name: 'burstlen_counter_out', wave: '=..........=.=.=.=.=.=.=.=...', data: ["0", "1", "2", "3", "4", "5", "6", "7", "0"]},
+  {name: 'burstlen_dout', wave: 'x......=.....................', data: ["6"], phase:0.4},
+  {name: 'burst_end', wave: '0....................1.0.....'},
+  {name: 'burstlen_counter_clear_n', wave: '1......................0.1...'},
+  {name: 'code_counter_reset_n', wave: '1......................0.1...'},
+  {name: 'synchronizer_reset_n', wave: '1......................0.1...'},
+ ]
+}
