@@ -9,23 +9,25 @@ The component is separated in two different sub-components:
 ----------------------------------------------------------------------------------------------------------------------------------
 DIRECTORIES DESCRIPTION:
 	#
-	# AvalonMM_to_SSRAM_v1:
+	# ./AvalonMM_to_SSRAM_v1/
 		-- First version of the AvalonMM to SSRAM converter
 		-- It is able to append different operations
 		-- It is NOT able to initialize the hRAM configuration registers
 		-- It is NOT able to read/write the hRAM configuration registers
 		-- It is NOT able to manage burst operations
 		-- It has been completed and succesfully tested
+		-- OBSOLETE (a newer version has already been created and succesfully tested)
 	#
-	# AvalonMM_to_SSRAM_v2:
+	# ./AvalonMM_to_SSRAM_v2/
 		-- Second version of the AvalonMM to SSRAM converter
 		-- It is able to append different operations
 		-- It is able to initialize the hRAM configuration registers
 		-- It defines a private configuration register to read and write
 		-- It is NOT able to manage burst operations
 		-- It has been completed and succesfully tested
+		-- It is the LATEST VERSION created and succesfully tested
 	#
-	# AvalonMM_to_SSRAM_v3:
+	# ./AvalonMM_to_SSRAM_v3/
 		-- Final version of the AvalonMM to SSRAM converter
 		-- It is able to append different operations
 		-- It is able to initialize the hRAM configuration registers
@@ -33,12 +35,28 @@ DIRECTORIES DESCRIPTION:
 		-- It is able to manage burst operations
 		-- It is currently under development
 	#
-	# SSRAM_to_hRAM_v1:
+	# ./SSRAM_to_hRAM_v1/
 		-- First version of the SSRAM to hRAM converter
 		-- It is currently under development
 	#
-	# AvalonMM_to_hRAM_v1:
+	# ./AvalonMM_to_hRAM_v1/
 		-- First version of the complete AvalonMM to SSRAM converter
 		-- It is currently under development
+	#
+	# ./datasheets/
+		-- It contains useful datasheets
+	#
+----------------------------------------------------------------------------------------------------------------------------------
+FILES DESCRIPTION:
+	#	
+	# ./avm_abstract.odt
+		-- it contains useful information related to the Avalon Memory Mapped interface
+	#
+	# ./hRAM_abstract.odt
+		-- it contains useful information related to the hyperRAM
+	#
+	# ./implementation_notes.odt
+		-- it explains all the decisions made during the design
+	#
 ----------------------------------------------------------------------------------------------------------------------------------
 	
