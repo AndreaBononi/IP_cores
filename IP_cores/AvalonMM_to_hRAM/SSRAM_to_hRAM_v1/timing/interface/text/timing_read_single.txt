@@ -1,0 +1,14 @@
+{
+ signal: 
+ [
+  {name: 'CLK', wave: '01010101010101010'},
+  {name: 'ssram_CS', wave: '0..1.....|.....0.'},
+  {name: 'ssram_busy', wave: '0......1.|.0.....'},
+  {name: 'ssram_OE', wave: 'x..0.1.0.|.....x.'},
+  {name: 'ssram_address', wave: 'x....=.x.|.......', data: ["valid"]},
+  {name: 'ssram_address_spacing', wave: 'x....0.x.|.......'},
+  {name: 'ssram_burstcount', wave: 'x....=.x.|.......', data: ["1"]},
+  {name: 'ssram_validdout', wave: '0........|.1.0...'},
+  {name: 'ssram_out', wave: 'x........|.=.x...', data: ["valid"]},
+ ]
+}
