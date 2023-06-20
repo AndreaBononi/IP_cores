@@ -7,7 +7,6 @@
   {name: 'ssram_WE', wave: 'x..0.1.0.|.....x.'},
   {name: 'ssram_address', wave: 'x....=.x.|.......', data: ["valid"]},
   {name: 'ssram_address_spacing', wave: 'x....0.x.|.......'},
-  {name: 'ssram_burstcount', wave: 'x....=.x.|.......', data: ["1"]},
   {name: 'ssram_in', wave: 'x....=.x.|.......', data: ["valid"]},
  ]
 }

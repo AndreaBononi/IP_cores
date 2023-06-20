@@ -1,8 +1,6 @@
-CREARE FILE SDC (timing analyzer nei tools di Quartus) per forzare i vincoli temporali, compreso lo sfasamento di RWDS
+CREARE FILE SDC (timing analyzer nei tools di Quartus) per forzare i vincoli temporali, compresi lo sfasamento di RWDS e l'attivazione dei segnali di shift.
 
 TIMING SIMULATION nei tools di Quartus.
-
-IMPLEMENTARE OPERAZIONI A BURST NEL CONVERTITORE AVALON-SSRAM
 
 IMPLEMENTARE SCRITTURA A BURST NEL CONVERTITORE SSRAM-HRAM
 
@@ -12,4 +10,4 @@ Di conseguenza, è necessario implementare un meccanismo che, nel caso in cui cu
 Per questo motivo, quando si riprende la scrittura del burst il segnale waitrequest rimarra attivo per parecchi cicli, forzado l'utente ad aspettare (l'operazione deve di nuovo essere comandata).
 È quindi necessario tenere traccia dell'indirizzo alla quale l'operazione è stata interrotta.
 
-AGGIUNGERE SEGNALE RESPONSE NEL CONVERTITORE AVALON-SSRAM (per gestire gli errori)
+
