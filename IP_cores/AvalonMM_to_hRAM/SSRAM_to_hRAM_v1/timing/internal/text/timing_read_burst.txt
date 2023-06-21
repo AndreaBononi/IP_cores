@@ -1,0 +1,20 @@
+{
+ signal: 
+ [
+  {name: 'CLK', wave: '010101010101010101'},
+  {name: 'ssram_OE', wave: '0..1.0............'},
+  {name: 'ssram_address', wave: 'x..=.x............', data: ["valid"]},
+  {name: 'ssram_burstlen', wave: 'x..=.x............', data: ["N"]},
+  {name: 'hBUS_CS_n', wave: '01...0............'},
+  {name: 'busy', wave: '10...1............'},
+  {name: 'cmd_load', wave: '01...0............'},
+  {name: 'CA_load', wave: '0....1.0..........'},
+  {name: 'CA_OE', wave: '0......1.....0....'},
+  {name: 'CA_shift', wave: '0........1.....0..'},
+  {name: 'hBUS_DQ', wave: 'z........======z..', data: ["C0A", "C0B", "C1A", "C1B", "C2A", "C2B"]},
+  {name: 'gated_CK', wave: '0........101010101'},
+  {name: 'CK_90shift', wave: '0.........101010101', phase:0.6},
+  {name: 'CK_gating_enable_n', wave: '0......1..........'},
+  {name: 'RWDS_sampling_enable', wave: '0..............1..'},
+ ]
+}
