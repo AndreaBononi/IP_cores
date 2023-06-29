@@ -4,9 +4,11 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- MULTIPLEXER with 2 inputs (N bit)
--- sel = 0 --> out_mux = mux_in_0
--- sel = 1 --> out_mux = mux_in_1
+-- MULTIPLEXER with 4 inputs (N bit)
+-- sel = 00 --> out_mux = mux_in_00
+-- sel = 01 --> out_mux = mux_in_01
+-- sel = 10 --> out_mux = mux_in_10
+-- sel = 11 --> out_mux = mux_in_11
 
 -----------------------------------------------------------------------------
 
@@ -17,9 +19,11 @@ entity mux_2to1 is
 	);
 	port
 	(
-		mux_in_0		: in		std_logic_vector((N-1) downto 0);
-		mux_in_1		: in		std_logic_vector((N-1) downto 0);
-		sel					: in 		std_logic;
+		mux_in_00		: in		std_logic_vector((N-1) downto 0);
+		mux_in_01		: in		std_logic_vector((N-1) downto 0);
+		mux_in_10		: in		std_logic_vector((N-1) downto 0);
+		mux_in_11		: in		std_logic_vector((N-1) downto 0);
+		sel					: in 		std_logic_vector(2);
 		out_mux			: out 	std_logic_vector((N-1) downto 0)
 	);
 end mux_2to1;
@@ -27,19 +31,20 @@ end mux_2to1;
 -----------------------------------------------------------------------------
 
 architecture behavior of mux_2to1 is
-
 	begin
-
 		output_evaluation: process (sel)
 		begin
 			case sel is
-				when '0' =>
-					out_mux <= mux_in_0;
+				when '00' =>
+					out_mux <= mux_in_00;
+				when '01' =>
+					out_mux <= mux_in_01;
+				when '10' =>
+					out_mux <= mux_in_10;
 				when others =>
-					out_mux <= mux_in_1;
+					out_mux <= mux_in_11;
 			end case;
 		end process output_evaluation;
-		
 end behavior;
 
 -----------------------------------------------------------------------------

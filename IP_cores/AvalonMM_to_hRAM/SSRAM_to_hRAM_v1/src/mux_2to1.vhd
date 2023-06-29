@@ -11,16 +11,16 @@ use ieee.numeric_std.all;
 -----------------------------------------------------------------------------
 
 entity mux_2to1 is
-	generic 
+	generic
 	(
 		N : integer := 1
 	);
-	port 
-	(	
+	port
+	(
 		mux_in_0		: in		std_logic_vector((N-1) downto 0);
 		mux_in_1		: in		std_logic_vector((N-1) downto 0);
-		sel			: in 		std_logic;
-		out_mux		: out 	std_logic_vector((N-1) downto 0)
+		sel					: in 		std_logic;
+		out_mux			: out 	std_logic_vector((N-1) downto 0)
 	);
 end mux_2to1;
 
@@ -28,10 +28,10 @@ end mux_2to1;
 
 architecture behavior of mux_2to1 is
 	begin
-		output_evaluation: process (sel, mux_in_0, mux_in_1)
+		output_evaluation: process (sel)
 		begin
 			case sel is
-				when '0' => 
+				when '0' =>
 					out_mux <= mux_in_0;
 				when others =>
 					out_mux <= mux_in_1;
