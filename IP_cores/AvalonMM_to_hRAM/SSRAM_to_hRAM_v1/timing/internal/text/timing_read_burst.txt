@@ -10,6 +10,7 @@
   {name: 'cmd_load', wave: '01...0............'},
   {name: 'CA_load', wave: '0......1.0........'},
   {name: 'dq_OE', wave: '0......1.....0....'},
+  {name: 'CA_sel', wave: 'x........=.=.=.x..', data: ["00", "01", "10"]},
   {name: 'hBUS_DQ', wave: 'z........======z..', data: ["C0A", "C0B", "C1A", "C1B", "C2A", "C2B"]},
   {name: 'gated_CK', wave: '0........101010101'},
   {name: 'CK_90shift', wave: '0.........101010101', phase:0.6},
