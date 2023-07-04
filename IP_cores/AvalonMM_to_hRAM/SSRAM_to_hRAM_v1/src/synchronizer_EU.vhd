@@ -24,17 +24,17 @@ entity synchronizer_EU is
     din_strobe                : in		std_logic;
     din                       : in		std_logic_vector(15 downto 0);
     dout                      : out		std_logic_vector(15 downto 0);
-		validout                  : out		std_logic;
-    busy                      : out		std_logic;
+		synch_validout            : out		std_logic;
+    synch_busy                : out		std_logic;
     -- control signals:
     system_clear_n            : in		std_logic;
     system_enable             : in		std_logic;
     burstlen_enable           : in		std_logic;
     burstlen_counter_enable   : in		std_logic;
-    datamux_sel               : in		std_logic;
     dataout_enable            : in		std_logic;
-    synch_busy                : in		std_logic;
-    synch_validout            : in		std_logic;
+    data_counter_enable       : in    std_logic;
+    busy                      : in		std_logic;
+    validout                  : in		std_logic;
     -- status signals:
     burst_end                 : out		std_logic;
     start_sampling            : out		std_logic;
@@ -45,7 +45,7 @@ end synchronizer_EU;
 
 ---------------------------------------------------------------------------------------------------------------
 
-architecture behavior of synchronizer_EU is
+architecture rtl of synchronizer_EU is
 
   -- register -------------------------------------------------------------------------------------------------
   component reg is
@@ -146,6 +146,7 @@ architecture behavior of synchronizer_EU is
   signal datamux_out            : std_logic_vector(15 downto 0);
   signal burstlen_out           : std_logic_vector((N_burstcount-1) downto 0);
   signal burstlen_counter_out   : std_logic_vector((N_burstcount-1) downto 0);
+  signal datamux_sel            : std_logic_vector(1 downto 0);
 
   begin
 
@@ -161,6 +162,7 @@ architecture behavior of synchronizer_EU is
     burstlen          : reg generic map(N_burstcount) port map(din_strobe, burstlen_enable, '1', burstcount, burstlen_out);
     burstlen_counter  : counter_Nbit generic map(N_burstcount) port map(clk, burstlen_counter_enable, system_clear_n, burstlen_counter_out);
     burstlen_cmp      : comparator_Nbit generic map(N_burstcount) port map(burstlen_out, burstlen_counter_out, burst_end);
+    data_counter      : conuter_Nbit generic map(2) port map(clk, data_counter_enable, system_clear_n, datamux_sel);
 
     readdata00_enable <= dec00 and system_enable;
 
@@ -170,6 +172,6 @@ architecture behavior of synchronizer_EU is
     synch_validout <= validout;
 
 
-end behavior;
+end rtl;
 
 ------------------------------------------------------------------------------------------------------------
