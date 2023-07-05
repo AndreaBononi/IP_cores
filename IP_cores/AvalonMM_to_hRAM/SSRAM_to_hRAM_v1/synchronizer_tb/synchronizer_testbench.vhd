@@ -8,7 +8,7 @@ use ieee.std_logic_textio.all;
 library std;
 use std.textio.all;
 
--- testbench file for synchronizer
+-- synchronizer testbench file
 -- the driver (input application) and the monitor (output storage) are created locally
 -- the sequencer (input generation) and the scoreboard (output verification) are implemented in Python
 
@@ -23,7 +23,7 @@ end synchronizer_testbench;
 
 ----------------------------------------------------------------------------------------------------------------------
 
-architecture behavior of synchronizer_testbench is
+architecture tb of synchronizer_testbench is
 
 	-- constants ------------------------------------------------------------------------------------------------------
 	constant N_burstcount 				: integer := 4;
@@ -37,6 +37,13 @@ architecture behavior of synchronizer_testbench is
 	signal rst_n			        		: std_logic;
 
 	-- DUT signals -----------------------------------------------------------------------------------------------------
+	signal synch_enable           :	std_logic;
+	signal synch_clear_n          :	std_logic;
+	signal din_strobe             :	std_logic;
+	signal din                    :	std_logic_vector(15 downto 0);
+	signal dout                   :	std_logic_vector(15 downto 0);
+	signal synch_validout         :	std_logic;
+	signal synch_busy             :	std_logic;
 
 	-- simulation signals ----------------------------------------------------------------------------------------------
 	signal start_sim							: std_logic;
@@ -51,6 +58,7 @@ architecture behavior of synchronizer_testbench is
 		port
 		(
 			clk                       : in    std_logic;
+			rst_n											: in    std_logic;
 			synch_enable              : in		std_logic;
 			synch_clear_n             : in		std_logic;
 			burstcount                : in		std_logic_vector((N_burstcount-1) downto 0);
@@ -101,18 +109,64 @@ architecture behavior of synchronizer_testbench is
 	(
 		clk										: in		std_logic;
 		rst_n									: in  	std_logic;
-		synch_enable          : out		std_logic;
-		synch_clear_n         : out		std_logic;
-		din_strobe            : out		std_logic;
+		synch_enable          : out		std_logic := '0';
+		din_strobe            : out		std_logic := '0';
 		din                   : out		std_logic_vector(15 downto 0);
-		synch_busy            : in		std_logic
+		synch_busy            : in		std_logic;
+		start_sim							:	out		std_logic := '0';
+		stop_sim							: out		std_logic := '0'
 	);
 	end component;
 
 	begin
 
 		DUT: synchronizer
+		generic map
+		(
+			N_burstcount
+		)
+		port map
+		(
+			clk,
+			rst_n,
+			synch_enable,
+			synch_clear_n,
+			burstcount,
+			din_strobe,
+			din,
+			dout,
+			synch_validout,
+			synch_busy
+		);
 
-end behavior;
+		monitor: synchronizer_monitor
+		port map
+		(
+			clk,
+			dout,
+			synch_validout,
+			start_sim,
+			stop_sim
+		);
+
+		driver: synchronizer_driver
+		generic map
+		(
+			strobe_shift,
+			clock_period
+		)
+		port map
+		(
+			clk,
+			rst_n,
+			synch_enable,
+			din_strobe,
+			din,
+			synch_busy,
+			start_sim,
+			stop_sim
+		);
+
+end tb;
 
 ----------------------------------------------------------------------------------------------------------------------

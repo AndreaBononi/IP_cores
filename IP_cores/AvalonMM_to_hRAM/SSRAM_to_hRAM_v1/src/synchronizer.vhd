@@ -12,7 +12,10 @@ use ieee.numeric_std.all;
 -- burstcount is sampled by din_strobe, thus it must be valid before din_strobe starts oscillating
 -- burstcount must be kept constant up to the end of the operation
 -- an operation is terminated when busy goes low after going high
+-- busy goes low when burstcount is reached, every provided after that is ignored
 -- at the end of an operation, the synchronizer must be cleared in order to start a new operation
+-- synch_enable must be set to '1' before sending the strobe (otherwise the strobe oscillations are ignored)
+-- it is recommended to keep synch_enable set to '1' up to the end of the sycnhronization (although its value does not actually matter)
 
 --------------------------------------------------------------------------------------------------------
 
@@ -24,6 +27,7 @@ entity synchronizer is
 	port
 	(
 		clk                       : in    std_logic;
+		rst_n											: in    std_logic;
 		synch_enable              : in		std_logic;
 		synch_clear_n             : in		std_logic;
 		burstcount                : in		std_logic_vector((N_burstcount-1) downto 0);
@@ -79,8 +83,9 @@ architecture rtl of synchronizer is
 	component synchronizer_CU is
 		port
 		(
-	    -- clock:
-	    clk                       : in    std_logic;
+			-- clock and reset:
+			clk                       : in    std_logic;
+			rst_n											: in    std_logic;
 			-- status signals:
 	    burst_end                 : in		std_logic;
 	    start_sampling            : in		std_logic;
@@ -148,6 +153,7 @@ architecture rtl of synchronizer is
 		port map
 		(
 			clk,
+			rst_n,
 			burst_end,
 			start_sampling,
 			enable,

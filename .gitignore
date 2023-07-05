@@ -17,3 +17,8 @@
 /IP_cores/AvalonMM_to_hRAM/AvalonMM_to_SSRAM_v2/sim/__pycache__/
 /IP_cores.zip
 /IP_cores/AvalonMM_to_hRAM/domande.txt
+/IP_cores/AvalonMM_to_hRAM/SSRAM_to_hRAM_v1/src/*.bak
+/IP_cores/AvalonMM_to_hRAM/SSRAM_to_hRAM_v1/synchronizer_tb/*.bak
+/IP_cores/AvalonMM_to_hRAM/SSRAM_to_hRAM_v1/db/
+/IP_cores/AvalonMM_to_hRAM/SSRAM_to_hRAM_v1/incremental_db/
+/IP_cores/AvalonMM_to_hRAM/SSRAM_to_hRAM_v1/output_files/

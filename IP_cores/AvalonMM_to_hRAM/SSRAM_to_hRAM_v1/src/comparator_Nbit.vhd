@@ -36,7 +36,7 @@ architecture behavior of comparator_Nbit is
     intra_and(0) <= bitwise_and(0);
 
     g2: for j in 0 to N-1 generate
-			 intra_and(i) <= intra_and(i-1) and bitwise_and(i-1);
+			 intra_and(j) <= intra_and(j-1) and bitwise_and(j-1);
 		end generate;
 
     equal <= intra_and(N-1);

@@ -9,8 +9,9 @@ use IEEE.numeric_std.all;
 entity synchronizer_CU is
 	port
 	(
-    -- clock:
+    -- clock and reset:
     clk                       : in    std_logic;
+		rst_n											: in    std_logic;
 		-- status signals:
     burst_end                 : in		std_logic;
     start_sampling            : in		std_logic;
