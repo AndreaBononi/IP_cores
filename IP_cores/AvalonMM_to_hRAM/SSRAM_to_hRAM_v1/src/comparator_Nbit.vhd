@@ -25,21 +25,22 @@ end comparator_Nbit;
 
 architecture behavior of comparator_Nbit is
 
-  signal bitwise_and, intra_and : std_logic_vector(N-1 downto 0);
+  signal bitwise_and	: std_logic_vector(N-1 downto 0);
+  signal intra_and		: std_logic_vector(N downto 0);
 
 	begin
 
     g1: for i in 0 to N-1 generate
-			 bitwise_and(i) <= cmp_in_0(i-1) and cmp_in_1(i-1);
+			 bitwise_and(i) <= cmp_in_0(i) and cmp_in_1(i);
 		end generate;
 
     intra_and(0) <= bitwise_and(0);
 
-    g2: for j in 0 to N-1 generate
+    g2: for j in 1 to N generate
 			 intra_and(j) <= intra_and(j-1) and bitwise_and(j-1);
 		end generate;
 
-    equal <= intra_and(N-1);
+    equal <= intra_and(N);
 
 end behavior;
 

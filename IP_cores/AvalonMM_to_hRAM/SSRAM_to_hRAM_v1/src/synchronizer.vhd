@@ -128,7 +128,7 @@ architecture rtl of synchronizer is
 		(
 			clk,
 			synch_enable,
-			synch_clear_n
+			synch_clear_n,
 			burstcount,
 			din_strobe,
 			din,

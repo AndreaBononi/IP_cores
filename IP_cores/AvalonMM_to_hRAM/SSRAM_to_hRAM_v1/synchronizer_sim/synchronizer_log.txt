@@ -1,0 +1,41 @@
+Reading pref.tcl
+
+# 2020.1
+
+# do synchronizer_simulation.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:47:04 on Jul 06,2023
+# vcom ../src/d_flipflop.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity d_flipflop
+# -- Compiling architecture behavior of d_flipflop
+# End time: 17:47:04 on Jul 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:47:04 on Jul 06,2023
+# vcom ../src/t_flip_flop.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity t_flip_flop
+# -- Compiling architecture behavior of t_flip_flop
+# End time: 17:47:04 on Jul 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:47:04 on Jul 06,2023
+# vcom ../src/sr_flip_flop.vhd 
+# ** Error: (vcom-7) Failed to open design unit file "../src/sr_flip_flop.vhd" in read mode.
+# No such file or directory. (errno = ENOENT)
+# End time: 17:47:04 on Jul 06,2023, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: /home/andrea/intelFPGA/20.1/modelsim_ase/linuxaloem/vcom failed.
+# Error in macro ./synchronizer_simulation.do line 6
+# /home/andrea/intelFPGA/20.1/modelsim_ase/linuxaloem/vcom failed.
+#     while executing
+# "vcom ../src/sr_flip_flop.vhd"
+ModelSim> # 
+# <EOF>

@@ -32,7 +32,7 @@ end mux_4to1;
 
 architecture behavior of mux_4to1 is
 	begin
-		output_evaluation: process (sel)
+		output_evaluation: process (sel, mux_in_00, mux_in_01, mux_in_10, mux_in_11)
 		begin
 			case sel is
 				when "00" =>
