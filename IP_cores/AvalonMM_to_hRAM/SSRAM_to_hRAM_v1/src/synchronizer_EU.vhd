@@ -15,8 +15,9 @@ entity synchronizer_EU is
   );
 	port
 	(
-    -- clock:
+    -- clock and reset:
     clk                       : in    std_logic;
+    rst_n                     : in    std_logic;
     -- data signals:
     synch_enable              : in		std_logic;
     synch_clear_n             : in		std_logic;
@@ -67,9 +68,10 @@ architecture rtl of synchronizer_EU is
   component sr_flipflop is
   	port
   	(
-  		clk			: in std_logic;
-  		set			: in std_logic;
+  		clk			  : in std_logic;
+  		set			  : in std_logic;
   		clear_n		: in std_logic;
+      rst_n			: in std_logic;
   		sr_out		: out std_logic
   	);
   end component;
@@ -128,6 +130,7 @@ architecture rtl of synchronizer_EU is
   		clk				: in 		std_logic;
   		enable		: in 		std_logic;
   		clear_n		: in 		std_logic;
+      rst_n     : in 		std_logic;
   		cnt_out		: out 	std_logic_vector(N-1 downto 0)
   	);
   end component;
@@ -150,8 +153,8 @@ architecture rtl of synchronizer_EU is
 
   begin
 
-    code_counter      : counter_Nbit generic map(2) port map(din_strobe, system_enable, system_clear_n, code_counter_out);
-    synchronizer      : sr_flipflop port map(din_strobe, system_enable, system_clear_n, start_sampling);
+    code_counter      : counter_Nbit generic map(2) port map(din_strobe, system_enable, system_clear_n, rst_n, code_counter_out);
+    synchronizer      : sr_flipflop port map(din_strobe, system_enable, system_clear_n, rst_n, start_sampling);
     dec               : decoder_2bit port map(code_counter_out, dec00, dec01, dec10, dec11);
     readdata11        : reg generic map(16) port map(din_strobe, dec11, '1', din, readdata11_out);
     readdata10        : reg generic map(16) port map(din_strobe, dec10, '1', din, readdata10_out);
@@ -160,9 +163,9 @@ architecture rtl of synchronizer_EU is
     datamux           : mux_4to1 generic map(16) port map(readdata00_out, readdata01_out, readdata10_out, readdata11_out, datamux_sel, datamux_out);
     dataout           : reg generic map(16) port map(clk, dataout_enable, '1', datamux_out, dout);
     burstlen          : reg generic map(N_burstcount) port map(din_strobe, burstlen_enable, '1', burstcount, burstlen_out);
-    burstlen_counter  : counter_Nbit generic map(N_burstcount) port map(clk, burstlen_counter_enable, system_clear_n, burstlen_counter_out);
+    burstlen_counter  : counter_Nbit generic map(N_burstcount) port map(clk, burstlen_counter_enable, system_clear_n, '1', burstlen_counter_out);
     burstlen_cmp      : comparator_Nbit generic map(N_burstcount) port map(burstlen_out, burstlen_counter_out, burst_end);
-    data_counter      : counter_Nbit generic map(2) port map(clk, data_counter_enable, system_clear_n, datamux_sel);
+    data_counter      : counter_Nbit generic map(2) port map(clk, data_counter_enable, system_clear_n, '1', datamux_sel);
 
     readdata00_enable <= dec00 and system_enable;
 

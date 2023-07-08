@@ -30,7 +30,7 @@ architecture tb of synchronizer_testbench is
 	constant burstcount 					: std_logic_vector((N_burstcount-1) downto 0) := "1000";
 	constant clock_period					: time	:= 10 ns;
 	constant reset_stop						: time	:= 15 ns;
-	constant strobe_shift					: time	:= 5 ns;
+	constant strobe_shift					: time	:= 3 ns;
 
 	-- clock and reset signals -----------------------------------------------------------------------------------------
 	signal clk		          			: std_logic;
@@ -119,6 +119,20 @@ architecture tb of synchronizer_testbench is
 	end component;
 
 	begin
+
+		clk_rst_gen: clk_rst_generator
+		generic map
+		(
+			clock_period,
+			reset_stop
+		)
+		port map
+		(
+			clk,
+			rst_n,
+			start_sim,
+			stop_sim
+		);
 
 		DUT: synchronizer
 		generic map

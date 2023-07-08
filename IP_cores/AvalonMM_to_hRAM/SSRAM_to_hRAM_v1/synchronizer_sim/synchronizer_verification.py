@@ -63,7 +63,7 @@ log.write( "\n" )
 # later, the value of each memory location is read
 try:
     stimuli = open( input_file, "w" )
-    for burst_idx in range( 1, burstcount ):
+    for burst_idx in range( 0, burstcount ):
         data = format( random.randint( 0,  2 ** data_size ), str( data_size ) + 'b' ).replace(" ", "0")
         stimuli.write( data )
         stimuli.write( "\n" )

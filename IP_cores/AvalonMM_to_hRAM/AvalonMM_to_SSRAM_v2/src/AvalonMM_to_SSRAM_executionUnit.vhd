@@ -128,6 +128,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 			clk				: in 	std_logic;
 			enable		: in 	std_logic;
 			clear_n		: in 	std_logic;
+			rst_n			: in 	std_logic;
 			tff_in		: in 	std_logic;
 			tff_out		: out std_logic
 		);
@@ -245,7 +246,7 @@ architecture rtl of AvalonMM_to_SSRAM_executionUnit is
 
 		MEM_INPUT_MUX: mux_2to1 generic map (16) port map (fifo4_out(47 downto 32), config_mux_out, mem_input_sel, ssram_in);
 
-		TGL: t_flip_flop port map (clk, '1', tgl_clear_n, tgl_in, mem_avail);
+		TGL: t_flip_flop port map (clk, '1', tgl_clear_n, '1', tgl_in, mem_avail);
 
 		avs_s0_readdatavalid <= readdatavalid;
 		avs_s0_waitrequest <= waitrequest;

@@ -51,8 +51,9 @@ architecture rtl of synchronizer is
 	  );
 		port
 		(
-	    -- clock:
-	    clk                       : in    std_logic;
+			-- clock and reset:
+			clk                       : in    std_logic;
+			rst_n                     : in    std_logic;
 	    -- data signals:
 	    synch_enable              : in		std_logic;
 	    synch_clear_n             : in		std_logic;
@@ -127,6 +128,7 @@ architecture rtl of synchronizer is
 		port map
 		(
 			clk,
+			rst_n,
 			synch_enable,
 			synch_clear_n,
 			burstcount,

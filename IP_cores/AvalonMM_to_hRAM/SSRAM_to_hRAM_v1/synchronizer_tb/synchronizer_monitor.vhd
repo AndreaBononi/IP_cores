@@ -40,7 +40,7 @@ architecture tb of synchronizer_monitor is
 		variable outputline					: line;
 		variable output_file_stat		: file_open_status;
 		begin
-			file_open(output_file_stat, output_file, "../sim/synchronizer_out.txt", write_mode);
+			file_open(output_file_stat, output_file, "../synchronizer_sim/synchronizer_out.txt", write_mode);
 			if (stop_sim = '0') then
 				if (start_sim = '1') then
 					if (rising_edge(clk)) then
